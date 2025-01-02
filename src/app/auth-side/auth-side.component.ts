@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-auth-side',
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './auth-side.component.css'
 })
 export class AuthSideComponent {
-
+  @Input() backgroundImage : string = '';
 }
