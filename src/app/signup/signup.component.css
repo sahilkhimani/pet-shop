@@ -1,0 +1,58 @@
+.form-section {
+    padding: 0rem 5rem;
+    height: 100vh;
+    justify-content: space-evenly;
+}
+.form-section .form-label {
+    margin-bottom: 0rem !important;
+}
+
+.form-section .head-section {
+    align-items: center;
+    /* margin-bottom: 5rem; */
+}
+
+.form-section label {
+    font-size: 1rem;
+    /* margin-bottom: 0.5rem; */
+}
+
+.form-section input {
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+    margin-bottom: 0.3rem;
+    padding-left: 0px;
+}
+
+.form-section button {
+    margin-top: 0.5rem;
+}
+
+.form-section .bottom-line {
+    align-items: center;
+    text-align: center;
+}
+
+.form-section .form-group small {
+    color: red;
+    font-size: 0.8rem;
+}
+
+.form-section .form-group select{
+    border-color: black;
+}
+
+.passField {
+    position: relative;
+}
+
+.passField button {
+    position: absolute;
+    right: 0rem;
+    top: 20%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
