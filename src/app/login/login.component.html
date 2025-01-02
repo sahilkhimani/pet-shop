@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-7">
+        <app-auth-side></app-auth-side>
+    </div>
+    <div class="col-md-5">
+        <div class="row">
+            <section class="form-section center-content">
+                <div>
+                    <div class="head-section center-content mb-2">
+                        <h2>Sign In</h2>
+                        <img src="assets/images/logo.jpg" class="rounded-circle" />
+                    </div>
+        
+                    <form id="loginForm">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="text" id="email" class="form-control" placeholder="Enter your email address" />
+        
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password"class="form-control" placeholder="Enter your password" />
+
+                        <button class="btn btn-dark w-100" type="submit">Submit</button>
+                    </form>
+                </div>
+                <div class="center-content bottom-line">
+                    <span>Don't have an account? <a routerLink="/signup">Sign Up</a></span>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

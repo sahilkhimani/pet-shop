@@ -1,0 +1,33 @@
+.auth-side {
+    background-image: url('../../../public/assets/images/loginside.jpg');
+    justify-content: space-between;
+    padding: 0 3rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+    .auth-side h1 {
+        font-family: "Pacifico", cursive, serif;
+        font-weight: 100;
+    }
+
+    .auth-side .header-logo{
+        margin-top : 3rem;
+        width : 20em;
+    }
+
+    .auth-side p {
+        font-size: 1.2em;
+        text-align: justify;
+        font-style : italic;
+        font-weight : 400;
+        color : #000;
+    }
+
+
+@media (max-width: 767px) {
+    .mobile-hidden {
+        display: none;
+    }
+}

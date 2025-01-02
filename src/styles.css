@@ -1,4 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Lemon&family=Pacifico&display=swap');
 
-html, body { height: 100%; }
+html, body { height: 100%; box-sizing: border-box;}
 body { margin: 0; font-family: 'Times New Roman', "Helvetica Neue", sans-serif; }
+
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+}

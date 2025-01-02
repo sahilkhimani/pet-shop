@@ -1,0 +1,36 @@
+
+.form-section {
+    padding: 0rem 5rem;
+    height: 100vh;
+    justify-content: space-evenly;
+}
+
+    .form-section .head-section {
+        align-items: center;
+        margin-bottom: 5rem;
+    }
+
+    .form-section img {
+        max-width: 20%;
+    }
+
+    .form-section label {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-section input {
+        border: none;
+        border-bottom: 1px solid black;
+        border-radius: 0;
+        margin-bottom: 1rem;
+        padding-left: 0px;
+    }
+
+    .form-section button {
+        margin-top: 1rem;
+    }
+
+    .form-section .bottom-line {
+        align-items: center;
+    }
