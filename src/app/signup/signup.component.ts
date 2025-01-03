@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthSideComponent } from '../auth-side/auth-side.component';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { LoginModel } from '../../models/login.model';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { RegisterModel } from '../../models/register.model';
-
 @Component({
   selector: 'app-signup',
   imports: [
@@ -42,7 +40,7 @@ export class SignupComponent {
     phoneNo: new FormControl('', Validators.required),
     roleId: new FormControl('', Validators.required)
   },
-    { validators: this.passwordMatchValidator })
+  { validators: this.passwordMatchValidator })
 
 
   submitForm() {
@@ -51,11 +49,6 @@ export class SignupComponent {
     console.log(data);
   }
 
-  passwordMatchValidator(formGroup: AbstractControl): ValidationErrors | null {
-    const password = formGroup.get('password')?.value;
-    const confirmPassword = formGroup.get('cPassword')?.value;
-    return password === confirmPassword ? null : { passwordsMismatch: true };
-  }
 
   get f() {
     return this.singupForm.controls;
@@ -73,5 +66,11 @@ export class SignupComponent {
       return 'Pasword must contain atleast 8 character with one uppercase letter'
     }
     return '';
+  }
+
+  passwordMatchValidator(formGroup: AbstractControl): ValidationErrors | null {
+    const password = formGroup.get('password')?.value;
+    const confirmPassword = formGroup.get('cPassword')?.value;
+    return password === confirmPassword ? null : { passwordsMismatch: true };
   }
 }

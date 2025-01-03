@@ -35,7 +35,7 @@
                         <div class="form-group">
                             <label for="cPassword" class="form-label">Confirm Password</label>
                             <input type="text" id="cPassword" class="form-control" formControlName="cPassword" placeholder="Confirm password">
-                            <small *ngIf="singupForm.errors?.['passwordsMismatch']">
+                            <small *ngIf="singupForm.errors?.['passwordsMismatch'] && f['cPassword'].touched">
                                 Passwords do not match
                             </small>
                         </div>
