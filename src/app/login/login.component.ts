@@ -5,6 +5,10 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { LoginModel } from '../models/login.model';
 import { UserService } from '../services/user.service';
+import { LocalStorageService } from '../services/local-storage.service';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatButton } from '@angular/material/button';
+import { config } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +17,6 @@ import { UserService } from '../services/user.service';
     RouterLink,
     ReactiveFormsModule,
     CommonModule,
-
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -23,7 +26,12 @@ export class LoginComponent {
   backgroundImage = 'assets/images/loginside.jpg'
   showPassword = false;
   isLoading: boolean = false;
-  constructor(private userService: UserService, private router : Router) { }
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private localStorage: LocalStorageService,
+    private snackBar: MatSnackBar
+  ) { }
 
   loginForm = new FormGroup({
     email: new FormControl('',
@@ -43,13 +51,22 @@ export class LoginComponent {
     const data = new LoginModel(formData.email, formData.password);
     this.userService.Login(data).subscribe({
       next: (response) => {
+        this.localStorage.setItem('authToken', response);
+        this.snackBar.open("Login Successfull", "Close", {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+          panelClass : ['success-snackbar']
+        })
         this.router.navigate(['/main-page']);
-        console.log(response)
-
       },
       error: (err) => {
-        console.log(err.error)
-
+        this.snackBar.open(err.error, "Close", {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+          panelClass : ['error-snackbar']
+        })
       }
     })
     this.isLoading = false;

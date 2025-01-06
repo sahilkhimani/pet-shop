@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { AuthSideComponent } from '../auth-side/auth-side.component';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { RegisterModel } from '../models/register.model';
+import { UserService } from '../services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-signup',
   imports: [
@@ -17,6 +19,14 @@ import { RegisterModel } from '../models/register.model';
 })
 export class SignupComponent {
   backgroundImage = 'assets/images/registerside.jpg'
+  isLoading: boolean = false;
+  localStorage: any;
+
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) { }
 
   singupForm = new FormGroup({
     name: new FormControl('',
@@ -29,24 +39,36 @@ export class SignupComponent {
     password: new FormControl('',
       [Validators.required,
       Validators.minLength(8),
-      Validators.pattern('^(?=.*[A-Z]).{8,}$')]),
+      Validators.pattern('^(?=.*[A-Z])(?=.*[a-z]).{8,}$')]),
     cPassword: new FormControl('',
       [
         Validators.required,
-        Validators.minLength(8),
-        Validators.pattern('^(?=.*[A-Z]).{8,}$'),
       ]
     ),
     phoneNo: new FormControl('', Validators.required),
     roleId: new FormControl('', Validators.required)
   },
-  { validators: this.passwordMatchValidator })
+    { validators: this.passwordMatchValidator })
 
 
   submitForm() {
     const formData = this.singupForm.value;
     const data = new RegisterModel(formData.name, formData.email, formData.password, formData.cPassword, formData.phoneNo, formData.roleId);
-    console.log(data);
+    this.userService.register(data).subscribe({
+      next: (response) => {
+        this.router.navigate(['/login']);
+        this.singupForm.reset();
+      },
+      error: (err) => {
+        this.snackBar.open(err.error, "Close", {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+          panelClass: ['error-snackbar']
+        })
+      }
+    })
+    this.isLoading = false;
   }
 
 
@@ -55,15 +77,19 @@ export class SignupComponent {
   }
 
   getErrorMessages(controlName: string) {
+    const requiredError = "This field is required";
+    const validEmailError = "Enter Valid Email Address (e.g. user@example.com)";
+    const passwordError = "Pasword must contain atleast 8 character with one uppercase letter and one special character";
     const control = this.singupForm.get(controlName);
+    
     if (control?.hasError('required')) {
-      return 'This field is required';
+      return requiredError;
     }
     if (controlName == 'email' && control?.hasError('pattern')) {
-      return 'Enter valid Email Address (e.g. user@example.com)'
+      return validEmailError;
     }
     if (controlName == 'password' && control?.hasError('pattern')) {
-      return 'Pasword must contain atleast 8 character with one uppercase letter'
+      return passwordError;
     }
     return '';
   }

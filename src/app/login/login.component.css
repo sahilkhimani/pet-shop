@@ -52,3 +52,17 @@
     border: none;
     cursor: pointer;
 }
+
+::ng-deep .error-snackbar {
+    --mdc-snackbar-container-color: red;
+    --mdc-snackbar-supporting-text-color: white;
+}
+::ng-deep .success-snackbar{
+    --mdc-snackbar-container-color: green;
+    --mdc-snackbar-supporting-text-color: white;
+}
+
+::ng-deep .error-snackbar button{
+    color: white !important;
+}
+

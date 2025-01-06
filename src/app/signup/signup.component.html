@@ -50,8 +50,8 @@
                             <label for="role" class="form-label">Role</label>
                             <select name="roles" id="role" class="form-select" formControlName="roleId">
                                 <option value="" disabled Selected>Select</option>
-                                <option value="Seller">Seller</option>
-                                <option value="Buyer">Buyer</option>
+                                <option value="2">Seller</option>
+                                <option value="3">Buyer</option>
                             </select>
                             <small *ngIf="f['roleId'].invalid && f['roleId'].touched">
                                 {{ getErrorMessages('roleId') }}
