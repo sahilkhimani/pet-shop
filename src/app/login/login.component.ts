@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { AuthSideComponent } from '../auth-side/auth-side.component';
-import { RouteConfigLoadEnd, RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { LoginModel } from '../../models/login.model';
+import { LoginModel } from '../models/login.model';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import { LoginModel } from '../../models/login.model';
     RouterLink,
     ReactiveFormsModule,
     CommonModule,
+
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -20,6 +22,8 @@ export class LoginComponent {
 
   backgroundImage = 'assets/images/loginside.jpg'
   showPassword = false;
+  isLoading: boolean = false;
+  constructor(private userService: UserService, private router : Router) { }
 
   loginForm = new FormGroup({
     email: new FormControl('',
@@ -34,9 +38,22 @@ export class LoginComponent {
   }
 
   submitForm() {
+    this.isLoading = true;
     const formData = this.loginForm.value;
     const data = new LoginModel(formData.email, formData.password);
-    console.log(data);
+    this.userService.Login(data).subscribe({
+      next: (response) => {
+        this.router.navigate(['/main-page']);
+        console.log(response)
+
+      },
+      error: (err) => {
+        console.log(err.error)
+
+      }
+    })
+    this.isLoading = false;
+    this.loginForm.reset();
   }
 
   get f() {

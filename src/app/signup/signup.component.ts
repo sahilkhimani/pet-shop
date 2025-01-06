@@ -3,7 +3,7 @@ import { AuthSideComponent } from '../auth-side/auth-side.component';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { RegisterModel } from '../../models/register.model';
+import { RegisterModel } from '../models/register.model';
 @Component({
   selector: 'app-signup',
   imports: [
