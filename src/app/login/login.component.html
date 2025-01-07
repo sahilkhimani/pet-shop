@@ -1,49 +1,53 @@
-<div class="row">
-    <div class="col-md-7">
-        <app-auth-side [backgroundImage]="backgroundImage"></app-auth-side>
-    </div>
-    <div class="col-md-5">
-        <div class="row">
-            <section class="form-section center-content">
-                <div>
-                    <div class="head-section center-content mb-2">
-                        <h2>Sign In</h2>
-                        <img src="assets/images/logo.jpg" class="rounded-circle" />
-                    </div>
-
-                    <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
-                        <div class="form-group">
-                            <label for="email" class="form-label">Email Address</label>
-                            <input type="text" id="email" class="form-control" formControlName="email"
-                                placeholder="user@example.com" />
-                            <small *ngIf="f['email'].invalid && f['email'].touched">
-                                {{ getErrorMessages('email') }}
-                            </small>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-7">
+            <app-auth-side [backgroundImage]="backgroundImage"></app-auth-side>
+        </div>
+        <div class="col-md-5">
+            <div class="row">
+                <section class="form-section center-content">
+                    <div>
+                        <div class="head-section center-content mb-2">
+                            <h2>Sign In</h2>
+                            <img src="assets/images/logo.jpg" class="rounded-circle" />
                         </div>
-                        <div class="form-group">
-                            <label for="password" class="form-label">Password</label>
-                            <div class="passField">
-                                <input [type]="showPassword ? 'text' : 'password'" id="password" class="form-control" formControlName="password"
-                                    placeholder="********" />
-                                <button type="button" (click)="showPass()">
-                                    <span *ngIf="showPassword"><i class="material-icons">visibility</i></span>
-                                    <span *ngIf="!showPassword"><i class="material-icons">visibility_off</i></span>
-                                </button>
+
+                        <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="text" id="email" class="form-control" formControlName="email"
+                                    placeholder="user@example.com" />
+                                <small *ngIf="f['email'].invalid && f['email'].touched">
+                                    {{ getErrorMessages('email') }}
+                                </small>
                             </div>
+                            <div class="form-group">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="passField">
+                                    <input [type]="showPassword ? 'text' : 'password'" id="password"
+                                        class="form-control" formControlName="password" placeholder="********" />
+                                    <button type="button" (click)="showPass()">
+                                        <span *ngIf="showPassword"><i class="material-icons">visibility</i></span>
+                                        <span *ngIf="!showPassword"><i class="material-icons">visibility_off</i></span>
+                                    </button>
+                                </div>
 
-                            <small *ngIf="f['password'].invalid && f['password'].touched">
-                                {{ getErrorMessages('password') }}
-                            </small>
-                        </div>
-                        <button class="btn btn-dark w-100" type="submit" [disabled]="loginForm.invalid || isLoading">
-                            <span *ngIf="isLoading" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                            {{ isLoading ? 'Loading..' : 'Submit'}}</button>
-                    </form>
-                </div>
-                <div class="center-content bottom-line">
-                    <span>Don't have an account? <a routerLink="/signup">Sign Up</a></span>
-                </div>
-            </section>
+                                <small *ngIf="f['password'].invalid && f['password'].touched">
+                                    {{ getErrorMessages('password') }}
+                                </small>
+                            </div>
+                            <button class="btn btn-dark w-100" type="submit"
+                                [disabled]="loginForm.invalid || isLoading">
+                                <span *ngIf="isLoading" class="spinner-grow spinner-grow-sm" role="status"
+                                    aria-hidden="true"></span>
+                                {{ isLoading ? 'Loading..' : 'Submit'}}</button>
+                        </form>
+                    </div>
+                    <div class="center-content bottom-line">
+                        <span>Don't have an account? <a routerLink="/signup">Sign Up</a></span>
+                    </div>
+                </section>
+            </div>
         </div>
     </div>
 </div>

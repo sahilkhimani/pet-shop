@@ -3,6 +3,11 @@
     --mdc-snackbar-supporting-text-color: white !important;
 }
 
-::ng-deep .suc-snackbar button{
+::ng-deep .suc-snackbar button, .error-snackbar button{
     color: white !important;
+}
+
+::ng-deep .error-snackbar {
+    --mdc-snackbar-container-color: red !important;
+    --mdc-snackbar-supporting-text-color: white !important;
 }
