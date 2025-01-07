@@ -5,7 +5,7 @@ import { LocalStorageService } from '../services/local-storage.service';
   selector: 'app-main-page',
   imports: [],
   templateUrl: './main-page.component.html',
-  styleUrl: './main-page.component.css'
+  styleUrl: './main-page.component.css',
 })
 export class MainPageComponent {
   token:any = '';

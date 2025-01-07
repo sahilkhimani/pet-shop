@@ -6,6 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 import { RegisterModel } from '../models/register.model';
 import { UserService } from '../services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarService } from '../services/snackbar.service';
 @Component({
   selector: 'app-signup',
   imports: [
@@ -25,7 +26,7 @@ export class SignupComponent {
   constructor(
     private userService: UserService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackbarService : SnackbarService
   ) { }
 
   singupForm = new FormGroup({
@@ -38,8 +39,7 @@ export class SignupComponent {
       Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]),
     password: new FormControl('',
       [Validators.required,
-      Validators.minLength(8),
-      Validators.pattern('^(?=.*[A-Z])(?=.*[a-z]).{8,}$')]),
+      Validators.minLength(8)]),
     cPassword: new FormControl('',
       [
         Validators.required,
@@ -57,15 +57,11 @@ export class SignupComponent {
     this.userService.register(data).subscribe({
       next: (response) => {
         this.router.navigate(['/login']);
+        this.snackbarService.open({message : response, panelClass : ['suc-snackbar']});
         this.singupForm.reset();
       },
       error: (err) => {
-        this.snackBar.open(err.error, "Close", {
-          duration: 3000,
-          verticalPosition: 'top',
-          horizontalPosition: 'right',
-          panelClass: ['error-snackbar']
-        })
+        this.snackbarService.open({message : err.error, panelClass : ['error-snackbar']})
       }
     })
     this.isLoading = false;
@@ -81,7 +77,7 @@ export class SignupComponent {
     const validEmailError = "Enter Valid Email Address (e.g. user@example.com)";
     const passwordError = "Pasword must contain atleast 8 character with one uppercase letter and one special character";
     const control = this.singupForm.get(controlName);
-    
+
     if (control?.hasError('required')) {
       return requiredError;
     }

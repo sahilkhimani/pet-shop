@@ -9,6 +9,7 @@ import { LocalStorageService } from '../services/local-storage.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { MatButton } from '@angular/material/button';
 import { config } from 'rxjs';
+import { SnackbarService } from '../services/snackbar.service';
 
 @Component({
   selector: 'app-login',
@@ -30,8 +31,9 @@ export class LoginComponent {
     private userService: UserService,
     private router: Router,
     private localStorage: LocalStorageService,
-    private snackBar: MatSnackBar
-  ) { }
+    private snackBar: MatSnackBar,
+    private snackbarService : SnackbarService
+    ) { }
 
   loginForm = new FormGroup({
     email: new FormControl('',
@@ -46,27 +48,18 @@ export class LoginComponent {
   }
 
   submitForm() {
+    const loginMessage = "Login Successfull";
     this.isLoading = true;
     const formData = this.loginForm.value;
     const data = new LoginModel(formData.email, formData.password);
     this.userService.Login(data).subscribe({
       next: (response) => {
         this.localStorage.setItem('authToken', response);
-        this.snackBar.open("Login Successfull", "Close", {
-          duration: 3000,
-          verticalPosition: 'top',
-          horizontalPosition: 'right',
-          panelClass : ['success-snackbar']
-        })
+        this.snackbarService.open({message : loginMessage, panelClass : ['suc-snackbar']})
         this.router.navigate(['/main-page']);
       },
       error: (err) => {
-        this.snackBar.open(err.error, "Close", {
-          duration: 3000,
-          verticalPosition: 'top',
-          horizontalPosition: 'right',
-          panelClass : ['error-snackbar']
-        })
+        this.snackbarService.open({message : err.error, panelClass : ['error-snackbar']})
       }
     })
     this.isLoading = false;
@@ -78,12 +71,14 @@ export class LoginComponent {
   }
 
   getErrorMessages(controlName: string) {
+    const requiredError = 'This field is required';
+    const validEmailError = "Enter valid Email Address (e.g. user@example.com)";
     const control = this.loginForm.get(controlName);
     if (control?.hasError('required')) {
-      return 'This field is required';
+      return requiredError;
     }
     if (controlName == 'email' && control?.hasError('pattern')) {
-      return 'Enter valid Email Address (e.g. user@example.com)'
+      return validEmailError;
     }
     return '';
   }

@@ -57,12 +57,13 @@
     --mdc-snackbar-container-color: red;
     --mdc-snackbar-supporting-text-color: white;
 }
-::ng-deep .success-snackbar{
-    --mdc-snackbar-container-color: green;
-    --mdc-snackbar-supporting-text-color: white;
+
+::ng-deep .error-snackbar button, .suc-snackbar button{
+    color: white !important;
 }
 
-::ng-deep .error-snackbar button{
-    color: white !important;
+::ng-deep .suc-snackbar {
+    --mdc-snackbar-container-color: green !important;
+    --mdc-snackbar-supporting-text-color: white !important;
 }
 
