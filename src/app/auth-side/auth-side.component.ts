@@ -11,5 +11,6 @@ export class AuthSideComponent {
   
   title = 'Pet Shop';
   subTitle = 'Discover love, loyalty, and happiness with your new best friend today';
-  author = 'Designed by: Sahil Khimani'; 
+  author = 'Designed by: Sahil Khimani';
+  
 }

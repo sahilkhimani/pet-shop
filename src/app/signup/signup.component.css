@@ -9,12 +9,10 @@
 
 .form-section .head-section {
     align-items: center;
-    /* margin-bottom: 5rem; */
 }
 
 .form-section label {
     font-size: 1rem;
-    /* margin-bottom: 0.5rem; */
 }
 
 .form-section input {
