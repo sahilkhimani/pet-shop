@@ -1,6 +1,11 @@
 <app-header></app-header>
 <br><br><br>
-<div class="grid -mt-3 -ml-3 -mr-3">
-    <app-product *ngFor="let item of petsList.data" [petItem]="item"></app-product>
+<div class="container">
+    <div class="row" >
+        <div class="col-sm-6 col-md-4" *ngFor="let item of petsList.data" >
+            <app-product [petItem]="item"></app-product>
+        </div>
+    </div>
 </div>
+
 <br><br>

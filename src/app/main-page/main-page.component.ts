@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PetService } from '../services/pet.service';
 import { ResponseModel } from '../models/response.model';
-import { SnackbarService } from '../services/snackbar.service';
+import { SnackbarService } from '../utility/services/snackbar.service';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { ProductComponent } from "../product/product.component";

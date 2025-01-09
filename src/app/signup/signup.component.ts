@@ -6,7 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 import { RegisterModel } from '../models/register.model';
 import { UserService } from '../services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackbarService } from '../services/snackbar.service';
+import { SnackbarService } from '../utility/services/snackbar.service';
 @Component({
   selector: 'app-signup',
   imports: [
