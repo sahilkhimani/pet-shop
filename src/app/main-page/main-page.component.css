@@ -1,9 +1,13 @@
+.my-div{
+    background-color: #EFF3F8;
+}
+
 ::ng-deep .suc-snackbar {
     --mdc-snackbar-container-color: green !important;
     --mdc-snackbar-supporting-text-color: white !important;
 }
 
-::ng-deep .suc-snackbar button, .error-snackbar button{
+::ng-deep .suc-snackbar button, ::ng-deep .error-snackbar button{
     color: white !important;
 }
 

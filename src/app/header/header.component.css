@@ -21,7 +21,8 @@ a {
     max-height: 750px;
     color: #eee;
     border-radius: 0 0 20px 20px;
-    text-shadow: 0 2px 6px #000a
+    text-shadow: 0 2px 6px #000a;
+    z-index: 10;
 }
 
 .header:before {

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,15 +8,15 @@ import { RouterLink } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2, private elRef: ElementRef) { }
 
   ngOnInit() {
     this.setupDialog();
   }
 
   setupDialog() {
-    const openButton = document.querySelector("#openMenu") as HTMLElement;
-    const dialog = document.querySelector("dialog") as HTMLDialogElement;
+    const openButton = this.elRef.nativeElement.querySelector("#openMenu");
+    const dialog = this.elRef.nativeElement.querySelector("#menuDialog")
 
     if (openButton && dialog) {
       this.renderer.listen(openButton, 'click', () => {

@@ -5,13 +5,15 @@ import { SnackbarService } from '../utility/services/snackbar.service';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { ProductComponent } from "../product/product.component";
+import { CategoryComponent } from "../category/category.component";
 
 @Component({
   selector: 'app-main-page',
   imports: [
     CommonModule,
     HeaderComponent,
-    ProductComponent
+    ProductComponent,
+    CategoryComponent
 ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css',
