@@ -15,3 +15,11 @@
     --mdc-snackbar-container-color: red !important;
     --mdc-snackbar-supporting-text-color: white !important;
 }
+
+.no-product{
+    display: flex;
+    justify-content: center;
+}
+.no-product img{
+    width: 50%;;
+}

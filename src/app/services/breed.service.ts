@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ResponseModel } from '../models/response.model';
+import { BreedModel } from '../models/breed.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BreedService {
-  baseUrl = environment.apiUrl + 'Breed';
-  constructor(private client : HttpClient) { }
+  private baseUrl = environment.apiUrl + 'Breed';
+  constructor(private client: HttpClient) { }
 
-  getAll() : Observable<ResponseModel>{
-    return this.client.get<ResponseModel>(`${this.baseUrl}/GetAll`);
+  getAll(): Observable<BreedModel[]> {
+    return this.client.get<ResponseModel>(`${this.baseUrl}/GetAll`).pipe(
+      map(response => {
+        return response.data?.map((breed) => new BreedModel(breed.breedId, breed.breedName, breed.speciesId)) || []
+      })
+    )
   }
 }

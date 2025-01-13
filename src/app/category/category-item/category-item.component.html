@@ -1,6 +1,6 @@
-<div>
-    <span>Pet</span>
-    <img class="shadow-2" src="https://blocks.primeng.org/assets/images/blocks/ecommerce/categorypreview/category-preview-1-25.png"
-        alt="avatar">
+<div class="row">
+    <span>{{ item.name }}</span>
 </div>
-
+<div>
+    <img class="shadow-2" [src]="item.img" alt="avatar">
+</div>

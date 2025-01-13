@@ -1,13 +1,18 @@
 <div class="my-div">
     <app-header></app-header>
-    <br><br><br>
-    <div class="container">
+    <div class="container-fluid mt-4 mb-5">
         <app-category></app-category>
+    </div>
+    <div *ngIf="isLoading"><app-loader></app-loader></div>
+    <div *ngIf="!isLoading" class="container">
         <div class="row">
-            <div class="col-sm-6 col-md-4" *ngFor="let item of petsList.data">
+            <div class="col-sm-6 col-md-4" *ngFor="let item of petsList">
                 <app-product [petItem]="item"></app-product>
             </div>
         </div>
+    </div>
+    <div *ngIf="!petsList.length && this.isLoading" class="no-product">
+        <img src="assets/images/no-product.jpg" alt="No Product Found">
     </div>
     <br><br>
 </div>

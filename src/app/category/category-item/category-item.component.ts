@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CategModel } from '../../models/categ.model';
 
 @Component({
   selector: 'app-category-item',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './category-item.component.css'
 })
 export class CategoryItemComponent {
-
+  @Input() item: CategModel = {name : '', img : ''};
 }
