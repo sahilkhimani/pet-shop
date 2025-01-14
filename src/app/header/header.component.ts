@@ -1,17 +1,34 @@
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { LocalStorageService } from '../utility/services/local-storage.service';
+import { SnackbarService } from '../utility/services/snackbar.service';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
-  constructor(private renderer: Renderer2, private elRef: ElementRef) { }
+  headerNav: { name: string, link: string }[] =
+    [
+      { name: 'Login', link: '/login' },
+      { name: 'Cats', link: '' },
+      { name: 'Dogs', link: '' },
+      { name: 'Other Pets', link: '' },
+      { name: 'About Us', link: '' },
+    ]
+  public token?: string | null;
+  constructor(
+    private renderer: Renderer2,
+    private elRef: ElementRef,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
     this.setupDialog();
+    this.token = localStorage.getItem("authToken");
   }
 
   setupDialog() {
@@ -30,5 +47,10 @@ export class HeaderComponent implements OnInit {
         }
       });
     }
+  }
+
+  logout() {
+    localStorage.clear();
+    window.location.reload();
   }
 }

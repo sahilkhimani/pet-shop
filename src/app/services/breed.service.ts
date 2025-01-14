@@ -10,6 +10,7 @@ import { BreedModel } from '../models/breed.model';
 })
 export class BreedService {
   private baseUrl = environment.apiUrl + 'Breed';
+  
   constructor(private client: HttpClient) { }
 
   getAll(): Observable<BreedModel[]> {

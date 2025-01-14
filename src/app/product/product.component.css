@@ -14,6 +14,8 @@
 
 .w-full {
     width: 100% !important;
+    height: auto;
+    
 }
 
 .surface-card {
@@ -21,8 +23,19 @@
     color: black;
 }
 
+.my-btn{
+    border-radius: 0px 0px 6px 6px !important;
+    align-content: center;
+    background-color: rgb(229, 255, 0);
+    color: black;
+}
+
+.mybtn i{
+    color: white;
+}
+
 .border-round {
-    border-radius: 6px !important;
+    border-radius: 6px 6px 0px 0px !important;
 }
 
 .shadow-2 {

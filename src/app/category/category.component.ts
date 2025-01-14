@@ -28,4 +28,8 @@ export class CategoryComponent {
       img: 'assets/images/other-categ.jpg'
     }
   ]
+
+  onCategClicked(item : CategModel){
+
+  }
 }

@@ -7,12 +7,16 @@
     <div *ngIf="!isLoading" class="container">
         <div class="row">
             <div class="col-sm-6 col-md-4" *ngFor="let item of petsList">
-                <app-product [petItem]="item"></app-product>
+                <app-product (openLoginModal)="openModal()" [petItem]="item"></app-product>
             </div>
         </div>
     </div>
-    <div *ngIf="!petsList.length && this.isLoading" class="no-product">
+    <div *ngIf="!isLoading && !petsList.length" class="no-product">
         <img src="assets/images/no-product.jpg" alt="No Product Found">
     </div>
     <br><br>
 </div>
+
+<dialog id="loginDialogue">
+    <app-login-modal></app-login-modal>
+</dialog>

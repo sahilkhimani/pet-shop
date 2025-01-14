@@ -30,10 +30,8 @@ export class LoginComponent {
   constructor(
     private userService: UserService,
     private router: Router,
-    private localStorage: LocalStorageService,
-    private snackBar: MatSnackBar,
-    private snackbarService : SnackbarService
-    ) { }
+    private snackbarService: SnackbarService
+  ) { }
 
   loginForm = new FormGroup({
     email: new FormControl('',
@@ -54,12 +52,12 @@ export class LoginComponent {
     const data = new LoginModel(formData.email, formData.password);
     this.userService.Login(data).subscribe({
       next: (response) => {
-        this.localStorage.setItem('authToken', response);
-        this.snackbarService.open({message : loginMessage, panelClass : ['suc-snackbar']})
+        localStorage.setItem('authToken', response);
+        this.snackbarService.open({ message: loginMessage, panelClass: ['suc-snackbar'] })
         this.router.navigate(['/main-page']);
       },
       error: (err) => {
-        this.snackbarService.open({message : err.error, panelClass : ['error-snackbar']})
+        this.snackbarService.open({ message: err.error, panelClass: ['error-snackbar'] })
       }
     })
     this.isLoading = false;

@@ -13,10 +13,6 @@
 
 
 <dialog id="menuDialog">
-    <a routerLink="" >Home</a>
-    <a routerLink="" >Cats</a>
-    <a routerLink="" >Dogs</a>
-    <a routerLink="" >Other Pets</a>
-    <a routerLink="" >Contact Us</a>
-    <a routerLink="" >About Us</a>
+    <a *ngFor="let item of headerNav" [routerLink]="item.link">{{ item.name }}</a>
+    <a *ngIf="token" (click)="logout()" style="cursor: pointer;">Logout</a>
 </dialog>
