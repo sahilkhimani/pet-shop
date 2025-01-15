@@ -1,5 +1,5 @@
 <div class="p-2">
-    <div class="shadow-2 p-4 pb-2 surface-card border-round">
+    <div class="shadow-2 p-4 pb-2 surface-card border-round" (click)="buyNowClicked(petItem ?? {})">
         <div class="relative mb-3">
             <span class="surface-card shadow-2 px-3 py-2 absolute">{{ petItem?.SpeciesName }}</span>
             <img [src]="petItem?.PetImg" class="w-full">
@@ -12,9 +12,8 @@
 
     </div>
     <div>
-        <button (click)="buyNowClicked(petItem?.PetId ?? 0)" type="button"
-            class="btn w-100 my-btn d-flex justify-content-center" data-toggle="modal"
-            data-target="#exampleModalCenter">
+        <button (click)="buyNowClicked(petItem ?? {})" type="button"
+            class="btn w-100 my-btn d-flex justify-content-center">
             <i class="material-icons me-1">shopping_bag</i>Buy Now</button>
     </div>
 </div>

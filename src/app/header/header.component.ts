@@ -3,6 +3,7 @@ import { Component, ElementRef, OnDestroy, OnInit, Renderer2 } from '@angular/co
 import { Router, RouterLink } from '@angular/router';
 import { LocalStorageService } from '../utility/services/local-storage.service';
 import { SnackbarService } from '../utility/services/snackbar.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-header',
@@ -28,7 +29,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.setupDialog();
-    this.token = localStorage.getItem("authToken");
+    this.token = localStorage.getItem(AppComponent.token);
   }
 
   setupDialog() {

@@ -10,6 +10,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { MatButton } from '@angular/material/button';
 import { config } from 'rxjs';
 import { SnackbarService } from '../utility/services/snackbar.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-login',
@@ -52,7 +53,7 @@ export class LoginComponent {
     const data = new LoginModel(formData.email, formData.password);
     this.userService.Login(data).subscribe({
       next: (response) => {
-        localStorage.setItem('authToken', response);
+        localStorage.setItem(AppComponent.token, response);
         this.snackbarService.open({ message: loginMessage, panelClass: ['suc-snackbar'] })
         this.router.navigate(['/main-page']);
       },

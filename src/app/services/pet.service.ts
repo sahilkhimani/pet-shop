@@ -40,6 +40,7 @@ export class PetService {
 
   private speciesList: SpeciesModel[] = [];
   private breedList: BreedModel[] = [];
+  private productDetail: PetModel = {};
 
   private baseUrl = environment.apiUrl + 'Pet';
   constructor(
@@ -47,6 +48,7 @@ export class PetService {
     private breedService: BreedService,
     private specieService: SpeciesService
   ) { }
+
 
   getAll(): Observable<PetModel[]> {
     return this.getAllBreed().pipe(
@@ -83,6 +85,15 @@ export class PetService {
       })
     )
   }
+
+  setProductDetail(product: PetModel) {
+    this.productDetail = product;
+  }
+
+  getProductDetail(): PetModel {
+    return this.productDetail;
+  }
+
 
   getAllBreed() {
     return this.breedService.getAll();

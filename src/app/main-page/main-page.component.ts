@@ -8,6 +8,7 @@ import { CategoryComponent } from "../category/category.component";
 import { PetModel } from '../models/pet.model';
 import { LoaderComponent } from "../utility/loader/loader.component";
 import { LoginModalComponent } from "./login-modal/login-modal.component";
+import { ProductDetailComponent } from "../product/product-detail/product-detail.component";
 
 @Component({
   selector: 'app-main-page',
@@ -17,8 +18,9 @@ import { LoginModalComponent } from "./login-modal/login-modal.component";
     ProductComponent,
     CategoryComponent,
     LoaderComponent,
-    LoginModalComponent
-],
+    LoginModalComponent,
+    ProductDetailComponent
+  ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css',
 })
@@ -26,6 +28,7 @@ export class MainPageComponent implements OnInit {
   petsList: PetModel[] = [];
   isLoading: boolean = false;
   isModalVisible: boolean = false;
+  productDetailClicked : boolean = false;
   constructor(
     private petService: PetService,
     private snackbarService: SnackbarService,
@@ -46,22 +49,35 @@ export class MainPageComponent implements OnInit {
       })
     this.isLoading = false;
   }
-  openModal() {
-    this.setupDialog();
+  openLoginModal() {
+    const dialog = this.elRef.nativeElement.querySelector("#loginDialogue");
+    this.setupDialog(dialog);
   }
-  closeDialog(){
-    const dialog = this.elRef.nativeElement.querySelector("#loginDialogue")
-    dialog.close();
+  dialogClose(dialogName: any) {
+    this.productDetailClicked = false;
+    dialogName.close();
   }
-  setupDialog() {
-    const dialog = this.elRef.nativeElement.querySelector("#loginDialogue")
-    dialog.showModal();
+  closeLoginDialog() {
+    const dialog = this.elRef.nativeElement.querySelector("loginDialogue");
+    this.dialogClose(dialog);
+  }
+  setupDialog(dialogName: any) {
+    dialogName.showModal();
 
-    this.renderer.listen(dialog, 'click', (event: Event) => {
+    this.renderer.listen(dialogName, 'click', (event: Event) => {
       const target = event.target as HTMLElement;
       if (target && target.nodeName === "DIALOG") {
-        dialog.close();
+        dialogName.close();
       }
     });
+  }
+  openProductDetailModal() {
+    this.productDetailClicked = true;
+    const dialog = this.elRef.nativeElement.querySelector("#productDetail");
+    this.setupDialog(dialog);
+  }
+  closeProductDialog() {
+    const dialog = this.elRef.nativeElement.querySelector("#productDetail");
+    this.dialogClose(dialog);
   }
 }

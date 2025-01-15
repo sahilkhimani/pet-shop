@@ -1,1 +1,45 @@
-<p>product-detail works!</p>
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <div><i class="material-icons" (click)="closeDialog()">close</i></div>
+                    <h1>{{ productDetail.PetName | uppercase}}</h1>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><span class="short-head">Gender:
+                                </span>{{ productDetail.PetGender }}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><span class="short-head">Age:
+                                </span>{{ productDetail.PetAge }} Years Old
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><span class="short-head">Breed:
+                            </span>{{ productDetail.BreedName }}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><span class="short-head">Species:
+                            </span>{{ productDetail.SpeciesName }}</p>
+                        </div>
+                    </div>
+                    <p class="prod-desc">{{ productDetail.PetDesc }}</p>
+                    <p class="short-head"><span class="short-head">Rs.</span>{{ productDetail.PetPrice }}</p>
+                    <button class="btn btn-info">Buy Now</button>
+                    <p class="short-head mt-2">Free 3-5 day Shipping</p>
+                    <p class="d-flex">
+                        <i class="material-icons me-1">favorite_border</i>Add to Wishlist
+                    </p>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center">
+                    <img [src]="productDetail.PetImg" class="img-fluid my-img" [alt]="productDetail.PetName">
+                </div>
+            </div>
+
+        </div>
+    </div>

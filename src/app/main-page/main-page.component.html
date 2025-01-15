@@ -7,7 +7,7 @@
     <div *ngIf="!isLoading" class="container">
         <div class="row">
             <div class="col-sm-6 col-md-4" *ngFor="let item of petsList">
-                <app-product (openLoginModal)="openModal()" [petItem]="item"></app-product>
+                <app-product (openLoginModal)="openLoginModal()" (productDetailModal)="openProductDetailModal()" [petItem]="item"></app-product>
             </div>
         </div>
     </div>
@@ -18,5 +18,9 @@
 </div>
 
 <dialog id="loginDialogue">
-    <app-login-modal (dialogClose)="closeDialog()"></app-login-modal>
+    <app-login-modal (dialogClose)="closeLoginDialog()"></app-login-modal>
+</dialog>
+
+<dialog id="productDetail">
+    <app-product-detail *ngIf="productDetailClicked" (dialogClose)="closeProductDialog()"></app-product-detail>
 </dialog>

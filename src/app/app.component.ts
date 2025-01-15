@@ -12,10 +12,12 @@ import { LocalStorageService } from './utility/services/local-storage.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'pet-shop';
-  constructor(private localStorageService : LocalStorageService){}
+  static token: string = '';
+  constructor(private localStorageService: LocalStorageService) { }
   ngOnInit(): void {
-    this.localStorageService.clear();
+    // this.localStorageService.clear();  
   }
+
 }

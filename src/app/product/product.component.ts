@@ -4,6 +4,8 @@ import { PetModel } from '../models/pet.model';
 import { ShortenTextPipe } from '../utility/pipes/shorten-text.pipe';
 import { LocalStorageService } from '../utility/services/local-storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PetService } from '../services/pet.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-product',
@@ -14,13 +16,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProductComponent {
   @Input() petItem?: PetModel;
   @Output() openLoginModal: EventEmitter<void> = new EventEmitter();
+  @Output() productDetailModal : EventEmitter<void> = new EventEmitter();
   constructor(
-    private localStorageService: LocalStorageService,
-    private router: Router) { }
-  buyNowClicked(id: number) {
-    const token = this.localStorageService.getItem("authToken");
+    private router: Router,
+    private petService: PetService
+  ) { }
+  buyNowClicked(product: PetModel) {
+    const token = localStorage.getItem(AppComponent.token);
     if (token != null && token != "") {
-      this.router.navigate(['/product_details', id])
+      this.petService.setProductDetail(product);
+      this.productDetailModal.emit();
     }
     else {
       this.openLoginModal.emit();
