@@ -49,6 +49,10 @@ export class MainPageComponent implements OnInit {
   openModal() {
     this.setupDialog();
   }
+  closeDialog(){
+    const dialog = this.elRef.nativeElement.querySelector("#loginDialogue")
+    dialog.close();
+  }
   setupDialog() {
     const dialog = this.elRef.nativeElement.querySelector("#loginDialogue")
     dialog.showModal();
@@ -56,7 +60,7 @@ export class MainPageComponent implements OnInit {
     this.renderer.listen(dialog, 'click', (event: Event) => {
       const target = event.target as HTMLElement;
       if (target && target.nodeName === "DIALOG") {
-        dialog.close("dismiss");
+        dialog.close();
       }
     });
   }

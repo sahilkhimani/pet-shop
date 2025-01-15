@@ -1,4 +1,4 @@
-.my-div{
+.my-div {
     background-color: #EFF3F8;
 }
 
@@ -7,7 +7,8 @@
     --mdc-snackbar-supporting-text-color: white !important;
 }
 
-::ng-deep .suc-snackbar button, ::ng-deep .error-snackbar button{
+::ng-deep .suc-snackbar button,
+::ng-deep .error-snackbar button {
     color: white !important;
 }
 
@@ -16,10 +17,31 @@
     --mdc-snackbar-supporting-text-color: white !important;
 }
 
-.no-product{
+.no-product {
     display: flex;
     justify-content: center;
 }
-.no-product img{
-    width: 50%;;
+
+.no-product img {
+    width: 50%;
+    ;
+}
+
+dialog {
+    display: block;
+    inset: 0;
+    transition: opacity .5s;
+    box-shadow: 0 0 10px 0 #000a;
+    background: #fffd;
+    border: 0;
+    padding: 0;
+}
+
+dialog:not([open]) {
+    pointer-events: none;
+    opacity: 0;
+}
+
+dialog::backdrop {
+    backdrop-filter: blur(0.25rem);
 }

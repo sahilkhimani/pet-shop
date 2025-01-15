@@ -1,31 +1,32 @@
-<div id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-body">
             <div class="row g-0">
-                <div class="col-md-6">
-                    <div class="modal-body">
-                        <h5 class="modal-title" id="myModalLabel">Pet Shop</h5>
-                        <p>
-                            Please log in to access more features. You can login by clicking the button below or can
-                            signup
-                        </p>
+                <div class="col-md-6 main-section">
+                    <div (click)="closeDialog()"><i class="material-icons">close</i></div>
+                    <div class="text-section">
                         <div>
-                            <button type="button" class="btn btn-success w-100">
-                                Login
-                            </button>
+                            <h5>Pet Shop</h5>
+                            <p class="mt-2">
+                                <span *ngIf="!isSmallScreen">You need to log in or create an account to proceed with buying this item.</span> Please log in
+                                or sign up to continue </p>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-primary w-100">
+                            <button type="button" routerLink="/login" class="btn btn-success w-100 mb-2">
+                                Login
+                            </button>
+                            <button type="button" routerLink="/signup" class="btn btn-primary w-100">
                                 Singup
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6">
-                    <img src="assets/images/other-icon.jpg" class="img-fluid" alt="Responsive image">
+                <div class="mobile-hidden col-md-6 d-flex justify-content-center">
+                    <img src="assets/images/modal-img.png" class="img-fluid" alt="login modal image">
                 </div>
             </div>
         </div>
+
     </div>
 </div>

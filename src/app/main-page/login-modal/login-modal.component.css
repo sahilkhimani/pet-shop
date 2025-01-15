@@ -1,0 +1,44 @@
+h5 {
+    font-family: "Pacifico", cursive, serif;
+    font-size: 2.5rem;
+}
+
+.modal-dialog .text-section {
+    padding: 2.5rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+
+.text-section p {
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    text-align: justify;
+
+}
+
+.modal-body .col-md-6 img {
+    width: 70%;
+    height: auto;
+    padding: 0;
+}
+
+.main-section {
+    display: flex;
+    padding-left: 0.4rem;
+    padding-top: 0.4rem;
+}
+
+div i {
+    cursor: pointer;
+}
+
+@media (max-width : 768px) {
+    .mobile-hidden {
+        display: none !important;
+    }
+    .main-section {
+        display: flex;
+    }
+}

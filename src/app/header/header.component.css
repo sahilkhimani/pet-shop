@@ -92,7 +92,6 @@ a {
 
     50% {
         transform: scale(1.2) translateY(-100px);
-        /* Limit the downward movement */
     }
 
     100% {
