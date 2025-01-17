@@ -3,10 +3,10 @@ import { AuthSideComponent } from '../auth-side/auth-side.component';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { RegisterModel } from '../models/register.model';
-import { UserService } from '../services/user.service';
+import { RegisterModel } from '../../models/register.model';
+import { UserService } from '../../services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackbarService } from '../utility/services/snackbar.service';
+import { SnackbarService } from '../../utility/services/snackbar.service';
 @Component({
   selector: 'app-signup',
   imports: [

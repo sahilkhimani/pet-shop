@@ -3,14 +3,14 @@ import { AuthSideComponent } from '../auth-side/auth-side.component';
 import { Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { LoginModel } from '../models/login.model';
-import { UserService } from '../services/user.service';
-import { LocalStorageService } from '../utility/services/local-storage.service';
+import { LoginModel } from '../../models/login.model';
+import { UserService } from '../../services/user.service';
+import { LocalStorageService } from '../../utility/services/local-storage.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { MatButton } from '@angular/material/button';
 import { config } from 'rxjs';
-import { SnackbarService } from '../utility/services/snackbar.service';
-import { AppComponent } from '../app.component';
+import { SnackbarService } from '../../utility/services/snackbar.service';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-login',

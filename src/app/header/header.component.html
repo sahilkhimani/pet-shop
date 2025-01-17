@@ -1,18 +1,17 @@
 <div class="header">
     <div class="sides">
-        <a routerLink="/main-page" class="logo">PET SHOP</a>
+        <a routerLink="/main-page" class="logo" routerLink="/main-page">PET SHOP</a>
+        <span class="header-text">Paws and Whiskers Paradise : Where Every Pet Finds a Loving Home</span>
     </div>
+    
     <div class="sides">
         <button class="menu" id="openMenu" aria-label="Open Menu"><i class="material-icons">menu</i></button>
     </div>
-    <div class="info">
-        <h4>Paws and Whiskers Paradise</h4>
-        <h1>Where Every Pet Finds a Loving Home</h1>
-    </div>
-</div>
 
+</div>
 
 <dialog id="menuDialog">
     <a *ngFor="let item of headerNav" [routerLink]="item.link">{{ item.name }}</a>
-    <a *ngIf="token" (click)="logout()" style="cursor: pointer;">Logout</a>
+    <a *ngIf="token" class="custom-link">Profile</a>
+    <a *ngIf="token" (click)="logout()" class="custom-link">Logout</a>
 </dialog>

@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { LocalStorageService } from '../utility/services/local-storage.service';
-import { SnackbarService } from '../utility/services/snackbar.service';
 import { AppComponent } from '../app.component';
 
 @Component({
