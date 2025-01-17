@@ -2,13 +2,14 @@ import { Injectable, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ResponseModel } from '../models/response.model';
-import { concatMap, forkJoin, map, Observable, switchMap } from 'rxjs';
+import { concatMap, forkJoin, map, mergeMap, Observable, switchMap } from 'rxjs';
 import { BreedService } from './breed.service';
 import { SpeciesService } from './species.service';
 import { CategModel } from '../models/categ.model';
 import { SpeciesModel } from '../models/species.model';
 import { BreedModel } from '../models/breed.model';
 import { PetModel } from '../models/pet.model';
+import { OrderService } from './order.service';
 
 @Injectable({
   providedIn: 'root'
@@ -41,31 +42,47 @@ export class PetService {
   private speciesList: SpeciesModel[] = [];
   private breedList: BreedModel[] = [];
   private productDetail: PetModel = {};
+  breedListFetched = false;
 
   private baseUrl = environment.apiUrl + 'Pet';
   constructor(
     private client: HttpClient,
     private breedService: BreedService,
-    private specieService: SpeciesService
+    private specieService: SpeciesService,
+    private orderService: OrderService
   ) { }
 
 
   getAll(): Observable<PetModel[]> {
-    return this.getAllBreed().pipe(
-      concatMap(breeds => {
-        this.breedList = breeds;
-        return this.getAllSpecies();
-      }),
-      concatMap(species => {
-        this.speciesList = species;
-        return this.client.get<ResponseModel>(`${this.baseUrl}/GetAll`);
-      }),
-      map(response => {
-        return response.data?.map(
-          pet => {
-            const breed = this.breedList.find(b => b.BreedId === pet.breedId);
-            const specie = this.speciesList.find(s => s.SpeciesId === breed?.SpeciesId);
-            const petImg = this.petImgsList.find(i => i.name === specie?.SpeciesName?.toLowerCase());
+    if (!this.breedListFetched) {
+      return this.getAllBreed().pipe(
+        switchMap(breeds => {
+          this.breedList = breeds;
+          this.breedListFetched = true;
+          return this.getAllSpecies();
+        }),
+        switchMap(species => {
+          this.speciesList = species;
+          return this.client.get<ResponseModel>(`${this.baseUrl}/GetAll`);
+        }),
+        switchMap(response => this.handlePetData(response)!)
+      );
+    }
+    else {
+      return this.client.get<ResponseModel>(`${this.baseUrl}/GetAll`).pipe(
+        switchMap(response => this.handlePetData(response)!),
+      )
+    }
+  }
+
+  handlePetData(response: ResponseModel) {
+    const petData = response.data?.map(
+      pet => {
+        const breed = this.breedList.find(b => b.BreedId === pet.breedId);
+        const specie = this.speciesList.find(s => s.SpeciesId === breed?.SpeciesId);
+        const petImg = this.petImgsList.find(i => i.name === specie?.SpeciesName?.toLowerCase());
+        return this.getPetOrderStatus(pet.petId).pipe(
+          map(orderStatus => {
             return new PetModel(
               pet.petId,
               pet.petName,
@@ -78,12 +95,14 @@ export class PetService {
               breed?.SpeciesId || 0,
               specie?.SpeciesName || '',
               pet.ownerId,
-              pet.petDesc
+              pet.petDesc,
+              orderStatus
             )
-          }
-        ) || [];
-      })
-    )
+          })
+        )
+      }
+    ) || [];
+    return forkJoin(petData);
   }
 
   setProductDetail(product: PetModel) {
@@ -94,6 +113,9 @@ export class PetService {
     return this.productDetail;
   }
 
+  getPetOrderStatus(id: number) {
+    return this.orderService.getPetOrderStatus(id);
+  }
 
   getAllBreed() {
     return this.breedService.getAll();
@@ -103,3 +125,12 @@ export class PetService {
     return this.specieService.getAll();
   }
 }
+
+
+
+
+
+
+
+
+

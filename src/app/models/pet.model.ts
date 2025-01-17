@@ -11,5 +11,7 @@ export class PetModel {
         public SpeciesId? : number,
         public SpeciesName?: string,
         public OwnerId?: string,
-        public PetDesc?: string) { }
+        public PetDesc?: string,
+        public PetOrderStatus? : string
+    ) { }
 }

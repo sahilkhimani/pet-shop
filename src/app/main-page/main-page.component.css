@@ -39,9 +39,14 @@ dialog {
 
 dialog:not([open]) {
     pointer-events: none;
-    opacity: 0;
+    display: none;
 }
+
 
 dialog::backdrop {
     backdrop-filter: blur(0.25rem);
+}
+
+#productDetail{
+    padding: 2.5rem;
 }

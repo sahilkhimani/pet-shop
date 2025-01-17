@@ -28,13 +28,16 @@ export class MainPageComponent implements OnInit {
   petsList: PetModel[] = [];
   isLoading: boolean = false;
   isModalVisible: boolean = false;
-  productDetailClicked : boolean = false;
+  productDetails?: PetModel;
+  productDetailClicked: boolean = false;
+  
   constructor(
     private petService: PetService,
     private snackbarService: SnackbarService,
     private elRef: ElementRef,
     private renderer: Renderer2
   ) { }
+
   ngOnInit(): void {
     this.isLoading = true;
     this.petService.getAll()
@@ -44,22 +47,10 @@ export class MainPageComponent implements OnInit {
           this.isLoading = false;
         },
         error: (err) => {
-          this.snackbarService.open({ message: err.error, panelClass: ['error-snackbar'] })
+          this.snackbarService.open({ message: err.error, panelClass: ['error-snackbar'] });
+          this.isLoading = false;
         }
       })
-    this.isLoading = false;
-  }
-  openLoginModal() {
-    const dialog = this.elRef.nativeElement.querySelector("#loginDialogue");
-    this.setupDialog(dialog);
-  }
-  dialogClose(dialogName: any) {
-    this.productDetailClicked = false;
-    dialogName.close();
-  }
-  closeLoginDialog() {
-    const dialog = this.elRef.nativeElement.querySelector("loginDialogue");
-    this.dialogClose(dialog);
   }
   setupDialog(dialogName: any) {
     dialogName.showModal();
@@ -67,11 +58,25 @@ export class MainPageComponent implements OnInit {
     this.renderer.listen(dialogName, 'click', (event: Event) => {
       const target = event.target as HTMLElement;
       if (target && target.nodeName === "DIALOG") {
-        dialogName.close();
+        this.dialogClose(dialogName)
       }
     });
   }
+  dialogClose(dialogName: any) {
+    dialogName.close();
+    this.productDetailClicked = false;
+  }
+  openLoginModal() {
+    const dialog = this.elRef.nativeElement.querySelector("#loginDialogue");
+    this.setupDialog(dialog);
+  }
+  closeLoginDialog() {
+    const dialog = this.elRef.nativeElement.querySelector("#loginDialogue");
+    this.dialogClose(dialog);
+  }
+
   openProductDetailModal() {
+    this.productDetails = this.petService.getProductDetail();
     this.productDetailClicked = true;
     const dialog = this.elRef.nativeElement.querySelector("#productDetail");
     this.setupDialog(dialog);

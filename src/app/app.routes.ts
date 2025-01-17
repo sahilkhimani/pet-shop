@@ -4,7 +4,6 @@ import { SignupComponent } from './signup/signup.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
-import { authGuard } from './utility/guard/auth.guard';
 
 export const routes: Routes = [
     {path : '', redirectTo : 'main-page', pathMatch : 'full'},

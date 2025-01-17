@@ -15,20 +15,19 @@ import { AppComponent } from '../app.component';
 })
 export class ProductComponent {
   @Input() petItem?: PetModel;
-  @Output() openLoginModal: EventEmitter<void> = new EventEmitter();
-  @Output() productDetailModal : EventEmitter<void> = new EventEmitter();
+  @Output() openLoginModal = new EventEmitter();
+  @Output() productDetailModal = new EventEmitter();
   constructor(
-    private router: Router,
     private petService: PetService
   ) { }
   buyNowClicked(product: PetModel) {
     const token = localStorage.getItem(AppComponent.token);
-    if (token != null && token != "") {
-      this.petService.setProductDetail(product);
-      this.productDetailModal.emit();
+    if (token == null && token == "") {
+      this.openLoginModal.emit();
     }
     else {
-      this.openLoginModal.emit();
+      this.petService.setProductDetail(product);
+      this.productDetailModal.emit();
     }
   }
 }
