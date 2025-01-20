@@ -10,7 +10,7 @@ import { AppComponent } from '../../app.component';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
-  headerNav: { name: string, link: string }[] =
+  static headerNav: { name: string, link: string }[] =
     [
       { name: 'Login', link: '/login' },
       { name: 'Cats', link: '' },
@@ -18,6 +18,8 @@ export class HeaderComponent implements OnInit {
       { name: 'Other Pets', link: '' },
       { name: 'About Us', link: '' },
     ]
+
+    myHeaderNav = HeaderComponent.headerNav;
   public token?: string | null;
   constructor(
     private renderer: Renderer2,

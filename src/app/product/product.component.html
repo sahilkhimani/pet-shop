@@ -13,8 +13,7 @@
     </div>
     <div>
         <button (click)="buyNowClicked(petItem ?? {})" type="button"
-            class="btn w-100 my-btn d-flex justify-content-center">
-            <i class="material-icons me-1">shopping_bag</i>Buy Now</button>
+            class="btn w-100 my-btn d-flex justify-content-center" [ngClass]="checkProductStatus(petItem?.PetOrderStatus!) ? 'sold-btn' : 'my-btn' ">
+            <i class="material-icons me-1">{{ checkProductStatus(petItem?.PetOrderStatus!) ? 'sell' :'shopping_bag'}}</i> {{ productStatus.includes(petItem?.PetOrderStatus?.toLowerCase()!) ? 'Sold' : 'Buy Now' }}</button>
     </div>
-    <div>{{ petItem?.PetOrderStatus }}</div>
 </div>

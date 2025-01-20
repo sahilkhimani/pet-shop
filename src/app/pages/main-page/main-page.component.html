@@ -10,7 +10,7 @@
     <div *ngIf="!isLoading" class="container">
         <div class="row">
             <div class="col-sm-6 col-md-4" *ngFor="let item of petsList">
-                <app-product (openLoginModal)="openLoginModal()" (productDetailModal)="openProductDetailModal()"
+                <app-product (openLoginModal)="openLoginModal()"
                     [petItem]="item"></app-product>
             </div>
         </div>
@@ -18,14 +18,11 @@
     <div *ngIf="!isLoading && !petsList.length" class="no-product">
         <img src="assets/images/no-product.jpg" alt="No Product Found">
     </div>
-    <br><br>
+    <div class="mt-5">
+        <app-footer></app-footer>
+    </div>
 </div>
 
 <dialog id="loginDialogue">
     <app-login-modal (dialogClose)="closeLoginDialog()"></app-login-modal>
-</dialog>
-
-<dialog id="productDetail" [open]="productDetailClicked">
-    <app-product-detail *ngIf="productDetailClicked" [productDetail]="productDetails || {}"
-        (dialogClose)="closeProductDialog()"></app-product-detail>
 </dialog>

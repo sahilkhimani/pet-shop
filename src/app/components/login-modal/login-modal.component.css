@@ -42,3 +42,7 @@ div i {
         display: flex;
     }
 }
+.btn{
+    color: black;
+    font-weight: bold;
+}

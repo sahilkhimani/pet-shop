@@ -10,6 +10,7 @@ import { ProductDetailComponent } from "../../product/product-detail/product-det
 import { HeaderComponent } from '../../components/header/header.component';
 import { LoginModalComponent } from '../../components/login-modal/login-modal.component';
 import { SliderComponent } from "../../components/slider/slider.component";
+import { FooterComponent } from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-main-page',
@@ -20,8 +21,8 @@ import { SliderComponent } from "../../components/slider/slider.component";
     CategoryComponent,
     LoaderComponent,
     LoginModalComponent,
-    ProductDetailComponent,
-    SliderComponent
+    SliderComponent,
+    FooterComponent
 ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css',
@@ -75,17 +76,6 @@ export class MainPageComponent implements OnInit {
   }
   closeLoginDialog() {
     const dialog = this.elRef.nativeElement.querySelector("#loginDialogue");
-    this.dialogClose(dialog);
-  }
-
-  openProductDetailModal() {
-    this.productDetails = this.petService.getProductDetail();
-    this.productDetailClicked = true;
-    const dialog = this.elRef.nativeElement.querySelector("#productDetail");
-    this.setupDialog(dialog);
-  }
-  closeProductDialog() {
-    const dialog = this.elRef.nativeElement.querySelector("#productDetail");
     this.dialogClose(dialog);
   }
 }

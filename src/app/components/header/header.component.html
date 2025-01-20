@@ -11,7 +11,7 @@
 </div>
 
 <dialog id="menuDialog">
-    <a *ngFor="let item of headerNav" [routerLink]="item.link">{{ item.name }}</a>
+    <a *ngFor="let item of myHeaderNav" [routerLink]="item.link">{{ item.name }}</a>
     <a *ngIf="token" class="custom-link">Profile</a>
     <a *ngIf="token" (click)="logout()" class="custom-link">Logout</a>
 </dialog>

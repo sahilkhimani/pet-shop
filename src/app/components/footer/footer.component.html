@@ -1,0 +1,14 @@
+<footer class="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
+    <div class="social" role="navigation" aria-labelledby="social-heading">
+        <h3 >Follow us on social media</h3>
+        <a routerLink="/main-page" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+        <a routerLink="/main-page" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+        <a routerLink="/main-page" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+    </div>
+    <hr class="footer-break">
+    <ul class="footer-links" role="navigation" aria-labelledby="footer-links-heading">
+        <h3 id="footer-links-heading" class="sr-only">Visit Links</h3>
+        <li *ngFor="let item of navLinks"><a [routerLink]="item.link">{{ item.name }}</a></li>
+    </ul>
+    <p class="copyright">&copy; 2025 <a style='color:inherit' routerLink="/main-page">sahilkhimani</a>. All Rights Reserved</p>
+</footer>

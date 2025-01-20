@@ -9,25 +9,31 @@ import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-product',
-  imports: [ShortenTextPipe],
+  imports: [ShortenTextPipe, CommonModule],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
 export class ProductComponent {
   @Input() petItem?: PetModel;
   @Output() openLoginModal = new EventEmitter();
-  @Output() productDetailModal = new EventEmitter();
+  productStatus: string[] = ['failed', 'cancelled'];
   constructor(
-    private petService: PetService
+    private router: Router
   ) { }
   buyNowClicked(product: PetModel) {
     const token = localStorage.getItem(AppComponent.token);
-    if (token == null && token == "") {
-      this.openLoginModal.emit();
+    if (token != null && token != '') {
+      this.router.navigate(['product-details', product.PetId]);
     }
     else {
-      this.petService.setProductDetail(product);
-      this.productDetailModal.emit();
+      this.openLoginModal.emit();
     }
+  }
+
+  checkProductStatus(status: string): boolean {
+    if (this.productStatus.includes(status.toLowerCase())) {
+      return true;
+    }
+    return false;
   }
 }
