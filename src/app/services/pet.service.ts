@@ -86,7 +86,7 @@ export class PetService {
             return new PetModel(
               pet.petId,
               pet.petName,
-              petImg?.img,
+              petImg?.img ?? this.petImgsList[this.petImgsList.length - 1].img,
               pet.petAge,
               pet.petPrice,
               pet.petGender,
@@ -124,6 +124,7 @@ export class PetService {
   getAllSpecies() {
     return this.specieService.getAll();
   }
+
 }
 
 

@@ -6,7 +6,7 @@ import { ProductComponent } from "../../product/product.component";
 import { CategoryComponent } from "../../category/category.component";
 import { PetModel } from '../../models/pet.model';
 import { LoaderComponent } from "../../utility/loader/loader.component";
-import { ProductDetailComponent } from "../../product/product-detail/product-detail.component";
+import { ProductDetailComponent } from "../product-detail/product-detail.component";
 import { HeaderComponent } from '../../components/header/header.component';
 import { LoginModalComponent } from '../../components/login-modal/login-modal.component';
 import { SliderComponent } from "../../components/slider/slider.component";
