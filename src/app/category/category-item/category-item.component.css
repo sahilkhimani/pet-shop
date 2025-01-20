@@ -4,6 +4,17 @@ img {
     max-width: 100%;
     max-height: 200px;
     position: relative;
+    cursor: pointer;
+}
+
+.top-div:hover {
+    .img-div {
+        filter: blur(1.5px);
+    }
+
+    .row span {
+        transform: translate(50%, 400%);
+    }
 }
 
 @media (max-width: 1000px) {
@@ -13,6 +24,12 @@ img {
 
     .row span {
         transform: translate(50%, 350%) !important;
+    }
+
+    .top-div:hover {
+        .row span {
+            transform: translate(50%, 300%) !important;
+        }
     }
 }
 
@@ -24,6 +41,11 @@ img {
     .row span {
         padding: 0 !important;
         transform: translate(50%, 300%) !important;
+    }
+    .top-div:hover {
+        .row span {
+            transform: translate(50%, 250%) !important;
+        }
     }
 }
 
@@ -42,4 +64,5 @@ img {
     background-color: white;
     border-radius: 25px;
     box-shadow: 0 4px 10px black;
+    cursor: pointer;
 }

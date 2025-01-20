@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { AppComponent } from '../app.component';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-header',

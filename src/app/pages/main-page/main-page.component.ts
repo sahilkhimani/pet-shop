@@ -1,14 +1,15 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { PetService } from '../services/pet.service';
-import { SnackbarService } from '../utility/services/snackbar.service';
+import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { PetService } from '../../services/pet.service';
+import { SnackbarService } from '../../utility/services/snackbar.service';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '../header/header.component';
-import { ProductComponent } from "../product/product.component";
-import { CategoryComponent } from "../category/category.component";
-import { PetModel } from '../models/pet.model';
-import { LoaderComponent } from "../utility/loader/loader.component";
-import { LoginModalComponent } from "./login-modal/login-modal.component";
-import { ProductDetailComponent } from "../product/product-detail/product-detail.component";
+import { ProductComponent } from "../../product/product.component";
+import { CategoryComponent } from "../../category/category.component";
+import { PetModel } from '../../models/pet.model';
+import { LoaderComponent } from "../../utility/loader/loader.component";
+import { ProductDetailComponent } from "../../product/product-detail/product-detail.component";
+import { HeaderComponent } from '../../components/header/header.component';
+import { LoginModalComponent } from '../../components/login-modal/login-modal.component';
+import { SliderComponent } from "../../components/slider/slider.component";
 
 @Component({
   selector: 'app-main-page',
@@ -19,8 +20,9 @@ import { ProductDetailComponent } from "../product/product-detail/product-detail
     CategoryComponent,
     LoaderComponent,
     LoginModalComponent,
-    ProductDetailComponent
-  ],
+    ProductDetailComponent,
+    SliderComponent
+],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css',
 })
@@ -52,6 +54,7 @@ export class MainPageComponent implements OnInit {
         }
       })
   }
+
   setupDialog(dialogName: any) {
     dialogName.showModal();
 
