@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CategoryItemComponent } from "./category-item/category-item.component";
 import { CommonModule } from '@angular/common';
 import { CategModel } from '../models/categ.model';
+import { CategoryService } from '../utility/services/category.service';
 
 @Component({
   selector: 'app-category',
@@ -10,13 +11,14 @@ import { CategModel } from '../models/categ.model';
   styleUrl: './category.component.css'
 })
 export class CategoryComponent {
+  constructor(private categService: CategoryService) { }
   categItems: CategModel[] = [
     {
-      name: 'Dog',
+      name: 'Dogs',
       img: 'assets/images/dog-categ.png'
     },
     {
-      name: 'Cat',
+      name: 'Cats',
       img: 'assets/images/cat-categ.png'
     },
     {
@@ -29,7 +31,7 @@ export class CategoryComponent {
     }
   ]
 
-  onCategClicked(item : CategModel){
-
+  onCategClicked(categ: string) {
+    this.categService.setSelectedCategory(categ);
   }
 }

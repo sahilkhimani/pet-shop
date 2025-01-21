@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AppComponent } from '../../app.component';
+import { CategoryService } from '../../utility/services/category.service';
 
 @Component({
   selector: 'app-header',
@@ -10,21 +11,21 @@ import { AppComponent } from '../../app.component';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
-  static headerNav: { name: string, link: string }[] =
+  static headerNav: { name: string, categName: string }[] =
     [
-      { name: 'Login', link: '/login' },
-      { name: 'Cats', link: '' },
-      { name: 'Dogs', link: '' },
-      { name: 'Other Pets', link: '' },
-      { name: 'About Us', link: '' },
+      { name: 'Cats', categName: 'cats' },
+      { name: 'Dogs', categName: 'dogs' },
+      { name: 'Birds', categName: 'birds' },
+      { name: 'Other Pets', categName: 'others' },
     ]
 
-    myHeaderNav = HeaderComponent.headerNav;
+  myHeaderNav = HeaderComponent.headerNav;
   public token?: string | null;
   constructor(
     private renderer: Renderer2,
     private elRef: ElementRef,
     private router: Router,
+    private categService: CategoryService
   ) { }
 
   ngOnInit() {
@@ -53,5 +54,12 @@ export class HeaderComponent implements OnInit {
   logout() {
     localStorage.clear();
     window.location.reload();
+  }
+
+  categClicked(categ: string) {
+    this.categService.setSelectedCategory(categ);
+    const dialog = this.elRef.nativeElement.querySelector("#menuDialog");
+    dialog.close();
+    this.router.navigate(['/main-page']);
   }
 }

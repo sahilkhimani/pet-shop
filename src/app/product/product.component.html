@@ -7,13 +7,13 @@
         <div>
             <span class="text-xl">{{ petItem?.PetName }}</span>
         </div>
-        <p class="mt-0 mb-3">{{ petItem?.PetDesc || '' | shortenText : 50}} </p>
-        <span class="text-xl text-primary">Rs. {{ petItem?.PetPrice }}</span>
+        <p class="mt-0 product-comp">{{ petItem?.PetDesc || '' | shortenText : 50}} </p>
+        <span class="text-xl text-primary mt-3">Rs. {{ petItem?.PetPrice }}</span>
 
     </div>
     <div>
         <button (click)="buyNowClicked(petItem ?? {})" type="button"
-            class="btn w-100 my-btn d-flex justify-content-center" [ngClass]="checkProductStatus(petItem?.PetOrderStatus!) ? 'sold-btn' : 'my-btn' ">
-            <i class="material-icons me-1">{{ checkProductStatus(petItem?.PetOrderStatus!) ? 'sell' :'shopping_bag'}}</i> {{ checkProductStatus(petItem?.PetOrderStatus!) ? 'Sold' : 'Buy Now' }}</button>
+            class="btn w-100 my-btn d-flex justify-content-center" [ngClass]="!checkProductStatus(petItem?.PetOrderStatus!) ? 'sold-btn' : 'my-btn' ">
+            <i class="material-icons me-1">{{ !checkProductStatus(petItem?.PetOrderStatus!) ? 'sell' :'shopping_bag'}}</i> {{ !checkProductStatus(petItem?.PetOrderStatus!) ? 'Sold' : 'Buy Now' }}</button>
     </div>
 </div>

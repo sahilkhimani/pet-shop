@@ -7,7 +7,7 @@
         <app-category></app-category>
     </div>
     <div *ngIf="isLoading"><app-loader></app-loader></div>
-    <div *ngIf="!isLoading" class="container">
+    <div *ngIf="!isLoading" class="container" #productSection>
         <div class="row">
             <div class="col-sm-6 col-md-4" *ngFor="let item of petsList">
                 <app-product (openLoginModal)="openLoginModal()"

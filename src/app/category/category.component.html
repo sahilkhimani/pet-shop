@@ -1,5 +1,5 @@
 <div class="row justify-content-center align-items-center">
     <div class="my-div col-sm-4 col-md-3 col-lg-2" *ngFor="let item of categItems">
-        <app-category-item [item]="item"></app-category-item>
+        <app-category-item [item]="item" (click)="onCategClicked(item.name)"></app-category-item>
     </div>
 </div>

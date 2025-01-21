@@ -18,23 +18,23 @@ export class PetService {
 
   private petImgsList: CategModel[] = [
     {
-      name: 'dog',
+      name: 'dogs',
       img: 'assets/images/dog-icon.jpg'
     },
     {
-      name: 'cat',
+      name: 'cats',
       img: 'assets/images/cat-icon.jpg'
     },
     {
-      name: 'parrot',
+      name: 'birds',
       img: 'assets/images/parrot-icon.jpg'
     },
     {
-      name: 'horse',
+      name: 'horses',
       img: 'assets/images/horse-icon.jpg'
     },
     {
-      name: 'other',
+      name: 'others',
       img: 'assets/images/other-icon.jpg'
     }
   ]
