@@ -3,13 +3,23 @@ import { AppComponent } from '../../app.component';
 import { inject } from '@angular/core';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  const token = localStorage.getItem(AppComponent.token);
   const router: Router = inject(Router);
-  if (token == null || token == '') {
-    router.navigate(['/not-found']);
-    return false;
+
+  const token = localStorage.getItem(AppComponent.token);
+  const role = localStorage.getItem(AppComponent.role);
+
+  if (role && (token != null || token != '')) {
+    const expectedRole = route.data['role'];
+    if (role === expectedRole) {
+      return true;
+    }
+    else {
+      router.navigate(['/not-found']);
+      return false;
+    }
   }
   else {
-    return true;
+    router.navigate(['/not-found']);
+    return false;
   }
 };

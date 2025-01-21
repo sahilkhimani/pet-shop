@@ -32,7 +32,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   petsList: PetModel[] = [];
   isLoading: boolean = false;
   filteredList: PetModel[] = [];
-
+  
   constructor(
     private petService: PetService,
     private snackbarService: SnackbarService,

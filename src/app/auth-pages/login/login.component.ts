@@ -11,6 +11,7 @@ import { MatButton } from '@angular/material/button';
 import { config } from 'rxjs';
 import { SnackbarService } from '../../utility/services/snackbar.service';
 import { AppComponent } from '../../app.component';
+import { DecodeTokenService } from '../../utility/services/decode-token.service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,8 @@ export class LoginComponent {
   constructor(
     private userService: UserService,
     private router: Router,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private jwtToken: DecodeTokenService
   ) { }
 
   loginForm = new FormGroup({
@@ -54,6 +56,10 @@ export class LoginComponent {
     this.userService.Login(data).subscribe({
       next: (response) => {
         localStorage.setItem(AppComponent.token, response);
+        const decodeToken = this.jwtToken.decodeJwtToken(response);
+        if (decodeToken) {
+          localStorage.setItem(AppComponent.role, decodeToken.role);
+        }
         this.snackbarService.open({ message: loginMessage, panelClass: ['suc-snackbar'] })
         this.router.navigate(['/main-page']);
       },
