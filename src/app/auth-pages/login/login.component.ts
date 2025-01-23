@@ -8,6 +8,7 @@ import { UserService } from '../../services/user.service';
 import { SnackbarService } from '../../utility/services/snackbar.service';
 import { AppComponent } from '../../app.component';
 import { DecodeTokenService } from '../../utility/services/decode-token.service';
+import { StaticClass } from '../../utility/helper/static-words';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +26,7 @@ export class LoginComponent {
   backgroundImage = 'assets/images/loginside.jpg'
   showPassword = false;
   isLoading: boolean = false;
+  emailPattern = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$';
   constructor(
     private userService: UserService,
     private router: Router,
@@ -36,7 +38,7 @@ export class LoginComponent {
     email: new FormControl('',
       [Validators.required,
       Validators.email,
-      Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]),
+      Validators.pattern(this.emailPattern)]),
     password: new FormControl('', [Validators.required])
   })
 
@@ -56,11 +58,11 @@ export class LoginComponent {
         if (decodeToken) {
           localStorage.setItem(AppComponent.role, decodeToken.role);
         }
-        this.snackbarService.open({ message: loginMessage, panelClass: ['suc-snackbar'] })
-        this.router.navigate(['/main-page']);
+        this.snackbarService.open({ message: loginMessage, panelClass: [StaticClass.sucSnackbar] })
+        this.router.navigate([StaticClass.mainPage]);
       },
       error: (err) => {
-        this.snackbarService.open({ message: err.error, panelClass: ['error-snackbar'] })
+        this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] })
       }
     })
     this.isLoading = false;
@@ -72,13 +74,15 @@ export class LoginComponent {
   }
 
   getErrorMessages(controlName: string) {
-    const requiredError = 'This field is required';
+    const requiredError = "This field is required";
     const validEmailError = "Enter valid Email Address (e.g. user@example.com)";
+    const required = 'required';
+    const pattern = 'pattern';
     const control = this.loginForm.get(controlName);
-    if (control?.hasError('required')) {
+    if (control?.hasError(required)) {
       return requiredError;
     }
-    if (controlName == 'email' && control?.hasError('pattern')) {
+    if (controlName == 'email' && control?.hasError(pattern)) {
       return validEmailError;
     }
     return '';

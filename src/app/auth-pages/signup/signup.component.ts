@@ -7,6 +7,7 @@ import { RegisterModel } from '../../models/register.model';
 import { UserService } from '../../services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarService } from '../../utility/services/snackbar.service';
+import { StaticClass } from '../../utility/helper/static-words';
 @Component({
   selector: 'app-signup',
   imports: [
@@ -21,12 +22,15 @@ import { SnackbarService } from '../../utility/services/snackbar.service';
 export class SignupComponent {
   backgroundImage = 'assets/images/registerside.jpg'
   isLoading: boolean = false;
-  localStorage: any;
+  email = 'email';
+  password = 'password';
+  cPassword = 'cPassword';
 
+  emailPattern = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$';
   constructor(
     private userService: UserService,
     private router: Router,
-    private snackbarService : SnackbarService
+    private snackbarService: SnackbarService
   ) { }
 
   singupForm = new FormGroup({
@@ -36,7 +40,7 @@ export class SignupComponent {
     email: new FormControl('',
       [Validators.required,
       Validators.email,
-      Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]),
+      Validators.pattern(this.emailPattern)]),
     password: new FormControl('',
       [Validators.required,
       Validators.minLength(8)]),
@@ -56,12 +60,12 @@ export class SignupComponent {
     const data = new RegisterModel(formData.name, formData.email, formData.password, formData.cPassword, formData.phoneNo, formData.roleId);
     this.userService.register(data).subscribe({
       next: (response) => {
-        this.router.navigate(['/login']);
-        this.snackbarService.open({message : response, panelClass : ['suc-snackbar']});
+        this.router.navigate([StaticClass.loginPage]);
+        this.snackbarService.open({ message: response, panelClass: [StaticClass.sucSnackbar] });
         this.singupForm.reset();
       },
       error: (err) => {
-        this.snackbarService.open({message : err.error, panelClass : ['error-snackbar']})
+        this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] })
       }
     })
     this.isLoading = false;
@@ -76,23 +80,25 @@ export class SignupComponent {
     const requiredError = "This field is required";
     const validEmailError = "Enter Valid Email Address (e.g. user@example.com)";
     const passwordError = "Pasword must contain atleast 8 character with one uppercase letter and one special character";
+    const required = 'required';
+    const pattern = 'pattern';
     const control = this.singupForm.get(controlName);
 
-    if (control?.hasError('required')) {
+    if (control?.hasError(required)) {
       return requiredError;
     }
-    if (controlName == 'email' && control?.hasError('pattern')) {
+    if (controlName == this.email && control?.hasError(pattern)) {
       return validEmailError;
     }
-    if (controlName == 'password' && control?.hasError('pattern')) {
+    if (controlName == this.password && control?.hasError(pattern)) {
       return passwordError;
     }
     return '';
   }
 
   passwordMatchValidator(formGroup: AbstractControl): ValidationErrors | null {
-    const password = formGroup.get('password')?.value;
-    const confirmPassword = formGroup.get('cPassword')?.value;
+    const password = formGroup.get(this.password)?.value;
+    const confirmPassword = formGroup.get(this.cPassword)?.value;
     return password === confirmPassword ? null : { passwordsMismatch: true };
   }
 }
