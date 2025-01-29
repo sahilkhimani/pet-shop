@@ -10,6 +10,7 @@ import { CategoryService } from '../../utility/services/category.service';
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })
+
 export class FooterComponent {
   navLinks = HeaderComponent.headerNav;
   constructor(

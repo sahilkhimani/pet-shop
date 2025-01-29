@@ -50,8 +50,22 @@ export class PetService {
     private breedService: BreedService,
     private specieService: SpeciesService,
     private orderService: OrderService
-  ) { }
-
+  ) {
+    this.specieService.getSpeciesListUpdate().subscribe(
+      updated => {
+        if (updated) {
+          this.breedListFetched = false;
+        }
+      }
+    )
+    this.breedService.getBreedListUpdate().subscribe(
+      updated => {
+        if (updated) {
+          this.breedListFetched = false;
+        }
+      }
+    )
+  }
 
   getAll(): Observable<PetModel[]> {
     if (!this.breedListFetched) {
