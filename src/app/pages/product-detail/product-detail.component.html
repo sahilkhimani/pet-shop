@@ -38,7 +38,7 @@
             <button class="btn my-btn w-100" [disabled]="!checkProductStatus(productDetail.PetOrderStatus!)" [ngClass]="!checkProductStatus(productDetail.PetOrderStatus!) ? 'sold-btn' : 'my-btn'">
                 {{ !checkProductStatus(productDetail.PetOrderStatus!) ? 'Already Sold' : 'Buy Now' }}</button>
             <p class="short-head mt-2">Free 3-5 day Shipping</p>
-            <button class="d-flex wishlist w-100" [disabled]="!checkProductStatus(productDetail.PetOrderStatus!)">
+            <button (click)="addToWishlist()" class="d-flex wishlist w-100" [disabled]="!checkProductStatus(productDetail.PetOrderStatus!)">
                 <i class="material-icons me-1">favorite_border</i>Add to Wishlist
             </button>
         </div>

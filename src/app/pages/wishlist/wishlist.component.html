@@ -1,0 +1,11 @@
+<app-header></app-header>
+<div *ngIf="wishlist.length" class="container" style="height: 100vh;">
+    <div class="row mt-3 mb-2">
+        <h1>Wishlist</h1>
+    </div>
+    <app-wishlist-item></app-wishlist-item>
+</div>
+<div *ngIf="!wishlist.length" class="img-notfound d-flex justify-content-center">
+    <img src="assets/images/not-found.jpg" alt="">
+</div>
+<app-footer></app-footer>

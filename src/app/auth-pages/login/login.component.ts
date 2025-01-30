@@ -9,6 +9,7 @@ import { SnackbarService } from '../../utility/services/snackbar.service';
 import { AppComponent } from '../../app.component';
 import { DecodeTokenService } from '../../utility/services/decode-token.service';
 import { StaticClass } from '../../utility/helper/static-words';
+import { LocalStorageService } from '../../utility/services/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -27,11 +28,13 @@ export class LoginComponent {
   showPassword = false;
   isLoading: boolean = false;
   emailPattern = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$';
+
   constructor(
     private userService: UserService,
     private router: Router,
     private snackbarService: SnackbarService,
-    private jwtToken: DecodeTokenService
+    private jwtToken: DecodeTokenService,
+    private localStorageService : LocalStorageService
   ) { }
 
   loginForm = new FormGroup({
@@ -52,14 +55,20 @@ export class LoginComponent {
     const formData = this.loginForm.value;
     const data = new LoginModel(formData.email, formData.password);
     this.userService.Login(data).subscribe({
-      next: (response) => {
-        localStorage.setItem(AppComponent.token, response);
+      next: (response) => {  
+        this.localStorageService.setItem<string>(AppComponent.token, response)  
         const decodeToken = this.jwtToken.decodeJwtToken(response);
         if (decodeToken) {
-          localStorage.setItem(AppComponent.role, decodeToken.role);
+          this.localStorageService.setItem<string>(AppComponent.role, decodeToken.role);
+        }
+        const role = localStorage.getItem(AppComponent.role);
+        if (role == StaticClass.buyerRole) {
+          this.router.navigate([StaticClass.mainPage]);
+        }
+        if (role == StaticClass.sellerRole || role == StaticClass.adminRole) {
+          this.router.navigate([StaticClass.dashboard])
         }
         this.snackbarService.open({ message: loginMessage, panelClass: [StaticClass.sucSnackbar] })
-        this.router.navigate([StaticClass.mainPage]);
       },
       error: (err) => {
         this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] })

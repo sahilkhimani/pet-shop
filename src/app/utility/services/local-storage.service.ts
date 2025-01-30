@@ -7,12 +7,17 @@ export class LocalStorageService {
 
   constructor() { }
 
-  setItem(key: string, value: string): void {
-    localStorage.setItem(key, value);
+  // addToList<T>(key : string, item : T) : void{
+  //   const existingList : T[] = this.getItem<T[]>(key) || [];
+  // }
+
+  setItem<T>(key: string, value: T): void {
+    localStorage.setItem(key, JSON.stringify(value));
   }
 
-  getItem(key: string): string | null {
-    return localStorage.getItem(key);
+  getItem<T>(key: string): T | null {
+    const item = localStorage.getItem(key);
+    return item ? JSON.parse(item) : null;
   }
 
   removeItem(key: string): void {

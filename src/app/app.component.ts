@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   title = 'pet-shop';
   static token: string = '';
   static role : string = '';
-  constructor(private localStorageService: LocalStorageService) { }
+  constructor(public localStorageService : LocalStorageService) { }
   ngOnInit(): void {
     // this.localStorageService.clear();  
   }

@@ -5,21 +5,34 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { authGuard } from './utility/guard/auth.guard';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { StaticClass } from './utility/helper/static-words';
+import { WishlistComponent } from './pages/wishlist/wishlist.component';
 
-const sellerRole = 'Seller';
-const buyerRole = 'Buyer';
-const adminRole = 'Admin';
+
 
 export const routes: Routes = [
     { path: '', redirectTo: 'main-page', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
-    { path: 'main-page', component: MainPageComponent },
+    { path: 'main-page', component: MainPageComponent, },
     {
         path: 'product-details',
         component: ProductDetailComponent,
         canActivate: [authGuard],
-        data: { role: buyerRole }
+        data: { role: [StaticClass.buyerRole, StaticClass.sellerRole, StaticClass.adminRole] }
+    },
+    {
+        path: 'dashboard',
+        component: DashboardComponent,
+        canActivate: [authGuard],
+        data: { role: [StaticClass.sellerRole, StaticClass.adminRole] }
+    },
+    {
+        path: 'wishlist',
+        component: WishlistComponent,
+        canActivate: [authGuard],
+        data: { role: [StaticClass.buyerRole] }
     },
     { path: '**', component: NotFoundComponent }
 ];

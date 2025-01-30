@@ -1,0 +1,18 @@
+<div class="row list-item mb-3 p-2">
+    <div class="col-2">
+        <img class="wishlist-img" [src]="petItem.PetImg" [alt]="petItem.PetName">
+    </div>
+    <div class="col-8">
+        <p>{{ petItem.PetName }}</p>
+        <div class="row">
+            <span class="col-6">{{ petItem.PetGender }}</span>
+            <span class="col-6">{{ petItem.BreedName }}</span>
+        </div>
+        <div class="mt-1 desc">
+            {{ petItem.PetDesc! | shortenText:50 }}
+        </div>
+    </div>
+    <div class="col-2 fav-icon">
+        <i class="material-icons">favorite_outline</i>
+    </div>
+</div>

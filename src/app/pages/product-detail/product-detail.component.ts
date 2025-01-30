@@ -16,27 +16,30 @@ import { CheckProductStatusService } from '../../utility/services/checkProductSt
   ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css',
-  providers : [CheckProductStatusService]
+  providers: [CheckProductStatusService]
 })
-export class ProductDetailComponent implements OnInit{
-  productDetail : PetModel = {};
-  noProduct : boolean = false;
+export class ProductDetailComponent implements OnInit {
+  productDetail: PetModel = {};
+  noProduct: boolean = false;
 
   constructor(
-    private router : Router,
-    private checkStatus : CheckProductStatusService
+    private router: Router,
+    private checkStatus: CheckProductStatusService
   ) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras?.state as { product: PetModel };
     this.productDetail = state?.product;
   }
   ngOnInit(): void {
-    if(!this.productDetail){
+    if (!this.productDetail) {
       this.noProduct = true;
     }
   }
 
-  checkProductStatus(status : string){
+  checkProductStatus(status: string) {
     return this.checkStatus.checkProductStatus(status);
+  }
+
+  addToWishlist() {
   }
 }
