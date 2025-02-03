@@ -1,3 +1,7 @@
-.img-notfound img{
-    width: 50%;
+.img-setting{
+    display: flex;
+    justify-content: center;
+}
+#noItemh1{
+    text-align: center;
 }

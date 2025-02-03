@@ -1,11 +1,14 @@
 <app-header></app-header>
+<div class="container mt-3 mb-2">
+    <h1>Wishlist</h1>
+</div>
 <div *ngIf="wishlist.length" class="container" style="height: 100vh;">
-    <div class="row mt-3 mb-2">
-        <h1>Wishlist</h1>
-    </div>
     <app-wishlist-item *ngFor="let item of wishlist" [petItem]="item"></app-wishlist-item>
 </div>
-<div *ngIf="!wishlist.length" class="img-notfound d-flex justify-content-center">
-    <img src="assets/images/not-found.jpg" alt="">
+<div class="container mb-4" *ngIf="!wishlist.length">
+    <div class="img-setting">
+        <img src="assets/images/no-item.png" alt="">
+    </div>
+    <h1 id="noItemh1">No Items</h1>
 </div>
 <app-footer></app-footer>
