@@ -2,21 +2,6 @@
     background-color: #EFF3F8;
 }
 
-::ng-deep .suc-snackbar {
-    --mdc-snackbar-container-color: green !important;
-    --mdc-snackbar-supporting-text-color: white !important;
-}
-
-::ng-deep .suc-snackbar button,
-::ng-deep .error-snackbar button {
-    color: white !important;
-}
-
-::ng-deep .error-snackbar {
-    --mdc-snackbar-container-color: red !important;
-    --mdc-snackbar-supporting-text-color: white !important;
-}
-
 .no-product {
     display: flex;
     justify-content: center;

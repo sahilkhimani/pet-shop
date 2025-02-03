@@ -52,18 +52,3 @@
     border: none;
     cursor: pointer;
 }
-
-::ng-deep .error-snackbar {
-    --mdc-snackbar-container-color: red;
-    --mdc-snackbar-supporting-text-color: white;
-}
-
-::ng-deep .error-snackbar button, .suc-snackbar button{
-    color: white !important;
-}
-
-::ng-deep .suc-snackbar {
-    --mdc-snackbar-container-color: green !important;
-    --mdc-snackbar-supporting-text-color: white !important;
-}
-

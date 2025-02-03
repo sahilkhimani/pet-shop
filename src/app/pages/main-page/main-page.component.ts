@@ -12,6 +12,7 @@ import { LoginModalComponent } from '../../components/login-modal/login-modal.co
 import { SliderComponent } from "../../components/slider/slider.component";
 import { FooterComponent } from "../../components/footer/footer.component";
 import { CategoryService } from '../../utility/services/category.service';
+import { StaticClass } from '../../utility/helper/static-words';
 
 @Component({
   selector: 'app-main-page',
@@ -85,7 +86,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
         },
         error: (err) => {
-          this.snackbarService.open({ message: err.error, panelClass: ['error-snackbar'] });
+          this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] });
           this.isLoading = false;
         }
       })

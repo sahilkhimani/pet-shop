@@ -1,10 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Lemon&family=Pacifico&display=swap');
 
-html, body { height: 100%; box-sizing: border-box;}
-body { margin: 0; font-family: 'Times New Roman', "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Times New Roman', "Helvetica Neue", sans-serif;
+}
 
 
 .center-content {
     display: flex;
     flex-direction: column;
+}
+
+ .error-snackbar {
+    --mdc-snackbar-container-color: red;
+    --mdc-snackbar-supporting-text-color: white;
+}
+
+.error-snackbar button,
+.suc-snackbar button {
+    color: white !important;
+}
+
+.suc-snackbar {
+    --mdc-snackbar-container-color: green !important;
+    --mdc-snackbar-supporting-text-color: white !important;
 }

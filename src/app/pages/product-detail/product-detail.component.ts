@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CheckProductStatusService } from '../../utility/services/checkProductStatus.service';
 import { LocalStorageService } from '../../utility/services/local-storage.service';
 import { StaticClass } from '../../utility/helper/static-words';
+import { SnackbarService } from '../../utility/services/snackbar.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -27,7 +28,8 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private router: Router,
     private checkStatus: CheckProductStatusService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private snackbarService: SnackbarService
   ) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras?.state as { product: PetModel };
@@ -71,6 +73,14 @@ export class ProductDetailComponent implements OnInit {
     this.localStorageService.removeFromList<PetModel>(StaticClass.wishlist, (i => i.PetId === item.PetId))
     this.alreadyFavorite = false;
   }
-
+  placeOrder(id: number) {
+    const role = this.localStorageService.getItem(StaticClass.role);
+    if (role === StaticClass.adminRole || role === StaticClass.buyerRole) {
+      console.log(role)
+    }
+    else {
+      this.snackbarService.open({ message: "You can't buy pet. Please Sign Up as a buyer", panelClass: [StaticClass.errorSnackbar] })
+    }
+  }
 
 }

@@ -35,7 +35,7 @@
                 </div>
             </div>
             <p class="short-head text-primary"><span>Rs.</span>{{ productDetail.PetPrice }}</p>
-            <button class="btn my-btn w-100" [disabled]="!checkProductStatus(productDetail.PetOrderStatus!)"
+            <button (click)="placeOrder(productDetail.PetId!)" class="btn my-btn w-100" [disabled]="!checkProductStatus(productDetail.PetOrderStatus!)"
                 [ngClass]="!checkProductStatus(productDetail.PetOrderStatus!) ? 'sold-btn' : 'my-btn'">
                 {{ !checkProductStatus(productDetail.PetOrderStatus!) ? 'Already Sold' : 'Buy Now' }}</button>
             <div *ngIf="checkProductStatus(productDetail.PetOrderStatus!)">
