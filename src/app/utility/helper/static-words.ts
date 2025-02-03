@@ -1,4 +1,11 @@
+import { PetModel } from "../../models/pet.model";
+
 export abstract class StaticClass {
+    //localstorage variables
+    static token: string = 'token';
+    static role: string = 'role';
+    static wishlist : string = 'wishlist'
+
     //snackbar panel classes names
     static sucSnackbar = 'suc-snackbar';
     static errorSnackbar = 'error-snackbar';

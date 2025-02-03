@@ -5,6 +5,7 @@ import { ShortenTextPipe } from '../utility/pipes/shorten-text.pipe';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { CheckProductStatusService } from '../utility/services/checkProductStatus.service';
+import { StaticClass } from '../utility/helper/static-words';
 
 @Component({
   selector: 'app-product',
@@ -24,7 +25,7 @@ export class ProductComponent {
     private checkStatus : CheckProductStatusService
   ) { }
   buyNowClicked(product: PetModel) {
-    const token = localStorage.getItem(AppComponent.token);
+    const token = localStorage.getItem(StaticClass.token);
     if (token != null && token != '') {
       this.router.navigate(['product-details'], {state : {product}});
     }

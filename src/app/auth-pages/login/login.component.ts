@@ -34,7 +34,7 @@ export class LoginComponent {
     private router: Router,
     private snackbarService: SnackbarService,
     private jwtToken: DecodeTokenService,
-    private localStorageService : LocalStorageService
+    private localStorageService: LocalStorageService
   ) { }
 
   loginForm = new FormGroup({
@@ -55,13 +55,13 @@ export class LoginComponent {
     const formData = this.loginForm.value;
     const data = new LoginModel(formData.email, formData.password);
     this.userService.Login(data).subscribe({
-      next: (response) => {  
-        this.localStorageService.setItem<string>(AppComponent.token, response)  
+      next: (response) => {
+        this.localStorageService.setItem<string>(StaticClass.token, response)
         const decodeToken = this.jwtToken.decodeJwtToken(response);
         if (decodeToken) {
-          this.localStorageService.setItem<string>(AppComponent.role, decodeToken.role);
+          this.localStorageService.setItem<string>(StaticClass.role, decodeToken.role);
         }
-        const role = localStorage.getItem(AppComponent.role);
+        const role = this.localStorageService.getItem<string>(StaticClass.role);
         if (role == StaticClass.buyerRole) {
           this.router.navigate([StaticClass.mainPage]);
         }

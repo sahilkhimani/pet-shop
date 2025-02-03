@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PetModel } from '../../../models/pet.model';
 import { ShortenTextPipe } from "../../../utility/pipes/shorten-text.pipe";
 
@@ -9,5 +9,5 @@ import { ShortenTextPipe } from "../../../utility/pipes/shorten-text.pipe";
   styleUrl: './wishlist-item.component.css'
 })
 export class WishlistItemComponent {
-  petItem: PetModel = {};
+  @Input() petItem: PetModel = {};
 }

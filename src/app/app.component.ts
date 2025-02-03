@@ -14,8 +14,7 @@ import { LocalStorageService } from './utility/services/local-storage.service';
 })
 export class AppComponent implements OnInit {
   title = 'pet-shop';
-  static token: string = '';
-  static role : string = '';
+
   constructor(public localStorageService : LocalStorageService) { }
   ngOnInit(): void {
     // this.localStorageService.clear();  

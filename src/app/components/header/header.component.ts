@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AppComponent } from '../../app.component';
 import { CategoryService } from '../../utility/services/category.service';
+import { StaticClass } from '../../utility/helper/static-words';
 
 @Component({
   selector: 'app-header',
@@ -30,7 +31,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.setupDialog();
-    this.token = localStorage.getItem(AppComponent.token);
+    this.token = localStorage.getItem(StaticClass.token);
   }
 
   setupDialog() {
