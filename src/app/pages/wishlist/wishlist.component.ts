@@ -25,5 +25,7 @@ export class WishlistComponent implements OnInit {
   ngOnInit(): void {
     this.wishlist = this.localStorageService.getItem<PetModel[]>(StaticClass.wishlist) || [];
   }
-
+  removeItem(petId: number) {
+    this.wishlist = this.wishlist.filter(item => item.PetId !== petId)
+  }
 }

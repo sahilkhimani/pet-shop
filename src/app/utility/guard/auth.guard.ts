@@ -18,7 +18,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     if (expectedRole.includes(role)) {
       return true;
     }
-    router.navigate([StaticClass.notFound])
+    router.navigate([StaticClass.notFoundPage])
     return false;
   }
 };

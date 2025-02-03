@@ -18,6 +18,7 @@ export abstract class StaticClass {
     //routes names
     static mainPage = '/main-page'
     static loginPage = '/login'
-    static notFound = '/not-found'
-    static dashboard = '/dashboard'
+    static notFoundPage = '/not-found'
+    static dashboardPage = '/dashboard'
+    static wishlistPage = '/wishlist'
 }

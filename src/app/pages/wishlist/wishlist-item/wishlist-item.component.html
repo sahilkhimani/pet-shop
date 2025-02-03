@@ -9,10 +9,12 @@
             <span class="col-6">{{ petItem.BreedName }}</span>
         </div>
         <div class="mt-1 desc">
-            {{ petItem.PetDesc! | shortenText:100 }}
+            {{ petItem.PetDesc! | shortenText:150 }}
         </div>
     </div>
     <div class="col-2 fav-icon">
-        <i class="material-icons">favorite_outline</i>
+        <button (click)="removeFavorite(petItem.PetId!)" class="favorite">
+            <i class="material-icons">favorite_outline</i>
+        </button>
     </div>
 </div>

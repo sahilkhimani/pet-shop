@@ -3,7 +3,7 @@
     <h1>Wishlist</h1>
 </div>
 <div *ngIf="wishlist.length" class="container" style="height: 100vh;">
-    <app-wishlist-item *ngFor="let item of wishlist" [petItem]="item"></app-wishlist-item>
+    <app-wishlist-item *ngFor="let item of wishlist" [petItem]="item" (removeItem)="removeItem($event)"></app-wishlist-item>
 </div>
 <div class="container mb-4" *ngIf="!wishlist.length">
     <div class="img-setting">

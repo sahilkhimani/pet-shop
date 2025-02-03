@@ -66,7 +66,7 @@ export class LoginComponent {
           this.router.navigate([StaticClass.mainPage]);
         }
         if (role == StaticClass.sellerRole || role == StaticClass.adminRole) {
-          this.router.navigate([StaticClass.dashboard])
+          this.router.navigate([StaticClass.dashboardPage])
         }
         this.snackbarService.open({ message: loginMessage, panelClass: [StaticClass.sucSnackbar] })
       },
