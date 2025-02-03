@@ -35,12 +35,18 @@
                 </div>
             </div>
             <p class="short-head text-primary"><span>Rs.</span>{{ productDetail.PetPrice }}</p>
-            <button class="btn my-btn w-100" [disabled]="!checkProductStatus(productDetail.PetOrderStatus!)" [ngClass]="!checkProductStatus(productDetail.PetOrderStatus!) ? 'sold-btn' : 'my-btn'">
+            <button class="btn my-btn w-100" [disabled]="!checkProductStatus(productDetail.PetOrderStatus!)"
+                [ngClass]="!checkProductStatus(productDetail.PetOrderStatus!) ? 'sold-btn' : 'my-btn'">
                 {{ !checkProductStatus(productDetail.PetOrderStatus!) ? 'Already Sold' : 'Buy Now' }}</button>
-            <p class="short-head mt-2">Free 3-5 day Shipping</p>
-            <button (click)="toggleWishItem(productDetail)" [ngClass]="{'wishlist' : !alreadyFavorite, 'alreadyFav' : alreadyFavorite}" class="d-flex w-100" [disabled]="!checkProductStatus(productDetail.PetOrderStatus!)">
-                <i class="material-icons me-1">favorite_border</i>{{ alreadyFavorite ? 'Remove From Wishlist' : 'Add to Wishlist' }}
-            </button>
+            <div *ngIf="checkProductStatus(productDetail.PetOrderStatus!)">
+                <p class="short-head mt-2">Free 3-5 day Shipping</p>
+                <button (click)="toggleWishItem(productDetail)"
+                    [ngClass]="{'wishlist' : !alreadyFavorite, 'alreadyFav' : alreadyFavorite}" class="d-flex w-100"
+                    [disabled]="!checkProductStatus(productDetail.PetOrderStatus!)">
+                    <i class="material-icons me-1">favorite_border</i>
+                    {{ alreadyFavorite ? 'Remove From Wishlist' : 'Add to Wishlist' }}
+                </button>
+            </div>
         </div>
     </div>
     <div class="prod-desc">
