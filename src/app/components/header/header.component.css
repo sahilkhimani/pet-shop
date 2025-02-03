@@ -39,6 +39,16 @@ a {
     top: 20px;
 }
 
+.favorite{
+    display: block;
+    height: 30px;
+    border: none;
+    background-color:#e4fe00;
+    position: absolute;
+    right: 70px;
+    top: 20px;
+}
+
 .logo {
     border: 2px solid #fff;
     background-color: #fff;
