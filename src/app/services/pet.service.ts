@@ -15,7 +15,6 @@ import { OrderService } from './order.service';
   providedIn: 'root'
 })
 export class PetService {
-
   private petImgsList: CategModel[] = [
     {
       name: 'dogs',
@@ -45,6 +44,8 @@ export class PetService {
   breedListFetched = false;
 
   private baseUrl = environment.apiUrl + 'Pet';
+  private GetAllApiUrl: string = this.baseUrl + '/GetAll';
+
   constructor(
     private client: HttpClient,
     private breedService: BreedService,
@@ -77,13 +78,13 @@ export class PetService {
         }),
         switchMap(species => {
           this.speciesList = species;
-          return this.client.get<ResponseModel>(`${this.baseUrl}/GetAll`);
+          return this.client.get<ResponseModel>(this.GetAllApiUrl);
         }),
         switchMap(response => this.handlePetData(response)!)
       );
     }
     else {
-      return this.client.get<ResponseModel>(`${this.baseUrl}/GetAll`).pipe(
+      return this.client.get<ResponseModel>(this.GetAllApiUrl).pipe(
         switchMap(response => this.handlePetData(response)!),
       )
     }

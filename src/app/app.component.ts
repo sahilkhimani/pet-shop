@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { LocalStorageService } from './utility/services/local-storage.service';
+import { StaticClass } from './utility/helper/static-words';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +16,27 @@ import { LocalStorageService } from './utility/services/local-storage.service';
 export class AppComponent implements OnInit {
   title = 'pet-shop';
 
-  constructor(public localStorageService : LocalStorageService) { }
+  constructor(
+    private localStorageService: LocalStorageService,
+    private router: Router
+  ) { }
   ngOnInit(): void {
-    // this.localStorageService.clear();  
+    this.startAutoLogout();
   }
 
+  startAutoLogout() {
+    const expiryTime = this.localStorageService.getItem(StaticClass.expiryTime);
+    if (!expiryTime) return;
+    const remainingTime = +expiryTime - new Date().getTime();
+    if (remainingTime > 0) {
+      setTimeout(() => {
+        this.localStorageService.clear();
+        this.router.navigate([StaticClass.loginPage])
+      }, remainingTime)
+    }
+    else {
+      this.localStorageService.clear();
+      this.router.navigate([StaticClass.loginPage])
+    }
+  }
 }

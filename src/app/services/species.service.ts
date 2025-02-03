@@ -10,6 +10,7 @@ import { SpeciesModel } from '../models/species.model';
 })
 export class SpeciesService {
   private baseUrl = environment.apiUrl + 'Species';
+  private GetAllApiUrl = this.baseUrl + '/GetAll';
   private speciesListUpdated = new BehaviorSubject<boolean>(false);
   constructor(private client: HttpClient) { }
 
@@ -22,7 +23,7 @@ export class SpeciesService {
   }
 
   getAll(): Observable<SpeciesModel[]> {
-    return this.client.get<ResponseModel>(`${this.baseUrl}/GetAll`).pipe(
+    return this.client.get<ResponseModel>(this.GetAllApiUrl).pipe(
       map(response => {
         this.setSpeciesListUpdate(false);
         return response.data?.map((species) => new SpeciesModel(species.speciesId, species.speciesName)) || []

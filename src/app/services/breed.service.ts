@@ -10,6 +10,7 @@ import { BreedModel } from '../models/breed.model';
 })
 export class BreedService {
   private baseUrl = environment.apiUrl + 'Breed';
+  private GetAllApiUrl = this.baseUrl + '/GetAll'
   private breedListUpdated = new BehaviorSubject<boolean>(false);
 
   constructor(private client: HttpClient) { }
@@ -23,7 +24,7 @@ export class BreedService {
   }
 
   getAll(): Observable<BreedModel[]> {
-    return this.client.get<ResponseModel>(`${this.baseUrl}/GetAll`).pipe(
+    return this.client.get<ResponseModel>(this.GetAllApiUrl).pipe(
       map(response => {
         this.setBreedListUpdate(false);
         return response.data?.map((breed) => new BreedModel(breed.breedId, breed.breedName, breed.speciesId)) || []

@@ -57,6 +57,8 @@ export class LoginComponent {
     this.userService.Login(data).subscribe({
       next: (response) => {
         this.localStorageService.setItem<string>(StaticClass.token, response)
+        const expiryTime = new Date().getTime() + 30 * 60 * 1000;
+        this.localStorageService.setItem(StaticClass.expiryTime, expiryTime.toString());
         const decodeToken = this.jwtToken.decodeJwtToken(response);
         if (decodeToken) {
           this.localStorageService.setItem<string>(StaticClass.role, decodeToken.role);

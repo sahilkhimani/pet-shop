@@ -10,21 +10,23 @@ import { RegisterModel } from '../models/register.model';
 })
 export class UserService {
   private baseUrl = environment.apiUrl + 'User';
+  private loginApiUrl = this.baseUrl + '/Login';
+  private registerApiUrl = this.baseUrl + '/Register';
   constructor(private client: HttpClient) { }
 
   Login(loginData: LoginModel): Observable<any> {
     return this.client.post(
-      `${this.baseUrl}/Login`,
+      this.loginApiUrl,
       loginData,
-      {responseType : 'text' as 'json'}
-    ) 
+      { responseType: 'text' as 'json' }
+    )
   }
 
-  register(registerData : RegisterModel) : Observable<any>{
+  register(registerData: RegisterModel): Observable<any> {
     return this.client.post(
-      `${this.baseUrl}/Register`,
+      this.registerApiUrl,
       registerData,
-      {responseType : 'text' as 'json'}
+      { responseType: 'text' as 'json' }
     )
   }
 }
