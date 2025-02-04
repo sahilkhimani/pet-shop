@@ -26,7 +26,7 @@ export const routes: Routes = [
         path: 'dashboard',
         component: DashboardComponent,
         canActivate: [authGuard],
-        data: { role: [StaticClass.sellerRole, StaticClass.adminRole] }
+        data: { role: [StaticClass.sellerRole, StaticClass.adminRole, StaticClass.buyerRole] }
     },
     { path: 'wishlist', component: WishlistComponent, },
     { path: '**', component: NotFoundComponent }

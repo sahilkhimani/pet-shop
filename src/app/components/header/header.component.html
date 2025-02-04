@@ -16,7 +16,6 @@
     <ng-container *ngIf="role === buyerRole || role === null">
         <a *ngFor="let item of myHeaderNav" routerLink="" (click)="categClicked(item.categName)">{{ item.name }}</a>
     </ng-container>
-    <a routerLink="" class="custom-link">Dashboard</a>
-    <a *ngIf="token" class="custom-link">Profile</a>
+    <a *ngIf="token" [routerLink]="dashboardPage" class="custom-link">Dashboard</a>
     <a *ngIf="token" (click)="logout()" class="custom-link">Logout</a>
 </dialog>

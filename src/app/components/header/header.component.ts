@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit {
   public token?: string | null;
   public role?: string | null;
   public buyerRole: string = StaticClass.buyerRole;
+  public dashboardPage : string = StaticClass.dashboardPage;
   constructor(
     private renderer: Renderer2,
     private elRef: ElementRef,
