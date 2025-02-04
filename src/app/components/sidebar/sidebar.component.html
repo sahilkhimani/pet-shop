@@ -1,0 +1,8 @@
+<div class="sidebar p-3 d-none d-sm-block" id="sidebar">
+    <h4 class="text-center">Dashboard</h4>
+    <ng-container *ngFor="let item of dashboardNav">
+        <a *ngIf="item.role?.includes(role!) || item.role === undefined" [routerLink]="item.link">{{ item.name
+            }}</a>
+    </ng-container>
+    <a (click)="logout()" routerLink="">Logout</a>
+</div>

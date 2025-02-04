@@ -1,0 +1,11 @@
+<div class="sidebar p-3" id="sidebar">
+    <div class="d-flex justify-content-between">
+        <h4>Dashboard</h4>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <ng-container *ngFor="let item of dashboardNav">
+        <a *ngIf="item.role?.includes(role!) || item.role === undefined" [routerLink]="item.link">{{ item.name
+            }}</a>
+    </ng-container>
+    <a (click)="logout()" routerLink="">Logout</a>
+</div>

@@ -6,6 +6,7 @@ export abstract class StaticClass {
     static role: string = 'role';
     static wishlist : string = 'wishlist'
     static expiryTime : string = 'expiryTime';
+    static userId : string = 'userId';
 
     //snackbar panel classes names
     static sucSnackbar = 'suc-snackbar';

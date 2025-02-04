@@ -62,6 +62,7 @@ export class LoginComponent {
         const decodeToken = this.jwtToken.decodeJwtToken(response);
         if (decodeToken) {
           this.localStorageService.setItem<string>(StaticClass.role, decodeToken.role);
+          this.localStorageService.setItem<string>(StaticClass.userId, decodeToken.userId);
         }
         const role = this.localStorageService.getItem<string>(StaticClass.role);
         if (role == StaticClass.buyerRole) {
