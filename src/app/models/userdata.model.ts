@@ -6,14 +6,14 @@ export interface UserDataModel {
     normalizedUserName: string | null,
     email: string | null,
     normalizedEmail: string | null,
-    // emailConfirmed: false,
-    // passwordHash: "AQAAAAIAAYagAAAAEKbjQhkVup5AEdDGhqOjpA4aAqEUzGAEX/zWgJ6M01E3pBQpSd66WWjUy/OAsSLHOw==",
-    // securityStamp: "6U6MM4DEJINWRRURAZ4RSZO4KJIWIRR6",
-    // concurrencyStamp: "cfdbfecb-fe1f-4920-8813-83e191fe0c24",
+    // emailConfirmed: boolean,
+    // passwordHash: string | null,
+    // securityStamp: string | null,
+    // concurrencyStamp: string | null,
     phoneNumber: string | null,
-    // phoneNumberConfirmed: false,
-    // twoFactorEnabled: false,
+    // phoneNumberConfirmed: boolean,
+    // twoFactorEnabled: boolean,
     // lockoutEnd: null,
-    // lockoutEnabled: true,
-    // accessFailedCount: 0
+    // lockoutEnabled: boolean,
+    // accessFailedCount: number
 }
