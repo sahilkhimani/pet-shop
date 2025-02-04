@@ -3,7 +3,7 @@
         <a routerLink="/main-page" class="logo" routerLink="/main-page">PET SHOP</a>
         <span class="header-text">Paws and Whiskers Paradise : Where Every Pet Finds a Loving Home</span>
     </div>
-    
+
     <div class="sides">
         <button routerLink="/wishlist" class="favorite"><i class="material-icons">favorite_outline</i></button>
         <button class="menu" id="openMenu" aria-label="Open Menu"><i class="material-icons">menu</i></button>
@@ -12,9 +12,11 @@
 </div>
 
 <dialog id="menuDialog">
-    <a routerLink="/login" class="custom-link">Login</a>
-    <a *ngFor="let item of myHeaderNav" routerLink="" (click)="categClicked(item.categName)">{{ item.name }}</a>
-    <a routerLink="" class="custom-link">About Us</a>
+    <a *ngIf="!token" routerLink="/login" class="custom-link">Login</a>
+    <ng-container *ngIf="role === buyerRole || role === null">
+        <a *ngFor="let item of myHeaderNav" routerLink="" (click)="categClicked(item.categName)">{{ item.name }}</a>
+    </ng-container>
+    <a routerLink="" class="custom-link">Dashboard</a>
     <a *ngIf="token" class="custom-link">Profile</a>
     <a *ngIf="token" (click)="logout()" class="custom-link">Logout</a>
 </dialog>

@@ -28,11 +28,6 @@ export const routes: Routes = [
         canActivate: [authGuard],
         data: { role: [StaticClass.sellerRole, StaticClass.adminRole] }
     },
-    {
-        path: 'wishlist',
-        component: WishlistComponent,
-        canActivate: [authGuard],
-        data: { role: [StaticClass.buyerRole] }
-    },
+    { path: 'wishlist', component: WishlistComponent, },
     { path: '**', component: NotFoundComponent }
 ];

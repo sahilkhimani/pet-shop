@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AppComponent } from '../../app.component';
 import { CategoryService } from '../../utility/services/category.service';
 import { StaticClass } from '../../utility/helper/static-words';
+import { LocalStorageService } from '../../utility/services/local-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -21,17 +22,22 @@ export class HeaderComponent implements OnInit {
     ]
 
   myHeaderNav = HeaderComponent.headerNav;
+
   public token?: string | null;
+  public role?: string | null;
+  public buyerRole: string = StaticClass.buyerRole;
   constructor(
     private renderer: Renderer2,
     private elRef: ElementRef,
     private router: Router,
-    private categService: CategoryService
+    private categService: CategoryService,
+    private localStorageService: LocalStorageService
   ) { }
 
   ngOnInit() {
     this.setupDialog();
-    this.token = localStorage.getItem(StaticClass.token);
+    this.token = this.localStorageService.getItem(StaticClass.token);
+    this.role = this.localStorageService.getItem(StaticClass.role);
   }
 
   setupDialog() {

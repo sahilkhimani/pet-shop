@@ -12,7 +12,7 @@ export const apiHeaderInterceptor: HttpInterceptorFn = (req, next) => {
   let checkExpiry: boolean = expiryTime ? new Date().getTime() > +expiryTime : true;
   if (!token || checkExpiry) {
     localStorageService.clear();
-    router.navigate([StaticClass.loginPage])
+    // router.navigate([StaticClass.loginPage])
     return next(req)
   }
   const reqWithHeader = req.clone({
