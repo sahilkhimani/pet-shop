@@ -10,8 +10,6 @@ import { MobileSidebarComponent } from "../../components/sidebar/mobile-sidebar/
   selector: 'app-dashboard',
   imports: [
     RouterOutlet,
-    CommonModule,
-    RouterLink,
     SidebarComponent,
     MobileSidebarComponent
 ],
