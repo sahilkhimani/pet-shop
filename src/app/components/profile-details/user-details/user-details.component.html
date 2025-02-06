@@ -1,0 +1,10 @@
+<div class="profile-detail p-3 col-12">
+    <button [routerLink]="editProfilePage" class="btn btn-dark d-block"><i class="material-icons">edit</i> Edit</button>
+    <img src="assets/images/profile.jpg" alt="">
+    <h2 class="text-center mt-2">{{ userDetails?.userName }}</h2>
+    <div class="mt-4 mb-5">
+        <p class="d-flex align-items-center"><i class="material-icons me-2">email</i>{{ userDetails?.email }}</p>
+        <p class="d-flex align-items-center"><i class="material-icons me-2">phone</i>{{ userDetails?.phoneNumber }}
+        </p>
+    </div>
+</div>

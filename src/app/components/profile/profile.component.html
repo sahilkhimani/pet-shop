@@ -1,1 +1,55 @@
-<p>profile works!</p>
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="editProfileForm!" (ngSubmit)="saveForm()">
+            <div class="mb-3 form-group">
+                <label for="userName" class="small mb-1">Username (how your name will appear to other users on
+                    the site)</label>
+                <input type="text" class="form-control" id="userName" formControlName="userName"
+                    placeholder="Enter Your Username">
+                <small *ngIf="f['userName'].invalid && f['userName'].touched">
+                    {{ getErrorMessages('userName') }}
+                </small>
+            </div>
+            <div class="mb-3 form-group">
+                <label for="curPassword" class="small mb-1">Current Password</label>
+                <input class="form-control" id="curPassword" formControlName="curPassword" type="password"
+                    placeholder="Enter Your Pasword">
+                <small *ngIf="f['curPassword'].invalid && f['curPassword'].touched">
+                    {{ getErrorMessages('curPassword') }}
+                </small>
+            </div>
+            <div class="row gx-3 mb-3">
+                <div class="col-md-6 form-group">
+                    <label for="newPassword" class="small mb-1">New Password</label>
+                    <input class="form-control" id="newPassword" type="password" placeholder="Enter Your New Password"
+                        pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!#.^%*?&])[A-Za-z\d@$!#.^%*?&]{8,}$"
+                        formControlName="newPassword">
+                    <small *ngIf="f['newPassword'].invalid && f['newPassword'].touched">
+                        {{ getErrorMessages('newPassword') }}
+                    </small>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="cPassword" class="small mb-1">Confirm Password</label>
+                    <input class="form-control" id="cPassword" type="password" placeholder="********"
+                        formControlName="cPassword">
+                    <small *ngIf="editProfileForm!.errors?.['passwordsMismatch'] && f['cPassword'].touched">
+                        Passwords do not match
+                    </small>
+                </div>
+            </div>
+
+            <div class="row gx-3 mb-3">
+                <div class="col-md-6 form-group">
+                    <label for="phoneNo" class="small mb-1">Phone number</label>
+                    <input id="phoneNo" class="form-control" type="tel" placeholder="Enter your phone number"
+                        formControlName="phoneNo">
+                    <small *ngIf="f['phoneNo'].invalid && f['phoneNo'].touched">
+                        {{ getErrorMessages('phoneNo') }}
+                    </small>
+                </div>
+            </div>
+            <button class="btn btn-primary" [disabled]="editProfileForm!.invalid" type="submit">Save
+                changes</button>
+        </form>
+    </div>
+</div>

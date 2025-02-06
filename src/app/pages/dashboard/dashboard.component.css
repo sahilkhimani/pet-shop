@@ -1,0 +1,21 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    color: #eee;
+    background-color: #343a40;
+    border-left: 1px solid white;
+    padding: 0 20px;
+}
+.header button{
+    border: none;
+    background-color: transparent;
+    color: white;
+}
+.header i{
+    border: 1px solid white;
+    border-radius: 100%;
+    padding: 5px;
+}
+.sides{
+    align-items: center;
+}

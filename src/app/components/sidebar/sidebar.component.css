@@ -12,3 +12,6 @@
 .sidebar a:hover {
     background: #495057;
 }
+.sidebar h4{
+    cursor: pointer;
+}

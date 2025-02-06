@@ -4,7 +4,7 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
     </div>
     <ng-container *ngFor="let item of dashboardNav">
-        <a *ngIf="item.role?.includes(role!) || item.role === undefined" [routerLink]="item.link">{{ item.name
+        <a *ngIf="item.role?.includes(role!) || item.role === undefined" [routerLink]="item.link" data-bs-dismiss="offcanvas">{{ item.name
             }}</a>
     </ng-container>
     <a (click)="logout()" routerLink="">Logout</a>

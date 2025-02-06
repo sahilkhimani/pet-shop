@@ -31,12 +31,12 @@ export class AppComponent implements OnInit {
     if (remainingTime > 0) {
       setTimeout(() => {
         this.localStorageService.clear();
-        this.router.navigate([StaticClass.loginPage])
+        this.router.navigate([StaticClass.mainPage])
       }, remainingTime)
     }
     else {
       this.localStorageService.clear();
-      this.router.navigate([StaticClass.loginPage])
+      this.router.navigate([StaticClass.mainPage])
     }
   }
 }

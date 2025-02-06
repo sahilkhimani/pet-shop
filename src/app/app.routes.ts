@@ -9,6 +9,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { StaticClass } from './utility/helper/static-words';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
 
 
 
@@ -32,7 +33,7 @@ export const routes: Routes = [
             {path : 'profile', component : ProfileComponent},
             {
                 path : 'my-orders',
-                component : ProfileComponent,
+                component : NotFoundComponent,
                 data: { role: [StaticClass.buyerRole, StaticClass.adminRole] }
             }
         ],

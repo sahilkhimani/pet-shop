@@ -1,4 +1,5 @@
 import { PetModel } from "../../models/pet.model";
+import { UserDataModel } from "../../models/userdata.model";
 
 export abstract class StaticClass {
     //localstorage variables
@@ -7,6 +8,7 @@ export abstract class StaticClass {
     static wishlist : string = 'wishlist'
     static expiryTime : string = 'expiryTime';
     static userId : string = 'userId';
+    static userDetails : string = 'userDetails'
 
     //snackbar panel classes names
     static sucSnackbar = 'suc-snackbar';
@@ -23,4 +25,5 @@ export abstract class StaticClass {
     static notFoundPage = '/not-found'
     static dashboardPage = '/dashboard'
     static wishlistPage = '/wishlist'
+    static profilePage = 'profile'
 }

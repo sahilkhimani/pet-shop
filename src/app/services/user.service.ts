@@ -52,7 +52,6 @@ export class UserService {
     )
   }
 
-  //not tested yet
   getById(userId: string): Observable<UserDataModel> {
     return this.client.get<SingleResponseModel>(`${this.getByIdApiUrl}/${userId}`).pipe(
       map(response => response.data)
@@ -64,12 +63,11 @@ export class UserService {
     return this.client.delete<string>(`${this.deleteUserApiUrl}/${userId}`);
   }
 
-  //not tested yet
   updateUser(userId: string, data: UpdateUserModel): Observable<string> {
     return this.client.put(
-      `${this.updateUser}/${userId}`,
+      `${this.updateUserApiUrl}/${userId}`,
       data,
-      { responseType: 'json' as 'text' }
+      { responseType: 'text' }
     )
   }
 }
