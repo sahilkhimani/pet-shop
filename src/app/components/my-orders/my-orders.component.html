@@ -1,22 +1,24 @@
-<table datatable [dtOptions]="dtOptions" [dtTrigger]="dttrigger">
-    <thead>
-        <tr>
-            <th>Id <i class="material-icons">swap_vert</i></th>
-            <th>Order Date <i class="material-icons">swap_vert</i></th>
-            <th>Order Price <i class="material-icons">swap_vert</i></th>
-            <th>Order Status</th>
-            <th>Pet Detail</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let element of ordersData; let i = index">
-            <td>{{ i+1 }}</td>
-            <td>{{ element.orderDate }}</td>
-            <td>{{ element.totalPrice }}</td>
-            <td>{{ element.orderStatus }}</td>
-            <td><button class="btn btn-primary">View Pet Detail</button></td>
-            <td><button class="btn btn-dark">Cancel Order</button></td>
-        </tr>
-    </tbody>
-</table>
+<div class="ms-2 me-2 datatable-wrapper">
+    <table class="dataTables_scroll" datatable [dtOptions]="dtOptions" [dtTrigger]="dttrigger">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Order Date</th>
+                <th>Order Price</th>
+                <th>Order Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let element of ordersData; let i = index">
+                <td>{{ i+1 }}</td>
+                <td>{{ element.orderDate }}</td>
+                <td>{{ element.totalPrice }}</td>
+                <td>{{ element.orderStatus }}</td>
+                <td>
+                    <button class="btn btn-primary me-1 mb-1">View</button>
+                    <button class="btn btn-dark mb-1">Cancel</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

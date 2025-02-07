@@ -13,10 +13,11 @@
             </div>
             <button [routerLink]="dashboardPage"><i class="material-icons">person</i></button>
         </div>
-        <router-outlet></router-outlet>
+        <div class="router-outlet-wrapper">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>
-
 
 <div class="offcanvas offcanvas-start" id="mobileSidebar">
     <app-mobile-sidebar></app-mobile-sidebar>

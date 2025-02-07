@@ -6,6 +6,10 @@
     border-left: 1px solid white;
     padding: 0 20px;
 }
+.d-flex{
+    height: 100%;
+    overflow: hidden;
+}
 .header button{
     border: none;
     background-color: transparent;
@@ -19,3 +23,7 @@
 .sides{
     align-items: center;
 }
+.router-outlet-wrapper {
+    height: calc(100vh - 60px); /* Set height to full viewport height minus navbar height */
+    overflow-y: auto; /* Add vertical scrolling within this section */
+  }

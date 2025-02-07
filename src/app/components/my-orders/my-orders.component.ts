@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common';
 import { DataTablesModule } from 'angular-datatables'
 import { Config } from 'datatables.net';
 import { Subject } from 'rxjs';
-declare var $: any;
 
 @Component({
   selector: 'app-my-orders',
@@ -18,27 +17,28 @@ declare var $: any;
   templateUrl: './my-orders.component.html',
   styleUrl: './my-orders.component.css'
 })
-export class MyOrdersComponent implements OnInit, AfterViewInit {
+export class MyOrdersComponent implements OnInit {
   ordersData: GetOrdersModel[] = [];
-  dtOptions : Config ={}
-  dttrigger:Subject<any> = new Subject<any>();
+  dtOptions: Config = {}
+  dttrigger: Subject<any> = new Subject<any>();
   constructor(
     private orderService: OrderService,
     private snackbarService: SnackbarService
   ) { }
   ngOnInit(): void {
     this.fetchOrdersData();
-    this.dttrigger.next(null);
-  }
-
-  ngAfterViewInit(): void {
-
+    this.dtOptions = {
+      pagingType: 'full',
+      pageLength: 5,
+      lengthChange: false
+    }
   }
 
   fetchOrdersData() {
     this.orderService.getBuyerOrders().subscribe({
       next: (res) => {
         this.ordersData = res
+        this.dttrigger.next(null);
       },
       error: (err) => {
         this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] })
