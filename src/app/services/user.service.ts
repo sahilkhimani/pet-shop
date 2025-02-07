@@ -58,9 +58,10 @@ export class UserService {
     )
   }
 
-  //not tested yet
   deleteUser(userId: string): Observable<any> {
-    return this.client.delete<string>(`${this.deleteUserApiUrl}/${userId}`);
+    return this.client.delete<string>(`${this.deleteUserApiUrl}/${userId}`,
+      { responseType: 'text' as 'json' }
+    );
   }
 
   updateUser(userId: string, data: UpdateUserModel): Observable<string> {
