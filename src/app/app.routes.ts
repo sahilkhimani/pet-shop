@@ -10,6 +10,7 @@ import { StaticClass } from './utility/helper/static-words';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 
 
 
@@ -28,13 +29,20 @@ export const routes: Routes = [
         path: 'dashboard',
         component: DashboardComponent,
         canActivate: [authGuard],
-        children : [
-            {path : '' , component : ProfileDetailsComponent},
-            {path : 'profile', component : ProfileComponent},
+        children: [
+            { path: '', component: ProfileDetailsComponent },
+            { path: 'profile', component: ProfileComponent },
             {
-                path : 'my-orders',
-                component : ProfileComponent,
+                path: 'my-orders',
+                component: MyOrdersComponent,
+                canActivate : [authGuard],
                 data: { role: [StaticClass.buyerRole, StaticClass.adminRole] }
+            },
+            {
+                path: 'order-record',
+                component: MyOrdersComponent,
+                canActivate : [authGuard],
+                data: { role: [StaticClass.sellerRole, StaticClass.adminRole] }
             }
         ],
         data: { role: [StaticClass.sellerRole, StaticClass.adminRole, StaticClass.buyerRole] }

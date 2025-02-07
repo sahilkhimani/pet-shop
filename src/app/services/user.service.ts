@@ -29,19 +29,19 @@ export class UserService {
     private localStorageService: LocalStorageService,
   ) { }
 
-  Login(loginData: LoginModel): Observable<any> {
+  Login(loginData: LoginModel): Observable<string> {
     return this.client.post(
       this.loginApiUrl,
       loginData,
-      { responseType: 'text' as 'json' }
+      { responseType: 'text' }
     )
   }
 
-  register(registerData: RegisterModel): Observable<any> {
+  register(registerData: RegisterModel): Observable<string> {
     return this.client.post(
       this.registerApiUrl,
       registerData,
-      { responseType: 'text' as 'json' }
+      { responseType: 'text' }
     )
   }
 
@@ -58,9 +58,9 @@ export class UserService {
     )
   }
 
-  deleteUser(userId: string): Observable<any> {
-    return this.client.delete<string>(`${this.deleteUserApiUrl}/${userId}`,
-      { responseType: 'text' as 'json' }
+  deleteUser(userId: string): Observable<string> {
+    return this.client.delete(`${this.deleteUserApiUrl}/${userId}`,
+      { responseType: 'text' }
     );
   }
 

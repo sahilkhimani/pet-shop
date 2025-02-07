@@ -2,6 +2,7 @@ import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
+import { StaticClass } from '../helper/static-words';
 export const httpErrorInterceptor: HttpInterceptorFn = (req, next) => {
 
   const router = inject(Router);
@@ -18,6 +19,7 @@ export const httpErrorInterceptor: HttpInterceptorFn = (req, next) => {
       if (error instanceof HttpErrorResponse) {
         if (error.status === 0) {
           errorMessage = serverOff;
+          router.navigate([StaticClass.loginPage]);
         }
         else {
           switch (error.status) {

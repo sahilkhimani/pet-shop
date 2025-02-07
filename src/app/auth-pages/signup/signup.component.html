@@ -29,7 +29,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="text" id="password" class="form-control" formControlName="password"
+                                <input type="password" id="password" class="form-control" formControlName="password"
                                     placeholder="Enter your password"
                                     pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!#.^%*?&])[A-Za-z\d@$!#.^%*?&]{8,}$">
                                 <small *ngIf="f['password'].invalid && f['password'].touched">
@@ -38,7 +38,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="cPassword" class="form-label">Confirm Password</label>
-                                <input type="text" id="cPassword" class="form-control" formControlName="cPassword"
+                                <input type="password" id="cPassword" class="form-control" formControlName="cPassword"
                                     placeholder="Confirm password">
                                 <small *ngIf="singupForm.errors?.['passwordsMismatch'] && f['cPassword'].touched">
                                     Passwords do not match

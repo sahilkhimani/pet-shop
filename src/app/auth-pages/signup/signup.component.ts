@@ -97,8 +97,10 @@ export class SignupComponent {
   }
 
   passwordMatchValidator(formGroup: AbstractControl): ValidationErrors | null {
-    const password = formGroup.get(this.password)?.value;
-    const confirmPassword = formGroup.get(this.cPassword)?.value;
+    const pass = 'password';
+    const cPassword = 'cPassword';
+    const password = formGroup.get(pass)?.value;
+    const confirmPassword = formGroup.get(cPassword)?.value;
     return password === confirmPassword ? null : { passwordsMismatch: true };
   }
 }
