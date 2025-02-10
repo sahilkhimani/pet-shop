@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit {
     { name: 'Edit Profile', link: StaticClass.profilePage },
     { name: 'My Orders', link: StaticClass.myOrdersPage, role: [StaticClass.buyerRole, StaticClass.adminRole] },
     { name: 'Order History', link: StaticClass.orderHistoryPage, role: [StaticClass.sellerRole, StaticClass.adminRole] },
-    { name: 'My Pets', link: '', role: [StaticClass.sellerRole, StaticClass.adminRole] },
+    { name: 'My Pets', link: StaticClass.MyPetPage, role: [StaticClass.sellerRole, StaticClass.adminRole] },
     { name: 'All User', link: StaticClass.allUsersPage, role: [StaticClass.adminRole] },
   ]
 

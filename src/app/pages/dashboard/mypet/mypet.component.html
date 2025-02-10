@@ -1,1 +1,27 @@
-<p>mypet works!</p>
+<div class="ms-2 me-2 datatable-wrapper">
+    <table class="dataTables_scroll" datatable [dtOptions]="dtOptions" [dtTrigger]="dttrigger">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Pet Name</th>
+                <th>Pet Age</th>
+                <th>Pet Gender</th>
+                <th>Pet Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let element of pets; let i = index">
+                <td>{{ i+1 }}</td>
+                <td>{{ element.petName }}</td>
+                <td>{{ element.petAge }} years</td>
+                <td>{{ element.petGender }}</td>
+                <td>{{ element.petPrice }}</td>
+                <td>
+                    <button class="btn btn-primary mb-1 me-1">Update</button>
+                    <button class="btn btn-danger mb-1">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

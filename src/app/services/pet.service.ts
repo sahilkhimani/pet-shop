@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { ResponseModel } from '../models/response.model';
 import { concatMap, forkJoin, map, mergeMap, Observable, switchMap } from 'rxjs';
 import { BreedService } from './breed.service';
@@ -10,6 +10,9 @@ import { SpeciesModel } from '../models/species.model';
 import { BreedModel } from '../models/breed.model';
 import { PetModel } from '../models/pet.model';
 import { OrderService } from './order.service';
+import { CreatePetModel } from '../models/create-pet.model';
+import { SingleResponseModel } from '../models/singleResponse.model';
+import { SimplePetModel } from '../models/simple-pet.model';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +47,16 @@ export class PetService {
   breedListFetched = false;
 
   private baseUrl = environment.apiUrl + 'Pet';
-  private GetAllApiUrl: string = this.baseUrl + '/GetAll';
+  private GetAllApiUrl = this.baseUrl + '/GetAll';
+  private AddPetApiUrl = this.baseUrl + '/Add';
+  private GetPetByIdApiUrl = this.baseUrl + '/GetById';
+  private DeletePetApiUrl = this.baseUrl + '/Delete';
+  private UpdatePetApiUrl = this.baseUrl + '/Update';
+  private GetPetByBreedApiUrl = this.baseUrl + '/GetPetsByBreedId';
+  private GetPetByGenderApiUrl = this.baseUrl + '/GetPetsByGender';
+  private GetPetByAgeApiUrl = this.baseUrl + '/GetPetsByAge';
+  private GetPetByAgeRangeApiUrl = this.baseUrl + '/GetPetsByAgeRange';
+  private GetYourPetsApiUrl = this.baseUrl + '/GetYourPets';
 
   constructor(
     private client: HttpClient,
@@ -140,6 +152,71 @@ export class PetService {
     return this.specieService.getAll();
   }
 
+  //not tested
+  addPet(pet: CreatePetModel): Observable<string> {
+    return this.client.post(this.AddPetApiUrl, pet,
+      { responseType: 'text' }
+    )
+  }
+
+  //not tested
+  getPetById(id: number): Observable<SimplePetModel> {
+    return this.client.get<SingleResponseModel>(`${this.GetPetByIdApiUrl}/${id}`).pipe(
+      map(response => response.data)
+    )
+  }
+
+  //not tested
+  deletePet(id: number): Observable<string> {
+    return this.client.get(`${this.DeletePetApiUrl}/${id}`,
+      { responseType: 'text' }
+    )
+  }
+
+  //not tested
+  updatePet(id: number, pet: CreatePetModel) {
+    return this.client.put(`${this.DeletePetApiUrl}/${id}`, pet,
+      { responseType: 'text' }
+    )
+  }
+
+  //not tested
+  getPetByBreedId(id: number): Observable<SimplePetModel[]> {
+    return this.client.get<ResponseModel>(`${this.GetPetByBreedApiUrl}/${id}`).pipe(
+      map(response => response.data || [])
+    )
+  }
+
+  //not tested
+  getPetByGender(gender: string): Observable<SimplePetModel[]> {
+    return this.client.get<ResponseModel>(`${this.GetPetByGenderApiUrl}/${gender}`).pipe(
+      map(response => response.data || [])
+    )
+  }
+
+  //not tested
+  getPetByAge(age: number): Observable<SimplePetModel[]> {
+    return this.client.get<ResponseModel>(`${this.GetPetByAgeApiUrl}/${age}`).pipe(
+      map(response => response.data || [])
+    )
+  }
+
+  //not tested
+  getYourPets(): Observable<SimplePetModel[]> {
+    return this.client.get<ResponseModel>(this.GetYourPetsApiUrl).pipe(
+      map(response => response.data || [])
+    )
+  }
+
+  //not tested
+  getPetsByAgeRange(minAge: number, maxAge: number): Observable<SimplePetModel[]> {
+    const params = new HttpParams()
+      .set('minAge', minAge.toString())
+      .set('maxAge', maxAge.toString())
+    return this.client.get<ResponseModel>(this.GetPetByAgeRangeApiUrl, { params }).pipe(
+      map(response => response.data || [])
+    )
+  }
 }
 
 
