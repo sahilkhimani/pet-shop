@@ -7,10 +7,3 @@ table td {
 table th {
     background-color: #f4f4f4;
 }
-
-.status{
-    display: inline;
-    border-radius: 2rem;
-    padding: 0.2rem 0.5rem;
-    color: white;
-}   

@@ -45,7 +45,6 @@ export class UserService {
     )
   }
 
-  //not tested yet
   getAllUser(): Observable<UserDataModel[]> {
     return this.client.get<ResponseModel>(this.getAllApiUrl).pipe(
       map(response => response.data || [])

@@ -1,0 +1,38 @@
+<div class="ms-2 me-2 datatable-wrapper">
+    <table class="dataTables_scroll" datatable [dtOptions]="dtOptions" [dtTrigger]="dttrigger">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Order Date</th>
+                <th>Order Price</th>
+                <th>Order Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let element of ordersData; let i = index">
+                <td>{{ i+1 }}</td>
+                <td>{{ element.orderDate }}</td>
+                <td>{{ element.totalPrice }}</td>
+                <td>
+                    <p class="status" [style.backgroundColor]="getColor(element.orderStatus)" [style.borderColor]="">{{
+                        element.orderStatus }}</p>
+                </td>
+                <td>
+                    <button class="btn btn-primary me-1 mb-1"
+                        (click)="viewPetDetail(getPetItem(element.petId))">View</button>
+                    <select [disabled]="clicked" (change)="updateStatus(element.orderId, $event)"
+                        *ngIf="element.orderStatus.toLowerCase() === pendingStatus || element.orderStatus.toLocaleLowerCase() === processingStatus"
+                        class="form-select auto-width-select" name="status" id="status">
+                        <option disabled selected value="change">Change Status</option>
+                        <option [value]="processingStatus">{{ processingStatus }}</option>
+                        <option [value]="shippedStatus">{{ shippedStatus }}</option>
+                        <option [value]="failedStatus">{{ failedStatus }}</option>
+                        <option [value]="deliveredStatus">{{ deliveredStatus }}</option>
+                        <option [value]="cancelledStatus">{{ cancelledStatus }}</option>
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

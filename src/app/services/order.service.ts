@@ -38,14 +38,12 @@ export class OrderService {
       { responseType: 'text' })
   }
 
-  //not checked
   getBuyerOrders(): Observable<GetOrdersModel[]> {
     return this.client.get<ResponseModel>(this.GetBuyerOrderApiUrl).pipe(
       map(response => response.data || [])
     )
   }
 
-  //not checked
   getSellerOrders(): Observable<GetOrdersModel[]> {
     return this.client.get<ResponseModel>(this.GetSellerOrderApiUrl).pipe(
       map(response => response.data || [])
@@ -66,7 +64,6 @@ export class OrderService {
     )
   }
 
-  //not checked
   cancelOrder(id: number, status: UpdateOrderStatusModel): Observable<string> {
     return this.client.put(`${this.cancelOrderApiUrl}/${id}`,
       status,
@@ -74,7 +71,6 @@ export class OrderService {
     )
   }
 
-  //not checked
   updateOrderStatus(id: number, status: UpdateOrderStatusModel): Observable<string> {
     return this.client.put(`${this.updateOrderStatusApiUrl}/${id}`,
       status,

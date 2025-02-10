@@ -11,6 +11,9 @@ import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import { AllusersComponent } from './pages/dashboard/allusers/allusers.component';
+import { OrderHistoryComponent } from './pages/dashboard/order-history/order-history.component';
+import { MypetComponent } from './pages/dashboard/mypet/mypet.component';
 
 
 
@@ -39,11 +42,23 @@ export const routes: Routes = [
                 data: { role: [StaticClass.buyerRole, StaticClass.adminRole] }
             },
             {
-                path: 'order-record',
-                component: MyOrdersComponent,
+                path: 'order-history',
+                component: OrderHistoryComponent,
                 canActivate : [authGuard],
                 data: { role: [StaticClass.sellerRole, StaticClass.adminRole] }
-            }
+            },
+            {
+                path: 'all-user',
+                component: AllusersComponent,
+                canActivate : [authGuard],
+                data: { role: [StaticClass.adminRole] }
+            },
+            {
+                path: 'my-pet',
+                component: MypetComponent,
+                canActivate : [authGuard],
+                data: { role: [StaticClass.adminRole, StaticClass.sellerRole] }
+            },
         ],
         data: { role: [StaticClass.sellerRole, StaticClass.adminRole, StaticClass.buyerRole] }
     },

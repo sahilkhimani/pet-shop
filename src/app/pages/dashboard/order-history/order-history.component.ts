@@ -1,27 +1,28 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { GetOrdersModel } from '../../models/get-orders.model';
-import { OrderService } from '../../services/order.service';
-import { SnackbarService } from '../../utility/services/snackbar.service';
-import { StaticClass } from '../../utility/helper/static-words';
-import { CommonModule } from '@angular/common';
-import { DataTablesModule } from 'angular-datatables'
-import { Config } from 'datatables.net';
-import { Subject } from 'rxjs';
-import { UpdateOrderStatusModel } from '../../models/update-order-status.model';
-import { PetModel } from '../../models/pet.model';
-import { PetService } from '../../services/pet.service';
-import { Router } from '@angular/router';
+import { CommonModule } from "@angular/common";
+import { Component } from "@angular/core";
+import { DataTablesModule } from "angular-datatables";
+import { GetOrdersModel } from "../../../models/get-orders.model";
+import { Config } from "datatables.net";
+import { Subject } from "rxjs";
+import { PetModel } from "../../../models/pet.model";
+import { OrderService } from "../../../services/order.service";
+import { SnackbarService } from "../../../utility/services/snackbar.service";
+import { PetService } from "../../../services/pet.service";
+import { Router } from "@angular/router";
+import { StaticClass } from "../../../utility/helper/static-words";
+import { UpdateOrderStatusModel } from "../../../models/update-order-status.model";
+
 
 @Component({
-  selector: 'app-my-orders',
+  selector: 'app-order-history',
   imports: [
     CommonModule,
     DataTablesModule
   ],
-  templateUrl: './my-orders.component.html',
-  styleUrl: './my-orders.component.css'
+  templateUrl: './order-history.component.html',
+  styleUrl: './order-history.component.css'
 })
-export class MyOrdersComponent implements OnInit {
+export class OrderHistoryComponent {
   ordersData: GetOrdersModel[] = [];
   dtOptions: Config = {}
   dttrigger: Subject<any> = new Subject<any>();
@@ -54,7 +55,7 @@ export class MyOrdersComponent implements OnInit {
   }
 
   fetchOrdersData() {
-    this.orderService.getBuyerOrders().subscribe({
+    this.orderService.getSellerOrders().subscribe({
       next: (res) => {
         this.ordersData = res
         this.dttrigger.next(null);
@@ -75,22 +76,25 @@ export class MyOrdersComponent implements OnInit {
     return 'yellow'
   }
 
-  cancelOrder(id: number) {
-    const cancelOrder = new UpdateOrderStatusModel(this.cancelledStatus);
-    this.clicked = true;
-    this.orderService.cancelOrder(id, cancelOrder).subscribe({
-      next: (res) => {
-        this.snackbarService.open({ message: res, panelClass: [StaticClass.sucSnackbar] })
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000)
-      },
-      error: (err) => {
-        this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] })
-        this.clicked = false;
-      }
-    })
+  updateStatus(id: number, event: any) {
+    const updateStatus = new UpdateOrderStatusModel(event.target.value);
+    if (event.target.value != 'change') {
+      this.clicked = true;
+      this.orderService.updateOrderStatus(id, updateStatus).subscribe({
+        next: (res) => {
+          this.snackbarService.open({ message: res, panelClass: [StaticClass.sucSnackbar] })
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000)
+        },
+        error: (err) => {
+          this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] })
+          this.clicked = false;
+        }
+      })
+    }
   }
+
   viewPetDetail(product: PetModel | null) {
     if (product === null) {
       console.log("error")
@@ -103,4 +107,6 @@ export class MyOrdersComponent implements OnInit {
     if (petItem) return petItem;
     return null
   }
+
+
 }

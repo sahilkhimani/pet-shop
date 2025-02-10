@@ -24,10 +24,11 @@ export class SidebarComponent implements OnInit {
   }
   static navLinks: { name: string, link: string, role?: string[] | null }[] = [
     { name: 'Home', link: StaticClass.mainPage, role: [StaticClass.buyerRole, StaticClass.adminRole] },
-    { name: 'Edit Profile', link: 'profile' },
-    { name: 'My Orders', link: 'my-orders', role: [StaticClass.buyerRole, StaticClass.adminRole] },
-    { name: 'Order History', link: 'order-history', role: [StaticClass.sellerRole, StaticClass.adminRole] },
+    { name: 'Edit Profile', link: StaticClass.profilePage },
+    { name: 'My Orders', link: StaticClass.myOrdersPage, role: [StaticClass.buyerRole, StaticClass.adminRole] },
+    { name: 'Order History', link: StaticClass.orderHistoryPage, role: [StaticClass.sellerRole, StaticClass.adminRole] },
     { name: 'My Pets', link: '', role: [StaticClass.sellerRole, StaticClass.adminRole] },
+    { name: 'All User', link: StaticClass.allUsersPage, role: [StaticClass.adminRole] },
   ]
 
   dashboardNav = SidebarComponent.navLinks;

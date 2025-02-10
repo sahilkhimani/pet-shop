@@ -26,4 +26,11 @@ export abstract class StaticClass {
     static dashboardPage = '/dashboard'
     static wishlistPage = '/wishlist'
     static profilePage = 'profile'
+    //buyer
+    static myOrdersPage = 'my-orders'
+    //seller
+    static orderHistoryPage = 'order-history'
+    static MyPetPage = 'my-pet'
+    //admin
+    static allUsersPage = 'all-user'
 }

@@ -1,0 +1,24 @@
+<div class="ms-2 me-2 datatable-wrapper">
+    <table class="dataTables_scroll" datatable [dtOptions]="dtOptions" [dtTrigger]="dttrigger">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>User Name</th>
+                <th>Email Address</th>
+                <th>Phone Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let element of userData; let i = index">
+                <td>{{ i+1 }}</td>
+                <td>{{ element.userName }}</td>
+                <td>{{ element.email }}</td>
+                <td>{{ element.phoneNumber }}</td>
+                <td>
+                    <button (click)="deleteUser(element.id!)" class="btn btn-danger mb-1">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

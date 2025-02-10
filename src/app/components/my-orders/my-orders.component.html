@@ -2,7 +2,7 @@
     <table class="dataTables_scroll" datatable [dtOptions]="dtOptions" [dtTrigger]="dttrigger">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>S.No</th>
                 <th>Order Date</th>
                 <th>Order Price</th>
                 <th>Order Status</th>
@@ -14,10 +14,10 @@
                 <td>{{ i+1 }}</td>
                 <td>{{ element.orderDate }}</td>
                 <td>{{ element.totalPrice }}</td>
-                <td>{{ element.orderStatus }}</td>
+                <td><p class="status" [style.backgroundColor] = "getColor(element.orderStatus)" [style.borderColor]="">{{ element.orderStatus }}</p></td>
                 <td>
-                    <button class="btn btn-primary me-1 mb-1">View</button>
-                    <button class="btn btn-dark mb-1">Cancel</button></td>
+                    <button class="btn btn-primary me-1 mb-1" (click)="viewPetDetail(getPetItem(element.petId))">View</button>
+                    <button *ngIf="element.orderStatus.toLowerCase() === pendingStatus" [disabled]="clicked" (click)="cancelOrder(element.orderId)" class="btn btn-dark mb-1">Cancel</button></td>
             </tr>
         </tbody>
     </table>
