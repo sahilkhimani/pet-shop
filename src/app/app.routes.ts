@@ -14,6 +14,7 @@ import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { AllusersComponent } from './pages/dashboard/allusers/allusers.component';
 import { OrderHistoryComponent } from './pages/dashboard/order-history/order-history.component';
 import { MypetComponent } from './pages/dashboard/mypet/mypet.component';
+import { AddpetComponent } from './pages/dashboard/mypet/addpet/addpet.component';
 
 
 
@@ -56,6 +57,12 @@ export const routes: Routes = [
             {
                 path: 'my-pet',
                 component: MypetComponent,
+                canActivate : [authGuard],
+                data: { role: [StaticClass.adminRole, StaticClass.sellerRole] }
+            },
+            {
+                path: 'add-pet',
+                component: AddpetComponent,
                 canActivate : [authGuard],
                 data: { role: [StaticClass.adminRole, StaticClass.sellerRole] }
             },

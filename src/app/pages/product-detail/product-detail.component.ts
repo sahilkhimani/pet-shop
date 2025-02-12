@@ -10,6 +10,7 @@ import { StaticClass } from '../../utility/helper/static-words';
 import { SnackbarService } from '../../utility/services/snackbar.service';
 import { OrderService } from '../../services/order.service';
 import { CreateOrderModel } from '../../models/CreateOrder.model';
+import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-product-detail',
@@ -26,6 +27,7 @@ export class ProductDetailComponent implements OnInit {
   productDetail: PetModel = {};
   noProduct: boolean = false;
   alreadyFavorite: boolean = false;
+  modalInstance: Modal | null = null;
 
   constructor(
     private router: Router,
@@ -39,6 +41,10 @@ export class ProductDetailComponent implements OnInit {
     this.productDetail = state?.product;
   }
   ngOnInit(): void {
+    const modalElement = document.getElementById('confirmModal') as HTMLElement;
+    if (modalElement) {
+      this.modalInstance = new Modal(modalElement);
+    }
     if (!this.productDetail) {
       this.noProduct = true;
     }
@@ -46,6 +52,10 @@ export class ProductDetailComponent implements OnInit {
     if (items.some(i => i.PetId === this.productDetail.PetId)) {
       this.alreadyFavorite = true;
     }
+  }
+
+  confirmationDialog() {
+    this.modalInstance?.show()
   }
 
   toggleWishItem(item: PetModel) {
@@ -83,11 +93,13 @@ export class ProductDetailComponent implements OnInit {
         const order = new CreateOrderModel(id);
         this.orderService.CreateOrder(order).subscribe({
           next: (res) => {
-            this.snackbarService.open({ message: res, panelClass : [StaticClass.sucSnackbar] })
+            this.snackbarService.open({ message: res, panelClass: [StaticClass.sucSnackbar] })
+            this.modalInstance?.hide()
             this.router.navigate([StaticClass.mainPage])
           },
           error: (err) => {
             this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] })
+            this.modalInstance?.hide()
           }
         })
       }

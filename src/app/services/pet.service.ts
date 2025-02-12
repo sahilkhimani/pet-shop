@@ -152,9 +152,8 @@ export class PetService {
     return this.specieService.getAll();
   }
 
-  //not tested
-  addPet(pet: CreatePetModel): Observable<string> {
-    return this.client.post(this.AddPetApiUrl, pet,
+  addPet(petData: CreatePetModel): Observable<string> {
+    return this.client.post(this.AddPetApiUrl, petData,
       { responseType: 'text' }
     )
   }
@@ -175,7 +174,7 @@ export class PetService {
 
   //not tested
   updatePet(id: number, pet: CreatePetModel) {
-    return this.client.put(`${this.DeletePetApiUrl}/${id}`, pet,
+    return this.client.put(`${this.UpdatePetApiUrl}/${id}`, pet,
       { responseType: 'text' }
     )
   }

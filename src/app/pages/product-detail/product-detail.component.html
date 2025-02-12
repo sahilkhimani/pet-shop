@@ -35,9 +35,11 @@
                 </div>
             </div>
             <p class="short-head text-primary"><span>Rs.</span>{{ productDetail.PetPrice }}</p>
-            <button (click)="placeOrder(productDetail.PetId!)" class="btn my-btn w-100" [disabled]="!checkProductStatus(productDetail.PetOrderStatus!)"
+            <button (click)="confirmationDialog()" class="btn my-btn w-100"
+                [disabled]="!checkProductStatus(productDetail.PetOrderStatus!)"
                 [ngClass]="!checkProductStatus(productDetail.PetOrderStatus!) ? 'sold-btn' : 'my-btn'">
                 {{ !checkProductStatus(productDetail.PetOrderStatus!) ? 'Already Sold' : 'Buy Now' }}</button>
+
             <div *ngIf="checkProductStatus(productDetail.PetOrderStatus!)">
                 <p class="short-head mt-2">Free 3-5 day Shipping</p>
                 <button (click)="toggleWishItem(productDetail)"
@@ -46,6 +48,7 @@
                     <i class="material-icons me-1">favorite_border</i>
                     {{ alreadyFavorite ? 'Remove From Wishlist' : 'Add to Wishlist' }}
                 </button>
+
             </div>
         </div>
     </div>
@@ -56,4 +59,22 @@
 </div>
 <div class="mt-5">
     <app-footer></app-footer>
+</div>
+
+<div class="modal" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Confirm Purchase</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to buy this?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" (click)="placeOrder(productDetail.PetId!)">Buy Now</button>
+            </div>
+        </div>
+    </div>
 </div>

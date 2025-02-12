@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit {
           this.router.navigate([StaticClass.dashboardPage])
         },
         error: (err) => {
-          this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] , duration : 10000})
+          this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar]})
         }
       })
     }

@@ -1,0 +1,18 @@
+.card {
+    box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+    margin: 1rem;
+}
+
+.form-control {
+    padding: 0.875rem 1.125rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #69707a;
+    background-color: #fff;
+    border: 1px solid #c5ccd6;
+    border-radius: 0.35rem;
+}
+small {
+    color: red;
+    font-size: 0.8rem;
+}

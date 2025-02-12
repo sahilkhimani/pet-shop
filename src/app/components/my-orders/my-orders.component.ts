@@ -11,6 +11,7 @@ import { UpdateOrderStatusModel } from '../../models/update-order-status.model';
 import { PetModel } from '../../models/pet.model';
 import { PetService } from '../../services/pet.service';
 import { Router } from '@angular/router';
+import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-my-orders',
@@ -27,6 +28,8 @@ export class MyOrdersComponent implements OnInit {
   dttrigger: Subject<any> = new Subject<any>();
   clicked: boolean = false;
   petItem?: PetModel[];
+  deletePetId?: number;
+  modalInstance: Modal | null = null;
 
   pendingStatus: string = 'pending'
   processingStatus: string = 'processing'
@@ -42,6 +45,10 @@ export class MyOrdersComponent implements OnInit {
     private router: Router
   ) { }
   ngOnInit(): void {
+    const modalElement = document.getElementById('confirmModal') as HTMLElement;
+    if (modalElement) {
+      this.modalInstance = new Modal(modalElement);
+    }
     this.petService.getAll().subscribe({
       next: (res) => this.petItem = res,
     })
@@ -51,6 +58,11 @@ export class MyOrdersComponent implements OnInit {
       pageLength: 5,
       lengthChange: false
     }
+  }
+
+  confirmationDialog(id: number) {
+    this.deletePetId = id;
+    this.modalInstance?.show()
   }
 
   fetchOrdersData() {
@@ -75,19 +87,21 @@ export class MyOrdersComponent implements OnInit {
     return 'yellow'
   }
 
-  cancelOrder(id: number) {
+  cancelOrder() {
     const cancelOrder = new UpdateOrderStatusModel(this.cancelledStatus);
     this.clicked = true;
-    this.orderService.cancelOrder(id, cancelOrder).subscribe({
+    this.orderService.cancelOrder(this.deletePetId!, cancelOrder).subscribe({
       next: (res) => {
         this.snackbarService.open({ message: res, panelClass: [StaticClass.sucSnackbar] })
         setTimeout(() => {
           window.location.reload();
         }, 1000)
+        this.modalInstance?.hide()
       },
       error: (err) => {
         this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] })
         this.clicked = false;
+        this.modalInstance?.hide()
       }
     })
   }

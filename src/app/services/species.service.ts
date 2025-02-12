@@ -38,7 +38,6 @@ export class SpeciesService {
     )
   }
 
-  //not tested
   createSpecies(speciesName: CreateSpeciesModel): Observable<string> {
     return this.client.post(
       this.CreateSpeciesApiUrl, speciesName,

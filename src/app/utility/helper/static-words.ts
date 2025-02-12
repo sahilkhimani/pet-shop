@@ -5,10 +5,10 @@ export abstract class StaticClass {
     //localstorage variables
     static token: string = 'token';
     static role: string = 'role';
-    static wishlist : string = 'wishlist'
-    static expiryTime : string = 'expiryTime';
-    static userId : string = 'userId';
-    static userDetails : string = 'userDetails'
+    static wishlist: string = 'wishlist'
+    static expiryTime: string = 'expiryTime';
+    static userId: string = 'userId';
+    static userDetails: string = 'userDetails'
 
     //snackbar panel classes names
     static sucSnackbar = 'suc-snackbar';
@@ -31,6 +31,7 @@ export abstract class StaticClass {
     //seller
     static orderHistoryPage = 'order-history'
     static MyPetPage = 'my-pet'
+    static AddPetPage = 'add-pet'
     //admin
     static allUsersPage = 'all-user'
 }

@@ -40,7 +40,6 @@ export class BreedService {
     )
   }
 
-  //not tested
   createBreed(breedData: CreateBreedModel): Observable<string> {
     return this.client.post(
       this.CreateBreedApiUrl, breedData,

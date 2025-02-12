@@ -1,0 +1,140 @@
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="addPetForm!" (ngSubmit)="saveForm()">
+            <div class="mb-3 form-group">
+                <label for="petName" class="small mb-1">Pet Name</label>
+                <input type="text" class="form-control" id="petName" formControlName="petName"
+                    placeholder="Enter Your Pet Name">
+                <small *ngIf="f['petName'].invalid && f['petName'].touched">
+                    {{ getErrorMessages('petName') }}
+                </small>
+            </div>
+            <div class="mb-3 form-group">
+                <label for="petDesc" class="small mb-1">Pet Description</label>
+                <textarea name="petDesc" class="form-control" id="petDesc" rows="6" formControlName="petDesc"
+                    placeholder="Enter your pet description"></textarea>
+                <small *ngIf="f['petDesc'].invalid && f['petDesc'].touched">
+                    {{ getErrorMessages('petDesc') }}
+                </small>
+            </div>
+            <div class="row gx-3 mb-3">
+                <div class="col-md-6 form-group">
+                    <label for="petAge" class="small mb-1">Pet Age</label>
+                    <input class="form-control" id="petAge" type="number" placeholder="Enter Your Pet Age (years)"
+                        formControlName="petAge" min="1">
+                    <small *ngIf="f['petAge'].invalid && f['petAge'].touched">
+                        {{ getErrorMessages('petAge') }}
+                    </small>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="petPrice" class="small mb-1">Pet Price</label>
+                    <input class="form-control" id="petPrice" min="1" type="number" placeholder="Enter Your Pet Price"
+                        formControlName="petPrice">
+                    <small *ngIf="f['petPrice'].invalid && f['petPrice'].touched">
+                        {{ getErrorMessages('petPrice') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="row gx-3 mb-3">
+                <div class="col-md-6 form-group">
+                    <label for="petGender" class="small mb-1">Select Gender</label>
+                    <select name="petGender" class="form-select" formControlName="petGender" id="petGender">
+                        <option value="" disabled>Select Gender</option>
+                        <option *ngFor="let item of genderList" [value]="item">{{ item }}</option>
+                    </select>
+                    <small *ngIf="f['petGender'].invalid && f['petGender'].touched">
+                        {{ getErrorMessages('petGender') }}
+                    </small>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="breedId" class="small mb-1">Select Breed</label>
+                    <select (change)="addBreedModal($event.target)" name="breedId" class="form-select"
+                        formControlName="breedId" id="breedId">
+                        <option value="" disabled>Select Breed</option>
+                        <option *ngFor="let item of breedList" [value]="item.BreedId">{{ item.BreedName }}</option>
+                        <option value="addBreed" style="background-color: rgb(207, 199, 199);">Add New Breed +</option>
+                    </select>
+                    <small *ngIf="f['breedId'].invalid && f['breedId'].touched">
+                        {{ getErrorMessages('breedId') }}
+                    </small>
+                </div>
+            </div>
+            <button class="btn btn-primary" [disabled]="this.addPetForm?.invalid" type="submit">Save
+                changes</button>
+        </form>
+    </div>
+</div>
+
+<div class="modal" id="breedModal" tabindex="-1" aria-labelledby="breedModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="breedModalLabel">Add New Breed</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addBreedForm!">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="breedName" class="small mb-1">Breed Name</label>
+                            <input type="text" name="breedName" placeholder="Enter breed name" class="form-control"
+                                formControlName="breedName" id="breedName">
+                            <small *ngIf="b['breedName'].invalid && b['breedName'].touched">
+                                {{ getBreedError('breedName') }}
+                            </small>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="speciesId" class="small mb-1">Select Breed</label>
+                            <select name="speciesId" (change)="addSpeciesModal($event.target)"
+                                class="form-select form-control" formControlName="speciesId" id="speciesId">
+                                <option disabled value="">Select Species</option>
+                                <option *ngFor="let item of speciesList" [value]="item.SpeciesId">{{ item.SpeciesName }}
+                                </option>
+                                <option value="addSpecies" style="background-color: rgb(207, 199, 199);">Add New Species
+                                    +
+                                </option>
+                            </select>
+                            <small *ngIf="b['speciesId'].invalid && b['speciesId'].touched">
+                                {{ getErrorMessages('speciesId') }}
+                            </small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="saveBreed()">Add Breed</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="speciesModal" tabindex="-1" aria-labelledby="speciesModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="speciesModalLabel">Add New Species</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addSpeciesForm!">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="speciesName" class="small mb-1">Species Name</label>
+                            <input type="text" name="speciesName" placeholder="Enter Species name" class="form-control"
+                                formControlName="speciesName" id="speciesName">
+                            <small *ngIf="s['speciesName'].invalid && s['speciesName'].touched">
+                                {{ getBreedError('speciesName') }}
+                            </small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="saveSpecies()">Add Species</button>
+            </div>
+        </div>
+    </div>
+</div>

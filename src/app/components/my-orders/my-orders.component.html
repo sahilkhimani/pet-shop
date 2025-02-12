@@ -14,11 +14,36 @@
                 <td>{{ i+1 }}</td>
                 <td>{{ element.orderDate }}</td>
                 <td>{{ element.totalPrice }}</td>
-                <td><p class="status" [style.backgroundColor] = "getColor(element.orderStatus)" [style.borderColor]="">{{ element.orderStatus }}</p></td>
                 <td>
-                    <button class="btn btn-primary me-1 mb-1" (click)="viewPetDetail(getPetItem(element.petId))">View</button>
-                    <button *ngIf="element.orderStatus.toLowerCase() === pendingStatus" [disabled]="clicked" (click)="cancelOrder(element.orderId)" class="btn btn-dark mb-1">Cancel</button></td>
+                    <p class="status" [style.backgroundColor]="getColor(element.orderStatus)" [style.borderColor]="">{{
+                        element.orderStatus }}</p>
+                </td>
+                <td>
+                    <button class="btn btn-primary me-1 mb-1"
+                        (click)="viewPetDetail(getPetItem(element.petId))">View</button>
+
+                    <button *ngIf="element.orderStatus.toLowerCase() === pendingStatus" [disabled]="clicked"
+                        (click)="confirmationDialog(element.orderId)" class="btn btn-dark mb-1">Cancel</button>
+                </td>
             </tr>
         </tbody>
     </table>
+</div>
+
+<div class="modal" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Confirm Cancel</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to cancel the order?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" (click)="cancelOrder()">Cancel Order</button>
+            </div>
+        </div>
+    </div>
 </div>
