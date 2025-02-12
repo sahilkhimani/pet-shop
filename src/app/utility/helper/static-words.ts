@@ -9,6 +9,7 @@ export abstract class StaticClass {
     static expiryTime: string = 'expiryTime';
     static userId: string = 'userId';
     static userDetails: string = 'userDetails'
+    static petDetails : string = 'petDetails'
 
     //snackbar panel classes names
     static sucSnackbar = 'suc-snackbar';

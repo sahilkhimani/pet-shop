@@ -38,6 +38,7 @@ export class AddpetComponent implements OnInit {
   genderList = ['Male', 'Female'];
   private breedModalInstance: Modal | null = null;
   private speciesModalInstance: Modal | null = null;
+  public editMode = false;
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -49,17 +50,18 @@ export class AddpetComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
   ngOnInit(): void {
-    // this.petDetail = this.localStorageService.getItem(StaticClass.userDetails) as SimplePetModel;
+    this.petService.editMode$.subscribe(val => this.editMode = val);
+    this.petDetail = this.localStorageService.getItem(StaticClass.petDetails) as SimplePetModel;
     this.getBreedList();
     this.getSpeciesList();
     this.addPetForm = new FormGroup({
       petName: new FormControl(this.petDetail?.petName, Validators.required),
       petDesc: new FormControl(this.petDetail?.petDesc,
         [Validators.required, Validators.minLength(10)]),
-      petAge: new FormControl(this.petDetail?.petAge, [Validators.required]),
-      petPrice: new FormControl(this.petDetail?.petPrice, Validators.required),
+      petAge: new FormControl(this.petDetail?.petAge, [Validators.required, Validators.pattern("^[0-9]*$")]),
+      petPrice: new FormControl(this.petDetail?.petPrice, [Validators.required, Validators.pattern("^[0-9]*$")]),
       petGender: new FormControl(this.petDetail?.petGender || '', Validators.required),
-      breedId: new FormControl(this.petDetail?.BreedId || '', Validators.required)
+      breedId: new FormControl(this.petDetail?.breedId ?? '', Validators.required)
     })
 
     this.addBreedForm = new FormGroup({
@@ -79,6 +81,14 @@ export class AddpetComponent implements OnInit {
     if (speciesModalElement) {
       this.speciesModalInstance = new Modal(speciesModalElement);
     }
+  }
+
+  clearForm() {
+    this.petService.setEditMode(false);
+    this.addPetForm?.reset()
+    this.addPetForm?.get('petGender')?.setValue('');
+    this.addPetForm?.get('breedId')?.setValue('');
+    this.localStorageService.removeItem(StaticClass.petDetails)
   }
 
   getBreedList() {
@@ -142,15 +152,28 @@ export class AddpetComponent implements OnInit {
       const gender = this.addPetForm.value.petGender;
       const breed = this.addPetForm.value.breedId;
       const data = new CreatePetModel(name, desc, age, price, gender, breed)
-      this.petService.addPet(data).subscribe({
-        next: (res) => {
-          this.snackbarService.open({ message: res, panelClass: [StaticClass.sucSnackbar] })
-          this.router.navigate([`../${StaticClass.MyPetPage}`], { relativeTo: this.route })
-        },
-        error: (err) => {
-          this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] })
-        }
-      })
+      if (!this.editMode) {
+        this.petService.addPet(data).subscribe({
+          next: (res) => {
+            this.snackbarService.open({ message: res, panelClass: [StaticClass.sucSnackbar] })
+            this.router.navigate([`../${StaticClass.MyPetPage}`], { relativeTo: this.route })
+          },
+          error: (err) => {
+            this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] })
+          }
+        })
+      }
+      else {
+        this.petService.updatePet(this.petDetail?.petId!, data).subscribe({
+          next: (res) => {
+            this.snackbarService.open({ message: res, panelClass: [StaticClass.sucSnackbar] })
+            this.router.navigate([`../${StaticClass.MyPetPage}`], { relativeTo: this.route })
+          },
+          error: (err) => {
+            this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] })
+          }
+        })
+      }
     }
   }
   get f() {
@@ -168,13 +191,19 @@ export class AddpetComponent implements OnInit {
   getErrorMessages(controlName: string) {
     const requiredError = "This field is required";
     const lengthError = "Description must be atleast 10 characters";
+    const ageError = "Must be in whole numbers"
     const required = 'required';
     const minLength = 'minlength';
+    const pattern = 'pattern'
     const petDesc = 'petDesc';
-    const petGender = 'petGender';
+    const petAge = 'petAge';
+    const petPrice = 'petPrice'
     const control = this.addPetForm!.get(controlName);
     if (control?.hasError(required)) {
       return requiredError;
+    }
+    if (controlName == petAge || controlName == petPrice && control?.hasError(pattern)) {
+      return ageError;
     }
     if (controlName == petDesc && control?.hasError(minLength)) {
       return lengthError;

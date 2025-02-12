@@ -10,6 +10,7 @@ import { StaticClass } from '../../../utility/helper/static-words';
 import { UpdateOrderStatusModel } from '../../../models/update-order-status.model';
 import { UserService } from '../../../services/user.service';
 import { UserDataModel } from '../../../models/userdata.model';
+import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-allusers',
@@ -24,6 +25,9 @@ export class AllusersComponent {
   userData: UserDataModel[] = [];
   dtOptions: Config = {}
   dttrigger: Subject<any> = new Subject<any>();
+  deleteUserId?: string;
+  modalInstance: Modal | null = null;
+  deleteClicked = false;
 
   constructor(
     private snackbarService: SnackbarService,
@@ -36,6 +40,16 @@ export class AllusersComponent {
       pageLength: 5,
       lengthChange: false
     }
+
+    const modalElement = document.getElementById('deleteModal') as HTMLElement;
+    if (modalElement) {
+      this.modalInstance = new Modal(modalElement);
+    }
+  }
+
+  openModal(id: string) {
+    this.deleteUserId = id;
+    this.modalInstance?.show()
   }
 
   fetchUsers() {
@@ -50,16 +64,21 @@ export class AllusersComponent {
     })
   }
 
-  deleteUser(id: string) {
-    this.userService.deleteUser(id).subscribe({
+
+  deleteUser() {
+    this.userService.deleteUser(this.deleteUserId!).subscribe({
       next: (res) => {
+        this.deleteClicked = true;
         this.snackbarService.open({ message: res, panelClass: [StaticClass.sucSnackbar] })
+        this.modalInstance?.hide()
         setTimeout(() => {
           window.location.reload();
-        }, 1000)
+        }, 1500)
       },
       error: (err) => {
         this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] })
+        this.modalInstance?.hide()
+        this.deleteClicked = false;
       }
     })
   }

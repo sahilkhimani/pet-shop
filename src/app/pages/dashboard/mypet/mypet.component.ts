@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { GetOrdersModel } from '../../../models/get-orders.model';
 import { DataTablesModule } from 'angular-datatables';
 import { Config } from 'datatables.net';
@@ -13,6 +13,9 @@ import { UserDataModel } from '../../../models/userdata.model';
 import { PetModel } from '../../../models/pet.model';
 import { PetService } from '../../../services/pet.service';
 import { SimplePetModel } from '../../../models/simple-pet.model';
+import { LocalStorageService } from '../../../utility/services/local-storage.service';
+import { Router } from '@angular/router';
+import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-mypet',
@@ -27,10 +30,15 @@ export class MypetComponent {
   pets: SimplePetModel[] = [];
   dtOptions: Config = {}
   dttrigger: Subject<any> = new Subject<any>();
+  deletePetId?: number;
+  modalInstance: Modal | null = null;
+  deletePetClicked : boolean = false;
 
   constructor(
     private snackbarService: SnackbarService,
-    private petService: PetService
+    private petService: PetService,
+    private localStorageService: LocalStorageService,
+    private router: Router,
   ) { }
   ngOnInit(): void {
     this.fetchPets();
@@ -39,6 +47,15 @@ export class MypetComponent {
       pageLength: 5,
       lengthChange: false
     }
+    const modalElement = document.getElementById('confirmDeleteModal');
+    if (modalElement) {
+      this.modalInstance = new Modal(modalElement);
+    }
+  }
+
+  openDeleteModal(id: number) {
+    this.deletePetId = id;
+    this.modalInstance?.show()
   }
 
   fetchPets() {
@@ -53,17 +70,27 @@ export class MypetComponent {
     })
   }
 
-  // deleteUser(id: string) {
-  //   this.userService.deleteUser(id).subscribe({
-  //     next: (res) => {
-  //       this.snackbarService.open({ message: res, panelClass: [StaticClass.sucSnackbar] })
-  //       setTimeout(() => {
-  //         window.location.reload();
-  //       }, 1000)
-  //     },
-  //     error: (err) => {
-  //       this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] })
-  //     }
-  //   })
-  // }
+  updatePet(pet: SimplePetModel) {
+    this.petService.setEditMode(true);
+    this.localStorageService.setItem(StaticClass.petDetails, pet)
+    this.router.navigate([`/${StaticClass.dashboardPage}/${StaticClass.AddPetPage}`])
+  }
+
+  deletePet() {
+    this.deletePetClicked = true
+    this.petService.deletePet(this.deletePetId!).subscribe({
+      next: (res) => {
+        this.modalInstance?.hide()
+        this.snackbarService.open({ message: res, panelClass: [StaticClass.sucSnackbar] })
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500)
+      },
+      error: (err) => {
+        this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] })
+        this.modalInstance?.hide()
+        this.deletePetClicked = false;
+      }
+    })
+  }
 }

@@ -45,7 +45,7 @@ export class MyOrdersComponent implements OnInit {
     private router: Router
   ) { }
   ngOnInit(): void {
-    const modalElement = document.getElementById('confirmModal') as HTMLElement;
+    const modalElement = document.getElementById('confirmCancelModal') as HTMLElement;
     if (modalElement) {
       this.modalInstance = new Modal(modalElement);
     }

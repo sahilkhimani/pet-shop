@@ -5,7 +5,7 @@ export class SimplePetModel {
         public petAge?: number,
         public petPrice?: number,
         public petGender?: string,
-        public BreedId? : number,
+        public breedId? : number,
         public breedName?: string,
         public ownerId?: string,
         public petDesc?: string,

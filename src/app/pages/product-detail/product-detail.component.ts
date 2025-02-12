@@ -41,7 +41,7 @@ export class ProductDetailComponent implements OnInit {
     this.productDetail = state?.product;
   }
   ngOnInit(): void {
-    const modalElement = document.getElementById('confirmModal') as HTMLElement;
+    const modalElement = document.getElementById('confirmBuy') as HTMLElement;
     if (modalElement) {
       this.modalInstance = new Modal(modalElement);
     }

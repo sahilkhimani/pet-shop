@@ -60,8 +60,8 @@
                     </small>
                 </div>
             </div>
-            <button class="btn btn-primary" [disabled]="this.addPetForm?.invalid" type="submit">Save
-                changes</button>
+            <button class="btn btn-primary me-2" [disabled]="this.addPetForm?.invalid" type="submit">{{editMode ? 'Update Pet' : 'Add Pet' }}</button>
+            <button class="btn btn-dark" type="button" (click)="clearForm()">Clear Form</button>
         </form>
     </div>
 </div>

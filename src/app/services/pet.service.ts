@@ -2,7 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ResponseModel } from '../models/response.model';
-import { concatMap, forkJoin, map, mergeMap, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, concatMap, forkJoin, map, mergeMap, Observable, switchMap } from 'rxjs';
 import { BreedService } from './breed.service';
 import { SpeciesService } from './species.service';
 import { CategModel } from '../models/categ.model';
@@ -45,6 +45,8 @@ export class PetService {
   private breedList: BreedModel[] = [];
   private productDetail: PetModel = {};
   breedListFetched = false;
+  private editModeSubject = new BehaviorSubject<boolean>(false);
+  editMode$ = this.editModeSubject.asObservable()
 
   private baseUrl = environment.apiUrl + 'Pet';
   private GetAllApiUrl = this.baseUrl + '/GetAll';
@@ -78,6 +80,10 @@ export class PetService {
         }
       }
     )
+  }
+
+  setEditMode(value: boolean) {
+    this.editModeSubject.next(value);
   }
 
   getAll(): Observable<PetModel[]> {
@@ -165,14 +171,12 @@ export class PetService {
     )
   }
 
-  //not tested
   deletePet(id: number): Observable<string> {
-    return this.client.get(`${this.DeletePetApiUrl}/${id}`,
+    return this.client.delete(`${this.DeletePetApiUrl}/${id}`,
       { responseType: 'text' }
     )
   }
 
-  //not tested
   updatePet(id: number, pet: CreatePetModel) {
     return this.client.put(`${this.UpdatePetApiUrl}/${id}`, pet,
       { responseType: 'text' }
