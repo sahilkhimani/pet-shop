@@ -1,8 +1,8 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { LocalStorageService } from '../services/local-storage.service';
-import { StaticClass } from '../helper/static-words';
 import { Router } from '@angular/router';
+import { StaticClass } from '../helper/static-words';
+import { LocalStorageService } from '../services/local-storage.service';
 
 export const apiHeaderInterceptor: HttpInterceptorFn = (req, next) => {
   const localStorageService = inject(LocalStorageService);

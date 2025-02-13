@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component } from '@angular/core';
 import { UserDetailsComponent } from "./user-details/user-details.component";
 
 @Component({

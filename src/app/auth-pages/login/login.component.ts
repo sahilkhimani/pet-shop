@@ -1,15 +1,14 @@
-import { Component } from '@angular/core';
-import { AuthSideComponent } from '../auth-side/auth-side.component';
-import { Router, RouterLink } from '@angular/router';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { LoginModel } from '../../models/login.model';
 import { UserService } from '../../services/user.service';
-import { SnackbarService } from '../../utility/services/snackbar.service';
-import { AppComponent } from '../../app.component';
-import { DecodeTokenService } from '../../utility/services/decode-token.service';
 import { StaticClass } from '../../utility/helper/static-words';
+import { DecodeTokenService } from '../../utility/services/decode-token.service';
 import { LocalStorageService } from '../../utility/services/local-storage.service';
+import { SnackbarService } from '../../utility/services/snackbar.service';
+import { AuthSideComponent } from '../auth-side/auth-side.component';
 
 @Component({
   selector: 'app-login',
@@ -57,8 +56,7 @@ export class LoginComponent {
     this.userService.Login(data).subscribe({
       next: (response) => {
         this.localStorageService.setItem<string>(StaticClass.token, response)
-        //change 120 into 60
-        const expiryTime = new Date().getTime() + 120 * 60 * 1000;
+        const expiryTime = new Date().getTime() + 60 * 60 * 1000;
         this.localStorageService.setItem(StaticClass.expiryTime, expiryTime.toString());
         const decodeToken = this.jwtToken.decodeJwtToken(response);
         if (decodeToken) {

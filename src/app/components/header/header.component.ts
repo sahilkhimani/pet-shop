@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { AppComponent } from '../../app.component';
-import { CategoryService } from '../../utility/services/category.service';
 import { StaticClass } from '../../utility/helper/static-words';
+import { CategoryService } from '../../utility/services/category.service';
 import { LocalStorageService } from '../../utility/services/local-storage.service';
 
 @Component({

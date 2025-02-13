@@ -1,6 +1,6 @@
-import { inject, Injectable, OnInit } from "@angular/core";
-import { LocalStorageService } from "../utility/services/local-storage.service";
+import { inject, Injectable } from "@angular/core";
 import { StaticClass } from "../utility/helper/static-words";
+import { LocalStorageService } from "../utility/services/local-storage.service";
 
 @Injectable({
     providedIn: 'root'

@@ -1,8 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { StaticClass } from '../../utility/helper/static-words';
 import { LocalStorageService } from '../../utility/services/local-storage.service';
-import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',

@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { ResponseModel } from '../models/response.model';
+import { environment } from '../../environments/environment';
 import { BreedModel } from '../models/breed.model';
 import { CreateBreedModel } from '../models/create-breed.model';
+import { ResponseModel } from '../models/response.model';
 import { SingleResponseModel } from '../models/singleResponse.model';
 
 @Injectable({

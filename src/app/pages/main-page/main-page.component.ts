@@ -1,18 +1,17 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { PetService } from '../../services/pet.service';
-import { SnackbarService } from '../../utility/services/snackbar.service';
 import { CommonModule } from '@angular/common';
-import { ProductComponent } from "../../product/product.component";
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { CategoryComponent } from "../../category/category.component";
-import { PetModel } from '../../models/pet.model';
-import { LoaderComponent } from "../../utility/loader/loader.component";
-import { ProductDetailComponent } from "../product-detail/product-detail.component";
+import { FooterComponent } from "../../components/footer/footer.component";
 import { HeaderComponent } from '../../components/header/header.component';
 import { LoginModalComponent } from '../../components/login-modal/login-modal.component';
 import { SliderComponent } from "../../components/slider/slider.component";
-import { FooterComponent } from "../../components/footer/footer.component";
-import { CategoryService } from '../../utility/services/category.service';
+import { PetModel } from '../../models/pet.model';
+import { ProductComponent } from "../../product/product.component";
+import { PetService } from '../../services/pet.service';
 import { StaticClass } from '../../utility/helper/static-words';
+import { LoaderComponent } from "../../utility/loader/loader.component";
+import { CategoryService } from '../../utility/services/category.service';
+import { SnackbarService } from '../../utility/services/snackbar.service';
 
 @Component({
   selector: 'app-main-page',

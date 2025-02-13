@@ -1,6 +1,5 @@
-import { CanActivateFn, Router } from '@angular/router';
-import { AppComponent } from '../../app.component';
 import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
 import { StaticClass } from '../helper/static-words';
 import { LocalStorageService } from '../services/local-storage.service';
 

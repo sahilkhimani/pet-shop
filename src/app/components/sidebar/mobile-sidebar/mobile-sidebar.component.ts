@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LocalStorageService } from '../../../utility/services/local-storage.service';
 import { StaticClass } from '../../../utility/helper/static-words';
+import { LocalStorageService } from '../../../utility/services/local-storage.service';
 import { SidebarComponent } from '../sidebar.component';
 
 @Component({

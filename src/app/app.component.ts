@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router, RouterOutlet } from '@angular/router';
-import { MatSnackBarModule } from '@angular/material/snack-bar'
-import { LocalStorageService } from './utility/services/local-storage.service';
 import { StaticClass } from './utility/helper/static-words';
+import { LocalStorageService } from './utility/services/local-storage.service';
 
 @Component({
   selector: 'app-root',

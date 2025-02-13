@@ -4,9 +4,13 @@ import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
 import { CategoryService } from '../../utility/services/category.service';
 
+
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink, CommonModule],
+  imports: [
+    RouterLink,
+    CommonModule
+  ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })
@@ -14,11 +18,11 @@ import { CategoryService } from '../../utility/services/category.service';
 export class FooterComponent {
   navLinks = HeaderComponent.headerNav;
   constructor(
-    private categService : CategoryService,
-    private router : Router
-  ){}
+    private categService: CategoryService,
+    private router: Router
+  ) { }
 
-  categClicked(categName : string){
+  categClicked(categName: string) {
     this.categService.setSelectedCategory(categName);
     this.router.navigate(['/main-page'])
   }

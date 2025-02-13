@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { ResponseModel } from '../models/response.model';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { SpeciesModel } from '../models/species.model';
+import { environment } from '../../environments/environment';
 import { CreateSpeciesModel } from '../models/create-species.model';
+import { ResponseModel } from '../models/response.model';
 import { SingleResponseModel } from '../models/singleResponse.model';
+import { SpeciesModel } from '../models/species.model';
 
 @Injectable({
   providedIn: 'root'

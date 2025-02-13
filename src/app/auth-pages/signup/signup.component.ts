@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
-import { AuthSideComponent } from '../auth-side/auth-side.component';
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { RegisterModel } from '../../models/register.model';
 import { UserService } from '../../services/user.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackbarService } from '../../utility/services/snackbar.service';
 import { StaticClass } from '../../utility/helper/static-words';
+import { SnackbarService } from '../../utility/services/snackbar.service';
+import { AuthSideComponent } from '../auth-side/auth-side.component';
 @Component({
   selector: 'app-signup',
   imports: [
@@ -60,9 +59,8 @@ export class SignupComponent {
     const data = new RegisterModel(formData.name, formData.email, formData.password, formData.cPassword, formData.phoneNo, formData.roleId);
     this.userService.register(data).subscribe({
       next: (response) => {
-        this.router.navigate([StaticClass.loginPage]);
         this.snackbarService.open({ message: response, panelClass: [StaticClass.sucSnackbar] });
-        this.singupForm.reset();
+        this.router.navigate([StaticClass.loginPage]);
       },
       error: (err) => {
         this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] })

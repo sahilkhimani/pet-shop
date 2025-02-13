@@ -1,16 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { PetModel } from '../../models/pet.model';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from "../../components/header/header.component";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Modal } from 'bootstrap';
 import { FooterComponent } from "../../components/footer/footer.component";
-import { ActivatedRoute, Router } from '@angular/router';
+import { HeaderComponent } from "../../components/header/header.component";
+import { CreateOrderModel } from '../../models/CreateOrder.model';
+import { PetModel } from '../../models/pet.model';
+import { OrderService } from '../../services/order.service';
+import { StaticClass } from '../../utility/helper/static-words';
 import { CheckProductStatusService } from '../../utility/services/checkProductStatus.service';
 import { LocalStorageService } from '../../utility/services/local-storage.service';
-import { StaticClass } from '../../utility/helper/static-words';
 import { SnackbarService } from '../../utility/services/snackbar.service';
-import { OrderService } from '../../services/order.service';
-import { CreateOrderModel } from '../../models/CreateOrder.model';
-import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-product-detail',

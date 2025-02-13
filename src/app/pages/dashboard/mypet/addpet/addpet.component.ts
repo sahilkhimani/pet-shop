@@ -1,23 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { UserDataModel } from '../../../../models/userdata.model';
-import { LocalStorageService } from '../../../../utility/services/local-storage.service';
-import { StaticClass } from '../../../../utility/helper/static-words';
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../../../../services/user.service';
-import { UpdateUserModel } from '../../../../models/update-user.model';
-import { SnackbarService } from '../../../../utility/services/snackbar.service';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CreatePetModel } from '../../../../models/create-pet.model';
-import { SimplePetModel } from '../../../../models/simple-pet.model';
-import { PetService } from '../../../../services/pet.service';
-import { BreedModel } from '../../../../models/breed.model';
-import { SpeciesModel } from '../../../../models/species.model';
 import { Modal } from 'bootstrap';
-import { SpeciesService } from '../../../../services/species.service';
-import { BreedService } from '../../../../services/breed.service';
-import { CreateSpeciesModel } from '../../../../models/create-species.model';
+import { BreedModel } from '../../../../models/breed.model';
 import { CreateBreedModel } from '../../../../models/create-breed.model';
+import { CreatePetModel } from '../../../../models/create-pet.model';
+import { CreateSpeciesModel } from '../../../../models/create-species.model';
+import { SimplePetModel } from '../../../../models/simple-pet.model';
+import { SpeciesModel } from '../../../../models/species.model';
+import { BreedService } from '../../../../services/breed.service';
+import { PetService } from '../../../../services/pet.service';
+import { SpeciesService } from '../../../../services/species.service';
+import { StaticClass } from '../../../../utility/helper/static-words';
+import { LocalStorageService } from '../../../../utility/services/local-storage.service';
+import { SnackbarService } from '../../../../utility/services/snackbar.service';
 @Component({
   selector: 'app-addpet',
   imports: [

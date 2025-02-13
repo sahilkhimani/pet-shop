@@ -1,17 +1,17 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { GetOrdersModel } from '../../models/get-orders.model';
-import { OrderService } from '../../services/order.service';
-import { SnackbarService } from '../../utility/services/snackbar.service';
-import { StaticClass } from '../../utility/helper/static-words';
 import { CommonModule } from '@angular/common';
-import { DataTablesModule } from 'angular-datatables'
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataTablesModule } from 'angular-datatables';
+import { Modal } from 'bootstrap';
 import { Config } from 'datatables.net';
 import { Subject } from 'rxjs';
-import { UpdateOrderStatusModel } from '../../models/update-order-status.model';
+import { GetOrdersModel } from '../../models/get-orders.model';
 import { PetModel } from '../../models/pet.model';
+import { UpdateOrderStatusModel } from '../../models/update-order-status.model';
+import { OrderService } from '../../services/order.service';
 import { PetService } from '../../services/pet.service';
-import { Router } from '@angular/router';
-import { Modal } from 'bootstrap';
+import { StaticClass } from '../../utility/helper/static-words';
+import { SnackbarService } from '../../utility/services/snackbar.service';
 
 @Component({
   selector: 'app-my-orders',

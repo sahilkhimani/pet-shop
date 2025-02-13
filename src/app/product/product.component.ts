@@ -1,12 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { PetModel } from '../models/pet.model';
-import { ShortenTextPipe } from '../utility/pipes/shorten-text.pipe';
-import { Router, RouterLink, RouterModule } from '@angular/router';
-import { AppComponent } from '../app.component';
-import { CheckProductStatusService } from '../utility/services/checkProductStatus.service';
 import { StaticClass } from '../utility/helper/static-words';
-import { Modal } from 'bootstrap';
+import { ShortenTextPipe } from '../utility/pipes/shorten-text.pipe';
+import { CheckProductStatusService } from '../utility/services/checkProductStatus.service';
 
 @Component({
   selector: 'app-product',

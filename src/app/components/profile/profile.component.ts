@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { UserDataModel } from '../../models/userdata.model';
-import { LocalStorageService } from '../../utility/services/local-storage.service';
-import { StaticClass } from '../../utility/helper/static-words';
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../../services/user.service';
-import { UpdateUserModel } from '../../models/update-user.model';
-import { SnackbarService } from '../../utility/services/snackbar.service';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UpdateUserModel } from '../../models/update-user.model';
+import { UserDataModel } from '../../models/userdata.model';
+import { UserService } from '../../services/user.service';
+import { StaticClass } from '../../utility/helper/static-words';
+import { LocalStorageService } from '../../utility/services/local-storage.service';
+import { SnackbarService } from '../../utility/services/snackbar.service';
 
 @Component({
   selector: 'app-profile',

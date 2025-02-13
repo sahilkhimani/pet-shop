@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { BreedService } from '../../../services/breed.service';
-import { LocalStorageService } from '../../../utility/services/local-storage.service';
-import { BreedModel } from '../../../models/breed.model';
-import { SnackbarService } from '../../../utility/services/snackbar.service';
-import { StaticClass } from '../../../utility/helper/static-words';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SpeciesModel } from '../../../models/species.model';
-import { SpeciesService } from '../../../services/species.service';
 import { Modal } from 'bootstrap';
+import { BreedModel } from '../../../models/breed.model';
 import { CreateBreedModel } from '../../../models/create-breed.model';
+import { SpeciesModel } from '../../../models/species.model';
+import { BreedService } from '../../../services/breed.service';
+import { SpeciesService } from '../../../services/species.service';
+import { StaticClass } from '../../../utility/helper/static-words';
+import { SnackbarService } from '../../../utility/services/snackbar.service';
 
 @Component({
   selector: 'app-breed',

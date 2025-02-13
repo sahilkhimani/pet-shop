@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { ResponseModel } from '../models/response.model';
+import { environment } from '../../environments/environment';
 import { CreateOrderModel } from '../models/CreateOrder.model';
 import { GetOrdersModel } from '../models/get-orders.model';
+import { ResponseModel } from '../models/response.model';
 import { SingleResponseModel } from '../models/singleResponse.model';
 import { UpdateOrderStatusModel } from '../models/update-order-status.model';
 

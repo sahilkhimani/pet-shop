@@ -1,16 +1,16 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 import { DataTablesModule } from "angular-datatables";
-import { GetOrdersModel } from "../../../models/get-orders.model";
 import { Config } from "datatables.net";
 import { Subject } from "rxjs";
+import { GetOrdersModel } from "../../../models/get-orders.model";
 import { PetModel } from "../../../models/pet.model";
-import { OrderService } from "../../../services/order.service";
-import { SnackbarService } from "../../../utility/services/snackbar.service";
-import { PetService } from "../../../services/pet.service";
-import { Router } from "@angular/router";
-import { StaticClass } from "../../../utility/helper/static-words";
 import { UpdateOrderStatusModel } from "../../../models/update-order-status.model";
+import { OrderService } from "../../../services/order.service";
+import { PetService } from "../../../services/pet.service";
+import { StaticClass } from "../../../utility/helper/static-words";
+import { SnackbarService } from "../../../utility/services/snackbar.service";
 
 
 @Component({

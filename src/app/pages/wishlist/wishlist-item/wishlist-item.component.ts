@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { PetModel } from '../../../models/pet.model';
+import { StaticClass } from '../../../utility/helper/static-words';
 import { ShortenTextPipe } from "../../../utility/pipes/shorten-text.pipe";
 import { LocalStorageService } from '../../../utility/services/local-storage.service';
-import { StaticClass } from '../../../utility/helper/static-words';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-wishlist-item',

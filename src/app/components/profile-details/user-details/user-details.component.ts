@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { UserDataModel } from '../../../models/userdata.model';
-import { UserService } from '../../../services/user.service';
-import { LocalStorageService } from '../../../utility/services/local-storage.service';
-import { StaticClass } from '../../../utility/helper/static-words';
-import { SnackbarService } from '../../../utility/services/snackbar.service';
 import { Router, RouterLink } from '@angular/router';
 import { Modal } from 'bootstrap';
+import { UserDataModel } from '../../../models/userdata.model';
+import { UserService } from '../../../services/user.service';
+import { StaticClass } from '../../../utility/helper/static-words';
+import { LocalStorageService } from '../../../utility/services/local-storage.service';
+import { SnackbarService } from '../../../utility/services/snackbar.service';
 
 @Component({
   selector: 'app-user-details',

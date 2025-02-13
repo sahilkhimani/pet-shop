@@ -1,18 +1,18 @@
-import { Injectable, OnInit } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ResponseModel } from '../models/response.model';
-import { BehaviorSubject, concatMap, forkJoin, map, mergeMap, Observable, switchMap } from 'rxjs';
-import { BreedService } from './breed.service';
-import { SpeciesService } from './species.service';
-import { CategModel } from '../models/categ.model';
-import { SpeciesModel } from '../models/species.model';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, forkJoin, map, Observable, switchMap } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { BreedModel } from '../models/breed.model';
-import { PetModel } from '../models/pet.model';
-import { OrderService } from './order.service';
+import { CategModel } from '../models/categ.model';
 import { CreatePetModel } from '../models/create-pet.model';
-import { SingleResponseModel } from '../models/singleResponse.model';
+import { PetModel } from '../models/pet.model';
+import { ResponseModel } from '../models/response.model';
 import { SimplePetModel } from '../models/simple-pet.model';
+import { SingleResponseModel } from '../models/singleResponse.model';
+import { SpeciesModel } from '../models/species.model';
+import { BreedService } from './breed.service';
+import { OrderService } from './order.service';
+import { SpeciesService } from './species.service';
 
 @Injectable({
   providedIn: 'root'

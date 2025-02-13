@@ -1,11 +1,11 @@
-import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { StaticClass } from '../../utility/helper/static-words';
 import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
-import { LocalStorageService } from '../../utility/services/local-storage.service';
-import { SidebarComponent } from "../../components/sidebar/sidebar.component";
-import { MobileSidebarComponent } from "../../components/sidebar/mobile-sidebar/mobile-sidebar.component";
 import { filter, Subscription } from 'rxjs';
+import { MobileSidebarComponent } from "../../components/sidebar/mobile-sidebar/mobile-sidebar.component";
+import { SidebarComponent } from "../../components/sidebar/sidebar.component";
+import { StaticClass } from '../../utility/helper/static-words';
+import { LocalStorageService } from '../../utility/services/local-storage.service';
 
 @Component({
   selector: 'app-dashboard',

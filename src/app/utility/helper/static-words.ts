@@ -1,6 +1,3 @@
-import { PetModel } from "../../models/pet.model";
-import { UserDataModel } from "../../models/userdata.model";
-
 export abstract class StaticClass {
     //localstorage variables
     static token: string = 'token';

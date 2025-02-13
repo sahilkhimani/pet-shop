@@ -1,16 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { GetOrdersModel } from '../../../models/get-orders.model';
 import { DataTablesModule } from 'angular-datatables';
+import { Modal } from 'bootstrap';
 import { Config } from 'datatables.net';
 import { Subject } from 'rxjs';
-import { OrderService } from '../../../services/order.service';
-import { SnackbarService } from '../../../utility/services/snackbar.service';
-import { StaticClass } from '../../../utility/helper/static-words';
-import { UpdateOrderStatusModel } from '../../../models/update-order-status.model';
-import { UserService } from '../../../services/user.service';
 import { UserDataModel } from '../../../models/userdata.model';
-import { Modal } from 'bootstrap';
+import { UserService } from '../../../services/user.service';
+import { StaticClass } from '../../../utility/helper/static-words';
+import { SnackbarService } from '../../../utility/services/snackbar.service';
 
 @Component({
   selector: 'app-allusers',

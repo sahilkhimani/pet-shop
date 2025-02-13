@@ -1,16 +1,14 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginModel } from '../models/login.model';
+import { map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { map, Observable, of, tap } from 'rxjs';
+import { LoginModel } from '../models/login.model';
 import { RegisterModel } from '../models/register.model';
-import { UserDataModel } from '../models/userdata.model';
-import { LocalStorageService } from '../utility/services/local-storage.service';
-import { StaticClass } from '../utility/helper/static-words';
 import { ResponseModel } from '../models/response.model';
 import { SingleResponseModel } from '../models/singleResponse.model';
-import { CheckCredentialService } from './check-credentials.service';
 import { UpdateUserModel } from '../models/update-user.model';
+import { UserDataModel } from '../models/userdata.model';
+import { LocalStorageService } from '../utility/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
