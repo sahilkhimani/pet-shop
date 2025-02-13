@@ -53,14 +53,12 @@ export class SpeciesService {
     )
   }
 
-  //not tested
   deleteSpecies(id: number): Observable<string> {
     return this.client.delete(`${this.DeleteSpeciesApiUrl}/${id}`,
       { responseType: 'text' }
     )
   }
 
-  //not tested
   updateSpecies(id: number, speciesData: CreateSpeciesModel): Observable<string> {
     return this.client.put(
       `${this.UpdateSpeciesApiUrl}/${id}`,

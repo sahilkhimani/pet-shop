@@ -1,23 +1,23 @@
 <div class="container mb-3">
     <div class="row m-3">
-        <button (click)="openBreedModal()" class="btn btn-dark col-4">Add New Breed</button>
+        <button (click)="openSpeciesModal()" class="btn btn-dark col-4">Add New Species</button>
     </div>
     <div class="row m-auto">
         <table>
             <thead>
                 <tr>
                     <th>S.no</th>
-                    <th>Breed Name</th>
+                    <th>Species Name</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of breedList; let i = index">
+                <tr *ngFor="let item of speciesList; let i = index">
                     <td>{{ i+1 }}</td>
-                    <td>{{ item.BreedName }}</td>
+                    <td>{{ item.SpeciesName }}</td>
                     <td>
-                        <button (click)="updateBreed(item)" class="btn btn-primary me-2">Update</button>
-                        <button (click)="deleteBreed(item)" class="btn btn-danger">Delete</button>
+                        <button (click)="updateSpecies(item)" class="btn btn-primary me-2">Update</button>
+                        <button (click)="deleteSpecies(item)" class="btn btn-danger">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -25,34 +25,22 @@
     </div>
 </div>
 
-<div class="modal" id="newBreedModal" tabindex="-1" aria-labelledby="breedModalLabel" aria-hidden="true">
+<div class="modal" id="newSpeciesModal" tabindex="-1" aria-labelledby="speciesModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="breedModalLabel">Add New Breed</h5>
+                <h5 class="modal-title" id="speciesModalLabel">Add New Species</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="addBreedForm!">
+                <form [formGroup]="addSpeciesForm!">
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <label for="breedName" class="small mb-1">Breed Name</label>
-                            <input type="text" name="breedName" placeholder="Enter breed name" class="form-control"
-                                formControlName="breedName" id="breedName">
-                            <small *ngIf="b['breedName'].invalid && b['breedName'].touched">
-                                {{ getBreedError('breedName') }}
-                            </small>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label for="speciesId" class="small mb-1">Select Species</label>
-                            <select name="speciesId" class="form-select form-control" formControlName="speciesId"
-                                id="speciesId">
-                                <option disabled value="">Select Species</option>
-                                <option *ngFor="let item of speciesList" [value]="item.SpeciesId">{{ item.SpeciesName }}
-                                </option>
-                            </select>
-                            <small *ngIf="b['speciesId'].invalid && b['speciesId'].touched">
-                                {{ getBreedError('speciesId') }}
+                            <label for="speciesName" class="small mb-1">Species Name</label>
+                            <input type="text" name="speciesName" placeholder="Enter Species name" class="form-control"
+                                formControlName="speciesName" id="speciesName">
+                            <small *ngIf="b['speciesName'].invalid && b['speciesName'].touched">
+                                {{ getSpeciesError('speciesName') }}
                             </small>
                         </div>
                     </div>
@@ -60,8 +48,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" [disabled]="this.addBreedForm?.invalid" class="btn btn-primary"
-                    (click)="saveBreed()">{{this.editMode ? 'Update Breed' : 'Add Breed'}}</button>
+                <button type="button" [disabled]="this.addSpeciesForm?.invalid" class="btn btn-primary"
+                    (click)="saveSpecies()">{{this.editMode ? 'Update Species' : 'Add Species'}}</button>
             </div>
         </div>
     </div>
