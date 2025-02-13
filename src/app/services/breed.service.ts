@@ -55,14 +55,12 @@ export class BreedService {
     )
   }
 
-  //not tested
   deleteBreed(id: number): Observable<string> {
     return this.client.delete(`${this.DeleteBreedApiUrl}/${id}`,
       { responseType: 'text' }
     )
   }
 
-  //not tested
   updateBreed(id: number, breedData: CreateBreedModel): Observable<string> {
     return this.client.put(
       `${this.UpdateBreedApiUrl}/${id}`,

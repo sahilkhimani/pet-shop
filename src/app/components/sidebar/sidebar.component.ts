@@ -30,6 +30,8 @@ export class SidebarComponent implements OnInit {
     { name: 'My Pets', link: StaticClass.MyPetPage, role: [StaticClass.sellerRole, StaticClass.adminRole] },
     { name: 'Add Pets', link: StaticClass.AddPetPage, role: [StaticClass.sellerRole, StaticClass.adminRole] },
     { name: 'All User', link: StaticClass.allUsersPage, role: [StaticClass.adminRole] },
+    { name: 'Breeds List', link: StaticClass.breedPage, role: [StaticClass.adminRole] },
+    { name: 'Speciess List', link: StaticClass.speciesPage, role: [StaticClass.adminRole] },
   ]
 
   dashboardNav = SidebarComponent.navLinks;

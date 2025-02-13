@@ -35,4 +35,6 @@ export abstract class StaticClass {
     static AddPetPage = 'add-pet'
     //admin
     static allUsersPage = 'all-user'
+    static breedPage = 'breed'
+    static speciesPage = 'species'
 }

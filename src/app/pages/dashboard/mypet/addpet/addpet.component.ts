@@ -122,6 +122,10 @@ export class AddpetComponent implements OnInit {
       },
       error: (err) => {
         this.snackbarService.open({ message: err.error, panelClass: [StaticClass.errorSnackbar] })
+        this.addPetForm?.get('breedId')?.setValue('');
+        this.addBreedForm?.get('speciesId')?.setValue('');
+        this.breedModalInstance?.hide()
+        this.speciesModalInstance?.hide()
       }
     })
   }
@@ -182,10 +186,6 @@ export class AddpetComponent implements OnInit {
 
   get b() {
     return this.addBreedForm!.controls;
-  }
-
-  get s() {
-    return this.addSpeciesForm!.controls;
   }
 
   getErrorMessages(controlName: string) {

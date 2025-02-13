@@ -15,6 +15,8 @@ import { AllusersComponent } from './pages/dashboard/allusers/allusers.component
 import { OrderHistoryComponent } from './pages/dashboard/order-history/order-history.component';
 import { MypetComponent } from './pages/dashboard/mypet/mypet.component';
 import { AddpetComponent } from './pages/dashboard/mypet/addpet/addpet.component';
+import { BreedComponent } from './pages/dashboard/breed/breed.component';
+import { SpeciesComponent } from './pages/dashboard/species/species.component';
 
 
 
@@ -39,31 +41,43 @@ export const routes: Routes = [
             {
                 path: 'my-orders',
                 component: MyOrdersComponent,
-                canActivate : [authGuard],
+                canActivate: [authGuard],
                 data: { role: [StaticClass.buyerRole, StaticClass.adminRole] }
             },
             {
                 path: 'order-history',
                 component: OrderHistoryComponent,
-                canActivate : [authGuard],
+                canActivate: [authGuard],
                 data: { role: [StaticClass.sellerRole, StaticClass.adminRole] }
             },
             {
                 path: 'all-user',
                 component: AllusersComponent,
-                canActivate : [authGuard],
+                canActivate: [authGuard],
                 data: { role: [StaticClass.adminRole] }
             },
             {
                 path: 'my-pet',
                 component: MypetComponent,
-                canActivate : [authGuard],
+                canActivate: [authGuard],
                 data: { role: [StaticClass.adminRole, StaticClass.sellerRole] }
+            },
+            {
+                path: 'breed',
+                component: BreedComponent,
+                canActivate: [authGuard],
+                data: { role: [StaticClass.adminRole] }
+            },
+            {
+                path: 'species',
+                component: SpeciesComponent,
+                canActivate: [authGuard],
+                data: { role: [StaticClass.adminRole] }
             },
             {
                 path: 'add-pet',
                 component: AddpetComponent,
-                canActivate : [authGuard],
+                canActivate: [authGuard],
                 data: { role: [StaticClass.adminRole, StaticClass.sellerRole] }
             },
         ],
