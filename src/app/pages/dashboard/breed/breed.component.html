@@ -1,4 +1,4 @@
-<div class="container mb-3">
+<div class="container mb-3" *ngIf="breedList.length">
     <div class="row m-3">
         <button (click)="openBreedModal()" class="btn btn-dark col-4">Add New Breed</button>
     </div>
@@ -25,7 +25,14 @@
     </div>
 </div>
 
-<div class="modal" id="newBreedModal" tabindex="-1" aria-labelledby="breedModalLabel" >
+<div *ngIf="!breedList.length">
+    <div class="d-flex justify-content-center">
+        <img src="assets/images/no-item.png">
+    </div>
+    <h1 class="text-center">No Breed Yet</h1>
+</div>
+
+<div class="modal" id="newBreedModal" tabindex="-1" aria-labelledby="breedModalLabel">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

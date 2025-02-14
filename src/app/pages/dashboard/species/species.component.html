@@ -1,4 +1,4 @@
-<div class="container mb-3">
+<div class="container mb-3" *ngIf="speciesList.length">
     <div class="row m-3">
         <button (click)="openSpeciesModal()" class="btn btn-dark col-4">Add New Species</button>
     </div>
@@ -23,6 +23,13 @@
             </tbody>
         </table>
     </div>
+</div>
+
+<div *ngIf="!speciesList.length">
+    <div class="d-flex justify-content-center">
+        <img src="assets/images/no-item.png">
+    </div>
+    <h1 class="text-center">No Breed Yet</h1>
 </div>
 
 <div class="modal" id="newSpeciesModal" tabindex="-1" aria-labelledby="speciesModalLabel">
