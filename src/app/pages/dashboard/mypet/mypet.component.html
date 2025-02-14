@@ -27,6 +27,14 @@
     </table>
 </div>
 
+
+<div *ngIf="!pets.length">
+    <div class="d-flex justify-content-center">
+        <img src="assets/images/no-item.png">
+    </div>
+    <h1 class="text-center">No Pets Yet</h1>
+</div>
+
 <div class="modal" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmModalLabel">
     <div class="modal-dialog">
         <div class="modal-content">

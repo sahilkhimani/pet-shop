@@ -30,6 +30,12 @@
     </table>
 </div>
 
+<div *ngIf="!ordersData.length">
+    <div class="d-flex justify-content-center">
+        <img src="assets/images/no-order.png">
+    </div>
+</div>
+
 <div class="modal" id="confirmCancelModal" tabindex="-1" aria-labelledby="confirmModalLabel">
     <div class="modal-dialog">
         <div class="modal-content">
