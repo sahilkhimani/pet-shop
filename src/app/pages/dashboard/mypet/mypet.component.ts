@@ -39,7 +39,7 @@ export class MypetComponent {
     this.dtOptions = {
       pagingType: 'full',
       pageLength: 5,
-      lengthChange: false
+      lengthChange: false,
     }
     const modalElement = document.getElementById('confirmDeleteModal');
     if (modalElement) {
